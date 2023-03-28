@@ -2,18 +2,32 @@
 const express = require('express');
 const User = require('../models/User');
 const router = express.Router();
+const Artist = require('../models/Artist');
+const UserEngagementMetrics = require('../models/UserEngagementMetrics');
 
 
 //route for creating a new user
+
 router.post('/create', async (req, res) => {
     try {
         const newUser = new User(req.body);
         await newUser.save();
+
+        const newUserEngagementMetrics = new UserEngagementMetrics({ user: newUser._id });
+        await newUserEngagementMetrics.save();
+
+        // If the user role is "artist", create an Artist model and link it to the user
+        if (newUser.role === 'artist') {
+            const newArtist = new Artist({ user: newUser._id });
+            await newArtist.save();
+        }
+
         res.status(201).json(newUser);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 });
+
 /*
 ^^This code creates a new POST endpoint at /create that allows you to create a new user.
 When a client sends a request to this endpoint, 
