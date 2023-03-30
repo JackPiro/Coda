@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Campaign = require('../models/GoalsBasedRelease'); // Import the Goals model
+const Goal = require('../models/GoalsBasedRelease'); // Import the Goals model
 
 //List all songs with active goals:
 router.get('/songs/active-goals', async (req, res) => {
@@ -81,7 +81,7 @@ router.delete('/songs/:songId/goals', async (req, res) => {
         song.goal = undefined;
         await song.save();
 
-        es.status(200).json({ message: 'Goal deleted successfully' });
+        res.status(200).json({ message: 'Goal deleted successfully' });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

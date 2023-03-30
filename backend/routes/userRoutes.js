@@ -78,6 +78,34 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+// Updates the subscription price for a user based on their successful invites
+//Fetch the user with the given userId, update the user's subscription price using the calculateNewSubscriptionPrice function, and save the changes to the database.
+router.put('/:userId/update-subscription-price', async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const user = await User.findById(userId);
+        const newSubscriptionPrice = calculateNewSubscriptionPrice(user.successfulInvites);
+        user.subscriptionPrice = newSubscriptionPrice;
+        await user.save();
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating subscription price', error });
+    }
+});
+
+
+//Fetch the user with the given userId and return their current subscription price.
+router.get('/:userId/subscription-price', async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const user = await User.findById(userId);
+        res.status(200).json({ subscriptionPrice: user.subscriptionPrice });
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching subscription price', error });
+    }
+});
+
+
 
 module.exports = router;
 
