@@ -19,10 +19,24 @@ app.listen(PORT, () => {
 });
 
 // Register the routes
-require('./routes/userRoutes')(app);
-require('./routes/artistRoutes')(app);
-require('./routes/artistSubscriptionGroupRoutes')(app);
-require('./routes/musicRoutes')(app);
+require('./routes/user.routes')(app);
+require('./routes/artist.routes')(app);
+require('./routes/artistSubscriptionGroup.routes')(app);
+require('./routes/goalBasedRelease.routes')(app);
+require('./routes/music.routes')(app);
+require('./routes/crowdfundingCampaign.routes')(app);
+require('./routes/simpleInviteSystem.routes')(app);
+require('./routes/updatePosts.routes')(app);
+require('./routes/userEngagementMetrics.routes')(app);
+require('./routes/nftCollectibleRoutes')(app);
+require('./routes/biggestSupporterRoutes')(app);
+
+
+
+
+
+
+
 
 
 
