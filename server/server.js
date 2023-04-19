@@ -28,9 +28,9 @@ require('./routes/crowdfundingCampaign.routes')(app);
 require('./routes/simpleInviteSystem.routes')(app);
 require('./routes/updatePosts.routes')(app);
 require('./routes/userEngagementMetrics.routes')(app);
-require('./routes/nftCollectibleRoutes')(app);
-require('./routes/biggestSupporterRoutes')(app);
-
+require('./routes/nftCollectible.routes')(app);
+require('./routes/biggestSupporter.routes')(app);
+require('./routes/authRoutes')(app);
 
 
 
