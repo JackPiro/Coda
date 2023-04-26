@@ -55,11 +55,8 @@ module.exports.registerUser = async (req, res) => {
     }
 };
 
-const User = require('../models/User');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
-exports.loginUser = async (req, res) => {
+module.exports.loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
 
