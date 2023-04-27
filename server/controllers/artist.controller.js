@@ -1,24 +1,29 @@
+// Create an artist
 const Artist = require('../models/Artist');
 
 module.exports.createArtist = async (req, res) => {
     try {
+        // Create a new artist
         const newArtist = new Artist(req.body);
+        // Save the artist
         await newArtist.save();
+        // Respond with the artist
         res.status(201).json(newArtist);
     } catch (error) {
+        // Respond with an error
         res.status(400).json({ message: error.message });
     }
 };
 
-module.exports.getArtistById = async (req, res) => {
+// Get all artists
+module.exports.getArtists = async (req, res) => {
     try {
-        const artist = await Artist.findById(req.params.id);
-        if (!artist) {
-            res.status(404).json({ message: 'Artist not found' });
-        } else {
-            res.json(artist);
-        }
+        // Find all the artists in the database
+        const artists = await Artist.find();
+        // Send the artists as a JSON response
+        res.json(artists);
     } catch (error) {
+        // If there's an error, send an error response
         res.status(500).json({ message: error.message });
     }
 };

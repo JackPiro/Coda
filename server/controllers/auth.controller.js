@@ -88,3 +88,68 @@ module.exports.loginUser = async (req, res) => {
     }
 };
 
+const crypto = require('crypto');
+const sendEmail = require('../utils/sendEmail');
+
+exports.requestPasswordReset = async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        // Check if user exists
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Generate and set password reset token
+        const resetToken = crypto.randomBytes(32).toString('hex');
+        user.resetPasswordToken = resetToken;
+        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+        await user.save();
+
+        // Send password reset email
+        const resetUrl = `${req.protocol}://${req.get('host')}/password-reset/${resetToken}`;
+        const message = `You are receiving this email because you (or someone else) requested a password reset for your account. Please click on the following link, or copy and paste it into your browser to complete the process: ${resetUrl}`;
+
+        await sendEmail({
+            email: user.email,
+            subject: 'Password Reset',
+            message,
+        });
+
+        res.status(200).json({ message: 'Password reset email sent' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error requesting password reset' });
+    }
+};
+
+exports.resetPassword = async (req, res) => {
+    try {
+        const { token } = req.params;
+        const { password } = req.body;
+
+        // Check if user with the reset token exists and if the token has not expired
+        const user = await User.findOne({
+            resetPasswordToken: token,
+            resetPasswordExpires: { $gt: Date.now() },
+        });
+
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid or expired password reset token' });
+        }
+
+        // Update the user's password and clear the reset token
+        user.password = await bcrypt.hash(password, 12);
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpires = undefined;
+
+        await user.save();
+
+        res.status(200).json({ message: 'Password reset successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error resetting password' });
+    }
+};
+
+
