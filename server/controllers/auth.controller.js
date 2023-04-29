@@ -4,16 +4,20 @@ const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 
 module.exports.registerUser = async (req, res) => {
-    const { email, username, password, role } = req.body;
+    const { firstName, lastName, email, username, password, role } = req.body;
 
     try {
         // Check if email and username are unique
         const existingEmail = await User.findOne({ email });
         const existingUsername = await User.findOne({ username });
 
-        if (existingEmail || existingUsername) {
-            return res.status(400).json({ message: 'Email or username already in use.' });
+        if (existingEmail) {
+            return res.status(400).json({ message: 'There is already an account with this email.' });
         }
+        
+        if (existingUsername) {
+            return res.status(400).json({ message: 'Someone got here first, this username is already in use.' });
+        }        
 
         // Hash the password
         const salt = await bcrypt.genSalt(10);
@@ -21,6 +25,8 @@ module.exports.registerUser = async (req, res) => {
 
         // Create user account in the database
         const newUser = new User({
+            firstName,
+            lastName,
             email,
             username,
             password: hashedPassword,
@@ -32,7 +38,7 @@ module.exports.registerUser = async (req, res) => {
         // Send a confirmation email
         const token = jwt.sign({ userId: newUser._id }, process.env.EMAIL_SECRET, { expiresIn: '1h' });
         const emailData = {
-            from: 'noreply@yourapp.com',
+            from: 'noreply@CodaStreaming.com',
             to: email,
             subject: 'Account Confirmation',
             text: `Click on this link to confirm your email address: ${process.env.CLIENT_URL}/confirm-email/${token}`

@@ -1,10 +1,8 @@
 // biggestSupporterRoutes.js
 const express = require('express');
 const router = express.Router();
-const biggestSupporterController = require('../controllers/biggestSupporterController');
+const biggestSupporterController = require('../controllers/biggestSupporters.controllers');
 
-router.get('/artist/:artistId', biggestSupporterController.getTopSupportersForArtist);
+router.get('/api/artist/:artistId', biggestSupporterController.getTopSupportersForArtist);
 
-module.exports = (app) => {
-    app.use('/api/biggest-supporters', router);
-};
+module.exports = router;

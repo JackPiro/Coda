@@ -1,4 +1,4 @@
-const Song = require('../models/GoalsBasedRelease');
+const Song = require('../models/GoalBasedRelease');
 
 module.exports = {
     getSongsWithActiveGoals: async (req, res) => {

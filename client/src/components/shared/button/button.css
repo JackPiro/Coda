@@ -1,0 +1,118 @@
+.register-button {
+    position: relative; /* changed from absolute */
+    border: none;
+    color: #ffffff;
+    width: 9em;
+    height: 3em;
+    line-height: 2em;
+    text-align: center;
+    background: linear-gradient(
+        90deg,
+        #03a9f4,
+        #f441a5,
+        #ffeb3b,
+        #03a9f4
+    );
+    background-size: 300%;
+    border-radius: 30px;
+    text-transform: uppercase;
+    cursor: pointer;
+    z-index: 1;
+}
+    .register-button:hover {
+    animation: animation 8s linear infinite;
+    border: none;
+}
+
+@keyframes animation {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 400%;
+    }
+}
+
+.register-button::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -15px;
+    right: -15px;
+    bottom: -4px;
+    z-index: -1;
+    background: linear-gradient(
+        90deg,
+        #03a9f4,
+        #f441a5,
+        #ffeb3b,
+        #03a9f4
+    );
+    background-size: 400%;
+    border-radius: 35px;
+    transition: 1s;
+    /* box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1); */
+}
+
+.register-button:hover::before {
+    filter: blur(20px);
+}
+
+.highlight {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 720;
+    color: #336CFF;
+}
+
+/* Set the background color for the whole page */
+body {
+    background-color: #0E121A;
+    color: white; /* Set the text color to white */
+}
+
+/* Set the background color for the form */
+.form-container {
+    background-color: #181C25 !important;
+}
+
+/* Set the text color for labels */
+.form-input label {
+    color: whitesmoke !important;
+    border-color: whitesmoke !important;
+}
+
+/* RegisterForm.css */
+.form-input .MuiOutlinedInput-root {
+    color: whitesmoke;
+    border-color: whitesmoke;
+}
+
+.form-input .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border-color: whitesmoke;
+    color: whitesmoke;
+}
+
+.form-input .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: whitesmoke;
+    color: whitesmoke;
+}
+
+.form-input .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: whitesmoke;
+    color: whitesmoke;
+}
+
+.custom-toggle-button-group .MuiToggleButton-root {
+    color: whitesmoke;
+    border-color: whitesmoke;
+
+}
+
+.custom-toggle-button-group .MuiToggleButton-root.Mui-selected {
+    background-color: #3a4150;
+    color: whitesmoke; /* Update this color if you want to change the selected button text color */
+}
+
+.custom-text-field .MuiInputLabel-root.Mui-focused {
+    color: whitesmoke;
+}

@@ -1,21 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const {
-    createCampaign,
-    getCampaignsByArtist,
-    getCampaignById,
-    deleteCampaign,
-    contributeToCampaign,
-    getCampaignContributions,
-    closeCampaign,
-} = require('../controllers/crowdfundingCampaignController');
+const crowdfundingCampaignController = require('../controllers/crowdfundingCampaign.controller');
 
-router.post('/', createCampaign);
-router.get('/artist/:artistId', getCampaignsByArtist);
-router.get('/:campaignId', getCampaignById);
-router.delete('/:campaignId', deleteCampaign);
-router.post('/:campaignId/contribute', contributeToCampaign);
-router.get('/:campaignId/contributions', getCampaignContributions);
-router.put('/:campaignId/close', closeCampaign);
+router.post('/api/', crowdfundingCampaignController.createCampaign);
+router.get('/api/artist/:artistId', crowdfundingCampaignController.getCampaignsByArtist);
+router.get('/api/:campaignId', crowdfundingCampaignController.getCampaignById);
+router.delete('/api/:campaignId', crowdfundingCampaignController.deleteCampaign);
+router.post('/api/:campaignId/contribute', crowdfundingCampaignController.contributeToCampaign);
+router.get('/api/:campaignId/contributions', crowdfundingCampaignController.getCampaignContributions);
+router.put('/api/:campaignId/close', crowdfundingCampaignController.closeCampaign);
 
 module.exports = router;

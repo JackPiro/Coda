@@ -1,17 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const {
-    createArtistSubscriptionGroup,
-    getAllArtistSubscriptionGroups,
-    getArtistSubscriptionGroupById,
-    updateArtistSubscriptionGroup,
-    deleteArtistSubscriptionGroup
-} = require('../controllers/artistSubscriptionGroupController');
+const artistSubscriptionGroup = require('../controllers/artistSubscriptionGroup.controller');
 
-router.post('/', createArtistSubscriptionGroup);
-router.get('/', getAllArtistSubscriptionGroups);
-router.get('/:id', getArtistSubscriptionGroupById);
-router.put('/:id', updateArtistSubscriptionGroup);
-router.delete('/:id', deleteArtistSubscriptionGroup);
+router.post('/api/', artistSubscriptionGroup.createGroup);
+router.get('/api/', artistSubscriptionGroup.getAllGroups);
+router.get('/api/:id', artistSubscriptionGroup.getGroupById);
+router.put('/api/:id', artistSubscriptionGroup.updateGroupById);
+router.delete('/api/:id', artistSubscriptionGroup.deleteGroupById);
 
 module.exports = router;

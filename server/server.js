@@ -4,7 +4,7 @@ const cors = require('cors');
 require('./config/mongoose.config'); // Import the mongoose.config.js file
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 app.use(cors());
 app.use(express.json());
@@ -19,18 +19,19 @@ app.listen(PORT, () => {
 });
 
 // Register the routes
-require('./routes/user.routes')(app);
-require('./routes/artist.routes')(app);
-require('./routes/artistSubscriptionGroup.routes')(app);
-require('./routes/goalBasedRelease.routes')(app);
-require('./routes/music.routes')(app);
-require('./routes/crowdfundingCampaign.routes')(app);
-require('./routes/simpleInviteSystem.routes')(app);
-require('./routes/updatePosts.routes')(app);
-require('./routes/userEngagementMetrics.routes')(app);
-require('./routes/nftCollectible.routes')(app);
-require('./routes/biggestSupporter.routes')(app);
-require('./routes/authRoutes')(app);
+app.use('/api/users', require('./routes/user.routes'));
+app.use('/api/artists', require('./routes/artist.routes'));
+app.use('/api/artist-subscription-groups', require('./routes/artistSubscriptionGroup.routes'));
+app.use('/api/goal-based-releases', require('./routes/goalBasedRelease.routes'));
+app.use('/api/music', require('./routes/music.routes'));
+app.use('/api/crowdfunding-campaigns', require('./routes/crowdfundingCampaign.routes'));
+app.use('/api/simple-invite-system', require('./routes/simpleInviteSystem.routes'));
+app.use('/api/update-posts', require('./routes/updatePosts.routes'));
+app.use('/api/user-engagement-metrics', require('./routes/userEngagementMetrics.routes'));
+app.use('/api/NFT-collectibles', require('./routes/NFTCollectible.routes'));
+app.use('/api/biggest-supporters', require('./routes/biggestSupporter.routes'));
+app.use('/api/auth', require('./routes/auth.routes'));
+
 
 
 

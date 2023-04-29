@@ -1,54 +1,52 @@
-// import axios to make HTTP requests
 import axios from 'axios';
 
-// a constant to store the API_URL
-const API_URL = 'http://localhost:5000/api/auth/';
+const API_URL = 'http://localhost:5001/api/auth/';
 
-// register method to make a POST request to the API’s register endpoint
-const register = async (email, username, password, userType) => {
-    // use axios to make a POST request to the API’s register endpoint
+// handle registering a new user
+const register = async (firstName, lastName, email, username, password, userType) => {
+    // send a POST request to the API with the user's information
     const response = await axios.post(API_URL + 'register', {
-    // pass the email, username, password, and userType to the request body
-    email,
-    username,
-    password,
-    userType,
+        firstName,
+        lastName,
+        email,
+        username,
+        password,
+        userType,
     });
 
-    // return the response data
+    // return the response from the API
     return response.data;
 };
 
-// login method to make a POST request to the API’s login endpoint
+// handle logging in an existing user
 const login = async (email, password) => {
-    // use axios to make a POST request to the API’s login endpoint
+    // send a POST request to the API with the user's information
     const response = await axios.post(API_URL + 'login', {
-        // pass the email and password to the request body
         email,
         password,
     });
 
-    // if the response data contains an accessToken
+    // if the API returns an access token, store the user's information in local storage
     if (response.data.accessToken) {
-        // store the response data in the browser’s local storage
         localStorage.setItem('user', JSON.stringify(response.data));
     }
 
-    // return the response data
+    // return the response from the API
     return response.data;
 };
 
-// logout method to remove the user data from local storage
+// handle logging out the current user
 const logout = () => {
+    // remove the user's information from local storage
     localStorage.removeItem('user');
 };
 
-// export the methods as an object
+// define the authentication service object
 const authService = {
     register,
     login,
     logout,
 };
 
-// export the authService object as the default export
+// export the authentication service object
 export default authService;

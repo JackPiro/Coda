@@ -1,4 +1,4 @@
-const UserEngagementMetrics = require('./models/userEngagementMetrics');
+const UserEngagementMetrics = require('../models/UserEngagementMetrics');
 
 exports.getTopArtistsForListener = async (req, res) => {
     try {

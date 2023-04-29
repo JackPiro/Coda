@@ -13,7 +13,7 @@ const MusicSchema = new mongoose.Schema({
     offer: {type: Boolean, required: true, default: false},
     releaseDate: {type: Date, required: true, default: Date.now},
     createdAt: {type: Date, default: Date.now},
-    nftType: {type: String, enum: ['royaltySharing', 'collectible', 'none'], default: 'none'},
+    NFTType: {type: String, enum: ['royaltySharing', 'collectible', 'none'], default: 'none'},
     updatedAt: {type: Date, default: Date.now}
 });
 
