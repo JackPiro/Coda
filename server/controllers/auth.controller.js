@@ -36,23 +36,34 @@ module.exports.registerUser = async (req, res) => {
         await newUser.save();
 
         // Send a confirmation email
-        const token = jwt.sign({ userId: newUser._id }, process.env.EMAIL_SECRET, { expiresIn: '1h' });
-        const emailData = {
-            from: 'noreply@CodaStreaming.com',
-            to: email,
-            subject: 'Account Confirmation',
-            text: `Click on this link to confirm your email address: ${process.env.CLIENT_URL}/confirm-email/${token}`
-        };
+        // const token = jwt.sign({ userId: newUser._id }, process.env.EMAIL_SECRET, { expiresIn: '1h' });
+        // const emailData = {
+        //     from: 'noreply@CodaStreaming.com',
+        //     to: email,
+        //     subject: 'Account Confirmation',
+        //     text: `Click on this link to confirm your email address: ${process.env.CLIENT_URL}/confirm-email/${token}`
+        // };
 
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: process.env.EMAIL_USERNAME,
-                pass: process.env.EMAIL_PASSWORD
-            }
+        // const transporter = nodemailer.createTransport({
+        //     service: 'gmail',
+        //     auth: {
+        //         user: process.env.EMAIL_USERNAME,
+        //         pass: process.env.EMAIL_PASSWORD
+        //     }
+        // });
+
+        // await transporter.sendMail(emailData);
+
+        const token = jwt.sign({ id: User._id }, process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_EXPIRES_IN,
         });
-
-        await transporter.sendMail(emailData);
+        //remove this later, prints user id to server console
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            console.log('User ID in token:', decoded.id);
+        
+        // res.status(200).json({ token });
+        res.cookie("userToken", token, { httpOnly: true })
+            .json({ msg: "success!", userToken: token });
 
         // Return a success response
         res.status(201).json({ message: 'User registered successfully. Please check your email to confirm your account.' });
@@ -79,16 +90,21 @@ module.exports.loginUser = async (req, res) => {
         }
 
         // Check if email is confirmed
-        if (!user.isEmailConfirmed) {
-            return res.status(400).json({ message: 'Please confirm your email address' });
-        }
+        // if (!user.isEmailConfirmed) {
+        //     return res.status(400).json({ message: 'Please check your email and confirm your email address before logging in' });
+        // }
 
-        // Sign and return JWT token
+        // Sign and return JWT token, takes three arguments the user info to store, the signature and options like how long to set it before expiring
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRES_IN,
         });
-
-        res.status(200).json({ token });
+        //remove this later, prints user id to server console
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            console.log('User ID in token:', decoded.id);
+        
+        // res.status(200).json({ token });
+        res.cookie("userToken", token, { httpOnly: true })
+            .json({ msg: "success!", userToken: token });
     } catch (error) {
         res.status(500).json({ message: 'Error logging in user' });
     }

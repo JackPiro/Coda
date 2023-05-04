@@ -6,8 +6,16 @@ require('./config/mongoose.config'); // Import the mongoose.config.js file
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-app.use(cors());
+//changed up top to accommodate cookie usage
+// app.use(cors());
 app.use(express.json());
+
+
+//this needs to be changed to HTTPS secureOnly when using it in a production setting, this involves an SSL certificate from a domain
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+// Change the app.use(cors()) to the one below
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 
 const connection = require('mongoose').connection;
 connection.once('open', () => {

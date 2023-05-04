@@ -63,12 +63,12 @@ const Login = () => {
     
         try {
             await authService.login( email, password);
-            navigate('/login');
+            navigate('/home');
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message) {
                 setErrorMessage(error.response.data.message);
             } else {
-                setErrorMessage('An error occurred while registering. Please try again later.');
+                setErrorMessage('An error occurred while registering. Please try again.');
             }
         } finally {
             setLoading(false);

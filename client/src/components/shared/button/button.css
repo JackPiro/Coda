@@ -98,8 +98,8 @@ body {
 }
 
 .form-input .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-    border-color: whitesmoke;
-    color: whitesmoke;
+    border-color: #336CFF;
+    color: #336CFF;
 }
 
 .custom-toggle-button-group .MuiToggleButton-root {

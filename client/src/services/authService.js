@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_URL = 'http://localhost:5001/api/auth/';
 
 // handle registering a new user
-const register = async (firstName, lastName, email, username, password, userType) => {
+const register = async (firstName, lastName, email, username, password, role) => {
     // send a POST request to the API with the user's information
     const response = await axios.post(API_URL + 'register', {
         firstName,
@@ -11,7 +11,7 @@ const register = async (firstName, lastName, email, username, password, userType
         email,
         username,
         password,
-        userType,
+        role,
     });
 
     // return the response from the API

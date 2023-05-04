@@ -162,7 +162,7 @@ const Register = () => {
                     />
                     <FormInput
                         className='form-input'
-                        label="Password"
+                        label="Create a Password"
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -195,7 +195,7 @@ const Register = () => {
                         variant="contained"
                         color="primary"
                     >
-                        Join
+                        Join!
                     </SubmitButton>
                 </form>
             </FormContainer>
