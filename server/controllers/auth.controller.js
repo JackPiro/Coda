@@ -96,7 +96,7 @@ module.exports.loginUser = async (req, res) => {
 
         // Sign and return JWT token, takes three arguments the user info to store, the signature and options like how long to set it before expiring
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-            expiresIn: process.env.JWT_EXPIRES_IN,
+            expiresIn: process.env.JWT_EXPIRES_IN
         });
         //remove this later, prints user id to server console
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -110,8 +110,49 @@ module.exports.loginUser = async (req, res) => {
     }
 };
 
+module.exports.logoutUser = async (req, res) => {
+    try {
+        req.session.destroy();
+        res.clearCookie('connect.sid');
+        res.send({ message: 'You are successfully logged out' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error logging out user' });
+        console.log(error)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const crypto = require('crypto');
 const sendEmail = require('../utils/sendEmail');
+const { tryCatch } = require('fp-ts/lib/Validation');
 
 exports.requestPasswordReset = async (req, res) => {
     try {

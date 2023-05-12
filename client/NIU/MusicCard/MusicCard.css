@@ -1,0 +1,26 @@
+.music-card-x {
+    align-items: flex-start;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    height: 218px;
+    overflow: hidden;
+    padding: 10px 0;
+    width: 165px;
+  }
+  
+  .mask-group {
+    align-self: center;
+    height: 169px;
+    width: 145px;
+  }
+  
+  .artist {
+    letter-spacing: 0;
+    line-height: 22px;
+    margin-left: 12px;
+    white-space: nowrap;
+  }
+  
+  

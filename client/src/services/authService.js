@@ -24,10 +24,10 @@ const login = async (email, password) => {
     const response = await axios.post(API_URL + 'login', {
         email,
         password,
-    });
+    }, {withCredentials: true});
 
     // if the API returns an access token, store the user's information in local storage
-    if (response.data.accessToken) {
+    if (response.data.userToken) {
         localStorage.setItem('user', JSON.stringify(response.data));
     }
 
@@ -35,10 +35,17 @@ const login = async (email, password) => {
     return response.data;
 };
 
+
 // handle logging out the current user
-const logout = () => {
+const logout = async () => {
     // remove the user's information from local storage
     localStorage.removeItem('user');
+    try {
+        await axios.post('http://localhost:5001/api/auth/logout');
+        console.log("Logged out from the server");
+    } catch (error) {
+        console.log("Error logging out from the server", error);
+    }
 };
 
 // define the authentication service object

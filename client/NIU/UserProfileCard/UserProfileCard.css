@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:720,800|Poppins:400,700,500,600,800");
+
+.valign-text-middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-profile-card-x {
+  align-items: center;
+  background-color: var(--mirage);
+  border-radius: 24px;
+  display: flex;
+  height: 217px;
+  overflow: hidden;
+  padding: 0 10px;
+  width: 602px;
+}
+
+.frame-74 {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  height: 197px;
+  padding: 0 10px;
+  width: 582px;
+}
+
+.user-profile-picture {
+  height: 174px;
+  width: 174px;
+}
+
+.frame-78 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  height: 177px;
+  width: 213px;
+}
+
+.frame-75 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 113px;
+  padding: 9px 10px;
+  width: 213px;
+}
+
+.unique-username {
+  letter-spacing: 0;
+  line-height: 28px;
+  white-space: nowrap;
+}
+
+.artist-name {
+  align-items: flex-start;
+  display: flex;
+  height: 24px;
+  margin-top: 11px;
+  padding: 4px 0;
+  width: 155px;
+}
+
+.title {
+  height: 14px;
+  letter-spacing: 0;
+  line-height: 14px;
+  white-space: nowrap;
+}
+
+.joined-january-2022 {
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: 9px;
+  min-height: 21px;
+}
+
+.wallet-adress {
+  align-items: flex-start;
+  background-color: var(--bunker);
+  border-radius: 10px;
+  display: flex;
+  gap: 6px;
+  height: 29px;
+  justify-content: flex-end;
+  min-width: 213px;
+  padding: 6px 7px;
+}
+
+.vector {
+  height: 16px;
+  width: 10px;
+}
+
+.x0x89de69dfd6cfeedb533 {
+  height: 16px;
+  letter-spacing: 0;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.frame-76 {
+  align-items: flex-start;
+  display: flex;
+  gap: 42px;
+  height: 177px;
+  padding: 10px;
+  width: 155px;
+}
+
+.x2 {
+  align-items: flex-start;
+  background-color: var(--cararra);
+  border-radius: 8px;
+  display: flex;
+  height: 32px;
+  min-width: 32px;
+  padding: 6.7px 7px;
+}
+
+.icon-share {
+  height: 18px;
+  width: 17px;
+}
+
+.follow {
+  letter-spacing: 0;
+  line-height: 22px;
+  margin-top: 3.72px;
+  white-space: nowrap;
+}

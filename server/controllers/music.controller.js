@@ -1,3 +1,4 @@
+const { tryCatch } = require('fp-ts/lib/Option');
 const Music = require('../models/Music');
 
 exports.createMusic = async (req, res) => {
@@ -9,6 +10,16 @@ exports.createMusic = async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 };
+
+exports.createMusic = async (req, res) => {
+    try {
+        const artistID = req.user._id
+        const newMusic = new Music(req.body)
+
+    } catch {
+
+    }
+}
 
 exports.getAllMusic = async (req, res) => {
     try {

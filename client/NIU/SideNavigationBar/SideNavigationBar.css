@@ -1,0 +1,98 @@
+.side-navigation-bar-x {
+    align-items: center;
+    background-color: var(--mirage);
+    display: flex;
+    flex-direction: column;
+    height: 988px;
+    overflow: hidden;
+    position: relative;
+    width: 199px;
+  }
+  
+  .title {
+    height: 30px;
+    letter-spacing: -0.62px;
+    line-height: normal;
+    margin-top: 39px;
+    min-width: 66px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  
+  .home-link {
+    align-items: flex-start;
+    display: flex;
+    gap: 24px;
+    height: 44px;
+    margin-top: 11px;
+    min-width: 199px;
+    padding: 9px 50px;
+  }
+  
+  .icon-1 {
+    align-self: center;
+    background-size: 100% 100%;
+    height: 16px;
+    width: 14px;
+  }
+  
+  .place {
+    letter-spacing: -0.40px;
+    line-height: normal;
+    min-height: 24px;
+    min-width: 47px;
+    text-align: center;
+  }
+  
+  .explore-link {
+    align-items: flex-start;
+    display: flex;
+    gap: 22px;
+    height: 44px;
+    margin-top: 10px;
+    min-width: 199px;
+    padding: 5px 53px;
+  }
+  
+  .icon {
+    align-self: center;
+    height: 16px;
+    width: 16px;
+  }
+  
+  .explore {
+    letter-spacing: -0.40px;
+    line-height: normal;
+    min-height: 24px;
+    min-width: 55px;
+    text-align: center;
+  }
+  
+  .market-link {
+    align-items: flex-start;
+    display: flex;
+    gap: 22px;
+    height: 44px;
+    margin-top: 10px;
+    min-width: 199px;
+    padding: 9px 54px;
+  }
+  
+  .market {
+    letter-spacing: -0.40px;
+    line-height: normal;
+    min-height: 24px;
+    min-width: 53px;
+    text-align: center;
+  }
+  
+  .artist-circles {
+    letter-spacing: -0.50px;
+    line-height: normal;
+    margin-top: 19px;
+    min-height: 30px;
+    min-width: 123px;
+    text-align: center;
+  }
+  
+  

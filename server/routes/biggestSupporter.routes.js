@@ -1,4 +1,3 @@
-// biggestSupporterRoutes.js
 const express = require('express');
 const router = express.Router();
 const biggestSupporterController = require('../controllers/biggestSupporters.controllers');

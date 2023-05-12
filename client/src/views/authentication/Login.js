@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import authService from '../../services/authService'
-import '../../components/shared/button/button.css'
-
+import authService from '../../services/authService';
+import '../../components/shared/button/button.css';
 
 import { Button, Container, styled, TextField, Typography } from '@mui/material';
 
@@ -63,7 +62,7 @@ const Login = () => {
     
         try {
             await authService.login( email, password);
-            navigate('/home');
+            navigate('/profile');
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message) {
                 setErrorMessage(error.response.data.message);
