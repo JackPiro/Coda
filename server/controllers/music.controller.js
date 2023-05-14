@@ -1,27 +1,48 @@
 const { tryCatch } = require('fp-ts/lib/Option');
 const Music = require('../models/Music');
+const { uploadFile } = require('../utils/s3Interface')
 
-exports.createMusic = async (req, res) => {
+
+module.exports.createMusic = async (req, res) => {
     try {
-        const newMusic = new Music(req.body);
+        const artistID = req.user.id;
+        //we use an object with an array value for these incase they need to add multiple songs to an album or multiple covers
+        const audioFile = req.files['audioFile'][0];
+        const coverArt = req.files['coverArt'][0];
+        const s3ResponseAudio = await uploadFile(audioFile); //use this to upload
+         // s3Response.Location should be the URL of the uploaded file on S3
+        const s3ResponseCover = await uploadFile(coverArt);
+
+        const newMusic = new Music({
+            ...req.body,
+            audioFile: s3ResponseAudio.Location,
+            coverArt: s3ResponseCover.Location,
+            artistID
+        })
+        console.log(s3ResponseAudio, s3ResponseCover)
         await newMusic.save();
-        res.status(201).json(newMusic);
+        res.status(201).json({newMusic})
+        console.log(newMusic)
     } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-};
-
-exports.createMusic = async (req, res) => {
-    try {
-        const artistID = req.user._id
-        const newMusic = new Music(req.body)
-
-    } catch {
-
+        res.status(500).json({ message: error.message })
     }
 }
 
-exports.getAllMusic = async (req, res) => {
+/*
+^using the spread operator is the same as
+const newMusic = new Music({
+    title: req.body.title,
+    artist: req.body.artist,
+    fileLocation: s3Response.Location
+    you get it
+});
+*/
+
+
+
+
+
+module.exports.getAllMusic = async (req, res) => {
     try {
         const music = await Music.find();
         res.status(200).json(music);
@@ -30,7 +51,7 @@ exports.getAllMusic = async (req, res) => {
     }
 };
 
-exports.getMusicById = async (req, res) => {
+module.exports.getMusicById = async (req, res) => {
     try {
         const music = await Music.findById(req.params.id);
         if (!music) {
@@ -42,7 +63,7 @@ exports.getMusicById = async (req, res) => {
     }
 };
 
-exports.updateMusic = async (req, res) => {
+module.exports.updateMusic = async (req, res) => {
     try {
         const updatedMusic = await Music.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!updatedMusic) {
@@ -54,7 +75,7 @@ exports.updateMusic = async (req, res) => {
     }
 };
 
-exports.deleteMusic = async (req, res) => {
+module.exports.deleteMusic = async (req, res) => {
     try {
         const deletedMusic = await Music.findByIdAndDelete(req.params.id);
         if (!deletedMusic) {
@@ -66,7 +87,7 @@ exports.deleteMusic = async (req, res) => {
     }
 };
 
-exports.getMusicByArtist = async (req, res) => {
+module.exports.getMusicByArtist = async (req, res) => {
     try {
         const artistId = req.params.artistId;
         const musicByArtist = await Music.find({ artistId: artistId });

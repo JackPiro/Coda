@@ -18,6 +18,7 @@ const register = async (firstName, lastName, email, username, password, role) =>
     return response.data;
 };
 
+
 // handle logging in an existing user
 const login = async (email, password) => {
     // send a POST request to the API with the user's information
@@ -28,6 +29,7 @@ const login = async (email, password) => {
 
     // if the API returns an access token, store the user's information in local storage
     if (response.data.userToken) {
+        console.log(response.data)
         localStorage.setItem('user', JSON.stringify(response.data));
     }
 

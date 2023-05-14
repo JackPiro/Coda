@@ -3,6 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import authService from '../../services/authService';
 import '../../components/shared/button/button.css';
 
+import jwt_decode from "jwt-decode";
+
 import { Button, Container, styled, TextField, Typography } from '@mui/material';
 
 
@@ -69,7 +71,9 @@ const Login = () => {
             } else {
                 setErrorMessage('An error occurred while registering. Please try again.');
             }
-        } finally {
+        } finally { //
+            const user = JSON.parse(localStorage.getItem('user'));
+            console.log(user.role, user.id)
             setLoading(false);
         }
     };

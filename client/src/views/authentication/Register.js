@@ -14,7 +14,7 @@ const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
-    const [userType, setUserType] = useState('listener');
+    const [role, setRole] = useState('');
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -80,7 +80,7 @@ const Register = () => {
         setErrorMessage('');
     
         try {
-            await authService.register(firstName, lastName, email, username, password, userType);
+            await authService.register(firstName, lastName, email, username, password, role);
             navigate('/login');
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message) {
@@ -171,21 +171,21 @@ const Register = () => {
                     />
                         <Box display="block" marginBottom="1rem">
                             <ToggleButtonGroup
-                                value={userType}
+                                value={role}
                                 exclusive
                                 onChange={(event, newType) => {
                                     if (newType !== null) {
-                                        setUserType(newType);
+                                        setRole(newType);
                                     }
                                 }}
-                                aria-label="user type"
+                                aria-label="role"
                                 className="custom-toggle-button-group"
                             >
                                 <ToggleButton value="listener" aria-label="listener">
-                                    Listener
+                                    listener
                                 </ToggleButton>
                                 <ToggleButton value="artist" aria-label="artist">
-                                    Artist
+                                    artist
                                 </ToggleButton>
                             </ToggleButtonGroup>
                         </Box>

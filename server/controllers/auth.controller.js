@@ -54,7 +54,7 @@ module.exports.registerUser = async (req, res) => {
 
         // await transporter.sendMail(emailData);
 
-        const token = jwt.sign({ id: User._id }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ id: newUser._id, role: newUser.role }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRES_IN,
         });
         //remove this later, prints user id to server console
@@ -66,7 +66,7 @@ module.exports.registerUser = async (req, res) => {
             .json({ msg: "success!", userToken: token });
 
         // Return a success response
-        res.status(201).json({ message: 'User registered successfully. Please check your email to confirm your account.' });
+        // res.status(201).json({ message: 'User registered successfully. Please check your email to confirm your account.' });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -95,7 +95,7 @@ module.exports.loginUser = async (req, res) => {
         // }
 
         // Sign and return JWT token, takes three arguments the user info to store, the signature and options like how long to set it before expiring
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRES_IN
         });
         //remove this later, prints user id to server console
@@ -104,7 +104,7 @@ module.exports.loginUser = async (req, res) => {
         
         // res.status(200).json({ token });
         res.cookie("userToken", token, { httpOnly: true })
-            .json({ msg: "success!", userToken: token });
+            .json({ msg: "success!", userToken: token, role: user.role });
     } catch (error) {
         res.status(500).json({ message: 'Error logging in user' });
     }

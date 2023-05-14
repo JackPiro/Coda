@@ -3,9 +3,12 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import authService from '../../services/authService'
 
+import jwt_decode from "jwt-decode";
 
 
-const Profile = (props) => {
+
+
+const Profile = () => {
     const [songName, setSongName] = useState('');
     const [description, setDescription] = useState('');
     const [genre, setGenre] = useState('');
@@ -14,20 +17,23 @@ const Profile = (props) => {
 
     const navigate = useNavigate();
 
+    const user = JSON.parse(localStorage.getItem('user'));
+    const decodedToken = jwt_decode(user.userToken);
+
     const submitHandler = (e) => {
+        console.log('submitHandler is running')
+        console.log('role:', user.role, 'userID:', decodedToken.id)
         e.preventDefault();
-        const user = JSON.parse(localStorage.getItem('user'));
-            if (user && user.role === 'Artist') {
+            if (user && user.role === 'artist') {
 
                 let formData = new FormData()
                 formData.append('audioFile', audioFile);
+                formData.append('coverArt', coverArt);
                 formData.append('description', description);
                 formData.append('genre', genre);
-                formData.append('coverArt', coverArt);
-                formData.append('songName', songName);
+                formData.append('title', songName);
 
-
-                axios.post("http://localhost:5001/api/music/create", formData)
+                axios.post("http://localhost:5001/api/music/create", formData, { withCredentials: true })
                     .then((res) => {
                         console.log(res.data)
                         navigate('/profile')
@@ -35,6 +41,9 @@ const Profile = (props) => {
                     .catch((err) => {
                         console.log(err, 'ERR sincerely, -Profile.js')
                     })
+            }
+            else {
+                console.log('you arent registered as an artist')
             }
     }
 
@@ -50,19 +59,20 @@ const Profile = (props) => {
 
     return (
         <div>
+            {/* <p>Welcome {user.name}</p> */}
             <button className='mr-4' onClick={handleLogout}>Logout</button>
             <Link to={'/profile'}>Back</Link>
-            <form className='' onSubmit={submitHandler}>
+            <form className='' onSubmit={submitHandler} encType="multipart/form-data">
                 <div className='mt-5 mb-5'>
-                    <label>Upload Cover</label>
-                    <input type='file' onChange={(e) => setCoverArt(e.target.files[0])}/>
+                    <label>coverArt</label>
+                    <input type='file' name="coverArt" onChange={(e) => setCoverArt(e.target.files[0])}/>
                 </div>
                 <div className='mt-5 mb-5'>
-                    <label>Upload Audio File</label>
-                    <input type='file' onChange={(e) => setAudioFile(e.target.files[0])}/>
+                    <label>audioFile</label>
+                    <input type='file' name="audioFile" onChange={(e) => setAudioFile(e.target.files[0])}/>
                 </div>
                 <div className='mt-5 mb-5'>
-                    <label>Song Name</label>
+                    <label>title</label>
                     <input type='text' onChange={(e) => setSongName(e.target.value)}/>
                 </div>
                 <div className='mt-5 mb-5'>
@@ -73,6 +83,7 @@ const Profile = (props) => {
                     <label>Genre</label>
                     <input type='text' onChange={(e) => setGenre(e.target.value)}/>
                 </div>
+                <button type='submit'>Upload Music</button>
             </form>
         </div>
     )
