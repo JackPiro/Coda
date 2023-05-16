@@ -41,7 +41,7 @@ const login = async (email, password) => {
 // handle logging out the current user
 const logout = async () => {
     // remove the user's information from local storage
-    localStorage.removeItem('user');
+    // localStorage.removeItem('user');
     try {
         await axios.post('http://localhost:5001/api/auth/logout');
         console.log("Logged out from the server");

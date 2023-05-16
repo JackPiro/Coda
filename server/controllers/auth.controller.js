@@ -95,7 +95,7 @@ module.exports.loginUser = async (req, res) => {
         // }
 
         // Sign and return JWT token, takes three arguments the user info to store, the signature and options like how long to set it before expiring
-        const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ id: user._id, role: user.role, firstName: user.firstName }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRES_IN
         });
         //remove this later, prints user id to server console
@@ -110,15 +110,24 @@ module.exports.loginUser = async (req, res) => {
     }
 };
 
-module.exports.logoutUser = async (req, res) => {
-    try {
-        req.session.destroy();
-        res.clearCookie('connect.sid');
-        res.send({ message: 'You are successfully logged out' });
-    } catch (error) {
-        res.status(500).json({ message: 'Error logging out user' });
-        console.log(error)
-    }
+// module.exports.logoutUser = async (req, res) => {
+//     console.log('testing if its running')
+//     console.log(req.session)
+//     console.log('connect.sid cookie:', req.cookies['connect.sid']);
+//     try {
+//         console.log('testing if its running')
+//         req.session.destroy();
+//         res.clearCookie('connect.sid');
+//         res.send({ message: 'You are successfully logged out' });
+//     } catch (error) {
+//         res.status(500).json({ message: 'Error logging out user' });
+//         console.log(error)
+//     }
+// };
+
+module.exports.logoutUser = (req, res) => {
+    res.clearCookie('userToken', { httpOnly: true });
+    res.sendStatus(200);
 }
 
 
