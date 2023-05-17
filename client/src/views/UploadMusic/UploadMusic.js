@@ -16,6 +16,7 @@ const UploadMusic = () => {
     const [genre, setGenre] = useState('');
     const [audioFile, setAudioFile] = useState();
     const [coverArt, setCoverArt] = useState();
+    const [isLoading, setIsLoading] = useState(false)
 
     const navigate = useNavigate();
 
@@ -23,6 +24,7 @@ const UploadMusic = () => {
     const decodedToken = jwt_decode(user.userToken);
 
     const submitHandler = (e) => {
+        setIsLoading(true)
         console.log('submitHandler is running')
         console.log('role:', user.role, 'userID:', decodedToken.id)
         e.preventDefault();
@@ -39,6 +41,7 @@ const UploadMusic = () => {
                     .then((res) => {
                         console.log(res.data)
                         navigate('/Home')
+                        setIsLoading(false)
                     })
                     .catch((err) => {
                         console.log(err, 'ERR sincerely, -UploadMusic.js')
@@ -46,6 +49,7 @@ const UploadMusic = () => {
             }
             else {
                 console.log('you arent registered as an artist')
+                setIsLoading(false)
             }
     }
 
@@ -89,6 +93,15 @@ const UploadMusic = () => {
                     </div>
                     <button type='submit'>Upload Music</button>
                 </form>
+                {
+                    isLoading === true ? 
+                    <div class="flex justify-center">
+                        <span class="circle animate-loader"></span>
+                        <span class="circle animate-loader animation-delay-200"></span>
+                        <span class="circle animate-loader animation-delay-400"></span>
+                    </div>
+                    : null
+                }
             </div>
         </div>
     )

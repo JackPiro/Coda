@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const SideNavBar = () => {
     return (
-        <div className="flex flex-col bg-gray-800 text-blue-100 w-48 px-6 h-screen py-4">
-            <div className="text-3xl mb-10 text-center">
+        <div className="flex flex-col w-48 h-screen px-6 py-4 text-blue-100 bg-gray-900">
+            <div className="mb-10 text-3xl text-center">
                 <h1 className="text-blue-600 decoration-8">Coda</h1>
             </div>
             <nav>

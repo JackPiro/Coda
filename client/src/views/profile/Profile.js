@@ -4,6 +4,8 @@ import axios from 'axios';
 import authService from '../../services/authService'
 import SideNavBar from '../../components/SideNavBar/SideNavBar';
 import TopNavBar from '../../components/TopNavBar/TopNavBar';
+import SongCard from '../../components/SongCard/SongCard';
+// import CardCarousel from '../../components/CardCarousel/CardCarousel';
 
 import jwt_decode from "jwt-decode";
 
@@ -39,16 +41,16 @@ const Profile = () => {
 
     const handleMusicStream = (id) => {
         //blob is the form used for non js formatted data like audio data we can send that as an option to the axios
-        // axios.get("http://localhost:5001/api/music/stream/" + id, {responseType: 'blob'})
-        //     .then((res) => {
-        //         //
-        //         const url = window.URL.createObjectURL(new Blob([res.data]));
-        //         const audio = new Audio(url);
-        //         audio.play();
-        //     })
-        //     .catch((err) => {
-        //         console.log('cant play rn...', err)
-        //     })
+        axios.get("http://localhost:5001/api/music/stream/" + id, {responseType: 'blob'})
+            .then((res) => {
+                //
+                const url = window.URL.createObjectURL(new Blob([res.data]));
+                const audio = new Audio(url);
+                audio.play();
+            })
+            .catch((err) => {
+                console.log('cant play rn...', err)
+            })
     }
 
     return (
@@ -56,25 +58,28 @@ const Profile = () => {
             <SideNavBar />
             <div className='w-screen'>
                 <TopNavBar />
-                <button onClick={handleLogout} className='rounded-lg bg-blue-600 absolute top-18 right-3 p-2 m-3' >Logout</button>
+                <button onClick={handleLogout} className='absolute p-2 m-3 bg-blue-600 rounded-lg top-18 right-3' >Logout</button>
                 {
                     isLoading === true ? <h2>Loading rn...</h2> : null
                 }
-                <h1 className='m-12 absolute top-18 left-40'>Welcome {user && decodedToken.firstName ? decodedToken.firstName : 'some user'}</h1>
+                <h1 className='absolute m-12 top-18 left-40'>Welcome {user && decodedToken.firstName ? decodedToken.firstName : 'some user'}</h1>
                 <div className="flex flex-row flex-wrap justify-center m-3">
                     {/* use () unless you are returning a value jsx */}
-                    {musicList.map((music) => (
-                        <div key={music._id} className='bg-slate-800 m-3 p-3 rounded-md '>
+                    <SongCard />
+                    {/* <CardCarousel cards = {musicList} /> */}
+                    
+                    {/* {musicList.map((music) => (
+                        <div key={music._id} className='p-3 m-3 rounded-md bg-slate-800 '>
                             <h3>{music.title}</h3>
                                 <div>
-                                    <img src={music.coverArt} alt='sorry this cant be displayed' className='w-36 h-36 rounded-md object-cover'/>
+                                    <img src={music.coverArt} alt='sorry this cant be displayed' className='object-cover rounded-md w-36 h-36'/>
                                 </div>
                                 {
-                                    decodedToken.id === music.artistID ? <Link to={'/edit-music/' + music._id} className='rounded-full bg-blue-600 p-1 m-2'>edit</Link> : null
+                                    decodedToken.id === music.artistID ? <Link to={'/edit-music/' + music._id} className='p-1 m-2 bg-blue-600 rounded-full'>edit</Link> : null
                                 }
-                            <button className='rounded-full bg-blue-600 p-1 m-2' onClick={handleMusicStream(music._id)}>Play</button>
+                            <button className='p-1 m-2 bg-blue-600 rounded-full' onClick={handleMusicStream(music._id)}>Play</button>
                         </div>
-                    ))}
+                    ))} */}
                 </div>
             </div>
         </div>
