@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-require('./config/mongoose.config'); // Import the mongoose.config.js file
+require('./config/mongoose.config'); 
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -26,7 +26,7 @@ app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
 });
 
-// Register the routes
+
 app.use('/api/users', require('./routes/user.routes'));
 app.use('/api/artists', require('./routes/artist.routes'));
 app.use('/api/artist-subscription-groups', require('./routes/artistSubscriptionGroup.routes'));

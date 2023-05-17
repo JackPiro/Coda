@@ -18,7 +18,6 @@ const TopNavBar = () => {
         </div>
 
         <Link to={'/Profile'} className="p-2 border-2 border-white rounded-full opacity-50 hover:opacity-100">
-            {/* Put profile icon here */}
             Profile
         </Link>
     </nav>

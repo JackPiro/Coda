@@ -64,7 +64,7 @@ const Login = () => {
     
         try {
             await authService.login( email, password);
-            navigate('/profile');
+            navigate('/Home');
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message) {
                 setErrorMessage(error.response.data.message);
@@ -125,10 +125,4 @@ const Login = () => {
 
 export default Login;
 
-/*
-This code defines the Register component, which handles user registration. 
-It includes a form with fields for email, username, password, and user type (listener or artist). 
-When the form is submitted, the component calls the authService.register() function, passing the input values. 
-If the registration is successful, the user is redirected to the login page. 
-If there's an error, an error message is displayed.
-*/
+

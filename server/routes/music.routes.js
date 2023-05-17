@@ -9,6 +9,7 @@ router.get('/get-all-music', musicController.getAllMusic);
 router.get('/:id', musicController.getMusicById);
 router.patch('/update/:id', musicController.updateMusic);
 router.delete('/delete/:id', musicController.deleteMusic);
+// router.get('/stream/:id', getMusicStreaming);
 router.get('/artist/:userID', musicController.getMusicByArtist);
 
 module.exports = router;

@@ -64,7 +64,6 @@ const UploadMusic = () => {
             <SideNavBar />
             <div className='w-screen'>
                 <TopNavBar />
-                 {/* <p>Welcome {user.name}</p> */}
                 <button className='mr-4' onClick={handleLogout}>Logout</button>
                 <Link to={'/profile'}>Back</Link>
                 <form className='' onSubmit={submitHandler} encType="multipart/form-data">
