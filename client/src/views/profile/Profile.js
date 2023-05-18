@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import authService from '../../services/authService'
 import SideNavBar from '../../components/SideNavBar/SideNavBar';
 import TopNavBar from '../../components/TopNavBar/TopNavBar';
-import SongCard from '../../components/SongCard/SongCard';
-// import CardCarousel from '../../components/CardCarousel/CardCarousel';
+import CardCarousel from '../../components/CardCarousel/CardCarousel';
 
 import jwt_decode from "jwt-decode";
 
@@ -16,10 +15,6 @@ const Profile = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     const decodedToken = jwt_decode(user.userToken);
     const navigate = useNavigate();
-
-    const displayAvailableMusic = (musicList) => {
-        const music = musicList.map()
-    }
 
 
     useEffect(() => {
@@ -39,20 +34,6 @@ const Profile = () => {
         navigate('/login');
     }
 
-    const handleMusicStream = (id) => {
-        //blob is the form used for non js formatted data like audio data we can send that as an option to the axios
-        axios.get("http://localhost:5001/api/music/stream/" + id, {responseType: 'blob'})
-            .then((res) => {
-                //
-                const url = window.URL.createObjectURL(new Blob([res.data]));
-                const audio = new Audio(url);
-                audio.play();
-            })
-            .catch((err) => {
-                console.log('cant play rn...', err)
-            })
-    }
-
     return (
         <div className='flex flex-row'>
             <SideNavBar />
@@ -65,9 +46,8 @@ const Profile = () => {
                 <h1 className='absolute m-12 top-18 left-40'>Welcome {user && decodedToken.firstName ? decodedToken.firstName : 'some user'}</h1>
                 <div className="flex flex-row flex-wrap justify-center m-3">
                     {/* use () unless you are returning a value jsx */}
-                    <SongCard />
-                    {/* <CardCarousel cards = {musicList} /> */}
-                    
+                    <CardCarousel musicList={musicList} />
+
                     {/* {musicList.map((music) => (
                         <div key={music._id} className='p-3 m-3 rounded-md bg-slate-800 '>
                             <h3>{music.title}</h3>

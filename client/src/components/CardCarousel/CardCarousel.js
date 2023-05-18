@@ -1,24 +1,29 @@
 import React, { useState } from 'react';
-import Card from './Card'; // import your Card component
+import SongCard from '../SongCard/SongCard';
 
-const CardCarousel = ({ cards }) => {
+const CardCarousel = ({ musicList }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const handleNext = () => {
-        setCurrentIndex((currentIndex + 1) % cards.length);
+        setCurrentIndex(Math.min(currentIndex + 4, musicList.length - 1));
     };
 
     const handlePrevious = () => {
-        setCurrentIndex((currentIndex - 1 + cards.length) % cards.length);
+        setCurrentIndex(Math.max(currentIndex - 4, 0));
     };
 
     return (
-        <div className="carousel">
-            <button onClick={handlePrevious}>Prev</button>
-            <Card card={cards[currentIndex]} />  // pass the current card to your Card component
-            <button onClick={handleNext}>Next</button>
+        <div className="flex items-center justify-between space-x-5 carousel">
+            <button onClick={handlePrevious} className='p-2 rounded hover:bg-gray-700'>←</button>
+            <div className="flex space-x-5 carousel-cards">
+                {musicList.slice(currentIndex, currentIndex + 4).map((song) => (
+                    <SongCard key={song._id} song={song} />
+                ))}
+            </div>
+            <button onClick={handleNext} className='p-2 rounded hover:bg-gray-700'>→</button>
         </div>
     );
-};
+}
 
 export default CardCarousel;
+

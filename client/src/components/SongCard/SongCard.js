@@ -1,15 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React from 'react';
 import axios from 'axios';
-import authService from '../../services/authService'
+import { Link, useNavigate} from "react-router-dom";
 
-import jwt_decode from "jwt-decode";
 
-const SongCard = () => {
+const SongCard = ({ song }) => {
+
+    const navigate = useNavigate();
+
+
+    const handleMusicStream = (id) => {
+        //blob is the form used for non js formatted data like audio data we can send that as an option to the axios
+        axios.get("http://localhost:5001/api/music/stream/" + id, {responseType: 'blob'})
+            .then((res) => {
+                //
+                const url = window.URL.createObjectURL(new Blob([res.data]));
+                const audio = new Audio(url);
+                audio.play();
+            })
+            .catch((err) => {
+                console.log('cant play rn...', err)
+            })
+    }
+
     return (
         <div class="bg-gray-900 shadow-lg rounded-lg p-3 w-52 hover:bg-gray-800 transition ">
             <div class="group relative">
-                <img class="w-full md:w-72 block rounded-lg shadow-xl" src="https://upload.wikimedia.org/wikipedia/en/f/f1/Tycho_-_Epoch.jpg" alt="" />
+                <img class="w-full md:w-72 block rounded-lg shadow-xl object-cover max-h-44" src={song.coverArt} alt='sorry this cant be displayed' />
                 <div class="absolute p-2 bg-black rounded bg-opacity-0 group-hover:bg-opacity-20 w-full h-full top-0 flex items-center group-hover:opacity-100 transition justify-evenly">
                     <button class="hover:scale-110 text-white opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
@@ -29,11 +45,11 @@ const SongCard = () => {
                 </div>
             </div>
             <div class="p-2 pb-3 text-left">
-                <h3 class="text-neutral-300 text-lg">
-                    <span class="hover:underline hover:text-white">Epoch</span>
+                <h3 class="text-neutral-300 text-lg truncate">
+                    <Link to={'/song-detail/' + song._id} class="hover:underline hover:text-white">{song.title}</Link>
                 </h3>
-                <p class="text-gray-400 text-base">
-                    <span class="hover:underline hover:text-white">Tycho</span>
+                <p class="text-gray-400 text-base truncate">
+                    <Link to={'/artist-profile/' + song.artistID} class="hover:underline hover:text-white">{song.artistID}</Link>
                 </p>
             </div>
         </div>
