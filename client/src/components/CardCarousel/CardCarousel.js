@@ -13,9 +13,9 @@ const CardCarousel = ({ musicList }) => {
     };
 
     return (
-        <div className="flex items-center justify-between space-x-5 carousel">
+        <div className="flex items-center justify-between m-10 space-x-9 carousel">
             <button onClick={handlePrevious} className='p-2 rounded hover:bg-gray-700'>←</button>
-            <div className="flex space-x-5 carousel-cards">
+            <div className="flex space-x-9 carousel-cards">
                 {musicList.slice(currentIndex, currentIndex + 4).map((song) => (
                     <SongCard key={song._id} song={song} />
                 ))}

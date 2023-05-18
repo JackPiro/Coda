@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const SideNavBar = () => {
     return (
-        <div className="flex flex-col w-48 h-screen px-6 py-4 text-blue-100 bg-gray-900">
+        <div className="fixed flex flex-col w-48 h-screen px-6 py-4 text-blue-100 bg-gray-900">
             <div className="mb-10 text-3xl text-center">
-                <h1 className="text-blue-600 decoration-8">Coda</h1>
+                <h1 className="mt-4 text-blue-600 decoration-8">Coda</h1>
             </div>
             <nav>
                 <ul>

@@ -25,7 +25,7 @@ const SongCard = ({ song }) => {
     return (
         <div class="bg-gray-900 shadow-lg rounded-lg p-3 w-52 hover:bg-gray-800 transition ">
             <div class="group relative">
-                <img class="w-full md:w-72 block rounded-lg shadow-xl object-cover max-h-44" src={song.coverArt} alt='sorry this cant be displayed' />
+                <img class="w-full md:w-72 block rounded-lg shadow-xl object-cover h-44" src={song.coverArt} alt='sorry this cant be displayed' />
                 <div class="absolute p-2 bg-black rounded bg-opacity-0 group-hover:bg-opacity-20 w-full h-full top-0 flex items-center group-hover:opacity-100 transition justify-evenly">
                     <button class="hover:scale-110 text-white opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">

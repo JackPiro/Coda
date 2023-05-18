@@ -12,6 +12,7 @@ const UserSchema = new mongoose.Schema({
     successfulInvites:{type: Number, default: 0},
     subscriptionPrice: {type: Number, default: 22},
     subscribedGroups: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SubscriptionGroup' }],
+    likedSongs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Music'}], //come back to this need to be the ids of songs
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     notifyOn: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Artist' }],
@@ -30,7 +31,7 @@ const calculateNewSubscriptionPrice = (successfulInvites) => {
     } else if (successfulInvites >= 1) {
         newSubscriptionPrice = 18.99;
     } else {
-        newSubscriptionPrice = 22;
+        newSubscriptionPrice = 22.00;
     }
 
     return newSubscriptionPrice;

@@ -33,37 +33,61 @@ const Profile = () => {
         authService.logout();
         navigate('/login');
     }
-
+    
+    /* <button onClick={handleLogout} className='absolute p-2 m-3 bg-blue-600 rounded-lg top-18 right-3' >Logout</button> */
+    
     return (
-        <div className='flex flex-row'>
-            <SideNavBar />
-            <div className='w-screen'>
+        <div className='flex'>
+            <div className='fixed w-48 h-screen'>
+                <SideNavBar />
+            </div>
+            <div className='flex-grow mt-4 ml-48 overflow-x-hidden'>
                 <TopNavBar />
-                <button onClick={handleLogout} className='absolute p-2 m-3 bg-blue-600 rounded-lg top-18 right-3' >Logout</button>
                 {
                     isLoading === true ? <h2>Loading rn...</h2> : null
                 }
-                <h1 className='absolute m-12 top-18 left-40'>Welcome {user && decodedToken.firstName ? decodedToken.firstName : 'some user'}</h1>
-                <div className="flex flex-row flex-wrap justify-center m-3">
-                    {/* use () unless you are returning a value jsx */}
-                    <CardCarousel musicList={musicList} />
-
-                    {/* {musicList.map((music) => (
-                        <div key={music._id} className='p-3 m-3 rounded-md bg-slate-800 '>
-                            <h3>{music.title}</h3>
-                                <div>
-                                    <img src={music.coverArt} alt='sorry this cant be displayed' className='object-cover rounded-md w-36 h-36'/>
-                                </div>
-                                {
-                                    decodedToken.id === music.artistID ? <Link to={'/edit-music/' + music._id} className='p-1 m-2 bg-blue-600 rounded-full'>edit</Link> : null
-                                }
-                            <button className='p-1 m-2 bg-blue-600 rounded-full' onClick={handleMusicStream(music._id)}>Play</button>
-                        </div>
-                    ))} */}
+                <div>
+                    <h1 className='block m-5 ml-8 text-2xl text-left'>Welcome {user && decodedToken.firstName ? decodedToken.firstName : 'some user'}</h1>
+                    <div className="flex flex-row flex-wrap justify-center m-3">
+                        <CardCarousel musicList={musicList} />
+                        <CardCarousel musicList={musicList} />
+                        <CardCarousel musicList={musicList} />
+                    </div>
                 </div>
             </div>
         </div>
-    )
-}
+        // <div className='flex flex-row '>
+        //     <SideNavBar />
+        //     <div className='w-48 h-screen m-5'></div>
+        //     <div className='flex-grow '>
+        //         <TopNavBar />
+        //         {
+        //             isLoading === true ? <h2>Loading rn...</h2> : null
+        //         }
+        //         <div>
+        //             <h1 className='block m-8 text-2xl text-left'>Welcome {user && decodedToken.firstName ? decodedToken.firstName : 'some user'}</h1>
+        //             <div className="flex flex-row flex-wrap justify-center m-3">
+        //                 {/* use () unless you are returning a value jsx */}
+        //                 <CardCarousel musicList={musicList} />
+        //                 <CardCarousel musicList={musicList} />
+        //                 <CardCarousel musicList={musicList} />
+        //             </div>
+        //         </div>
+        //     </div>
+        // </div>
+    );
+};
 
 export default Profile;
+/* {musicList.map((music) => (
+    <div key={music._id} className='p-3 m-3 rounded-md bg-slate-800 '>
+        <h3>{music.title}</h3>
+            <div>
+                <img src={music.coverArt} alt='sorry this cant be displayed' className='object-cover rounded-md w-36 h-36'/>
+            </div>
+            {
+                decodedToken.id === music.artistID ? <Link to={'/edit-music/' + music._id} className='p-1 m-2 bg-blue-600 rounded-full'>edit</Link> : null
+            }
+        <button className='p-1 m-2 bg-blue-600 rounded-full' onClick={handleMusicStream(music._id)}>Play</button>
+    </div>
+))} */
