@@ -12,6 +12,23 @@ code {
     monospace;
 }
 
+.gradient-text {
+  position: relative;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text:after {
+  content: attr(data-content);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to right, rgb(127, 204, 230), rgb(149, 53, 228));
+  -webkit-background-clip: text;
+  z-index: -1;
+}
+
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';

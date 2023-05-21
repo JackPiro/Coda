@@ -63,48 +63,95 @@ const UploadMusic = () => {
         }
     }
 
+
+
+
     return (
         <div className='flex flex-row'>
-            <SideNavBar />
-            <div className='w-screen'>
+            <div className='fixed w-48 h-screen bg-transparent'>
+                <SideNavBar />
+            </div>
+            <div className='flex-grow p-5 mt-4 ml-56 bg-transparent'>
                 <TopNavBar />
-                <button className='mr-4' onClick={handleLogout}>Logout</button>
-                <Link to={'/profile'}>Back</Link>
-                <form className='' onSubmit={submitHandler} encType="multipart/form-data">
-                    <div className='mt-5 mb-5'>
-                        <label>coverArt</label>
-                        <input type='file' name="coverArt" onChange={(e) => setCoverArt(e.target.files[0])}/>
+                <form className='px-8 pt-6 pb-8 mb-4 bg-transparent rounded shadow-md' onSubmit={submitHandler} encType="multipart/form-data">
+                    <div className='mb-4'>
+                        <label className='block mb-2 text-sm font-bold text-white opacity-80'>Cover Art</label>
+                        <input className='w-full px-3 py-2 leading-tight text-white border rounded shadow appearance-none opacity-80 focus:outline-none focus:shadow-outline' type='file' name="coverArt" onChange={(e) => setCoverArt(e.target.files[0])}/>
                     </div>
-                    <div className='mt-5 mb-5'>
-                        <label>audioFile</label>
-                        <input type='file' name="audioFile" onChange={(e) => setAudioFile(e.target.files[0])}/>
+                    <div className='mb-4'>
+                        <label className='block mb-2 text-sm font-bold text-white opacity-80'>Audio File</label>
+                        <input className='w-full px-3 py-2 leading-tight text-white border rounded shadow appearance-none opacity-80 focus:outline-none focus:shadow-outline' type='file' name="audioFile" onChange={(e) => setAudioFile(e.target.files[0])}/>
                     </div>
-                    <div className='mt-5 mb-5'>
-                        <label>title</label>
-                        <input type='text' onChange={(e) => setSongName(e.target.value)}/>
+                    <div className='mb-4'>
+                        <label className='block mb-2 text-sm font-bold text-white opacity-80'>Title</label>
+                        <input className='w-full px-3 py-2 leading-tight text-white bg-transparent border rounded shadow appearance-none opacity-80 focus:outline-none focus:shadow-outline' type='text' onChange={(e) => setSongName(e.target.value)}/>
                     </div>
-                    <div className='mt-5 mb-5'>
-                        <label>Description</label>
-                        <input type='text-area' onChange={(e) => setDescription(e.target.value)}/>
+                    <div className='mb-4'>
+                        <label className='block mb-2 text-sm font-bold text-white opacity-80'>Description</label>
+                        <input className='w-full px-3 py-2 leading-tight text-white bg-transparent border rounded shadow appearance-none opacity-80 focus:outline-none focus:shadow-outline' type='text-area' onChange={(e) => setDescription(e.target.value)}/>
                     </div>
-                    <div className='mt-5 mb-5'>
-                        <label>Genre</label>
-                        <input type='text' onChange={(e) => setGenre(e.target.value)}/>
+                    <div className='mb-4'>
+                        <label className='block mb-2 text-sm font-bold text-white opacity-80'>Genre</label>
+                        <input className='w-full px-3 py-2 leading-tight text-white bg-transparent border rounded shadow appearance-none opacity-80 focus:outline-none focus:shadow-outline' type='text' onChange={(e) => setGenre(e.target.value)}/>
                     </div>
-                    <button type='submit'>Upload Music</button>
+                    <button className='px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700' type='submit'>Upload Music</button>
                 </form>
                 {
                     isLoading === true ? 
-                    <div class="flex justify-center">
-                        <span class="circle animate-loader"></span>
-                        <span class="circle animate-loader animation-delay-200"></span>
-                        <span class="circle animate-loader animation-delay-400"></span>
+                    <div className="flex justify-center">
+                        <span className="circle animate-loader"></span>
+                        <span className="circle animate-loader animation-delay-200"></span>
+                        <span className="circle animate-loader animation-delay-400"></span>
                     </div>
                     : null
                 }
             </div>
         </div>
     )
-}
+}    
+    // return (
+    //     <div className='flex flex-row'>
+    //         <div className='fixed w-48 h-screen'>
+    //             <SideNavBar />
+    //         </div>
+    //         <div className='flex-grow mt-4 ml-56'>
+    //             <TopNavBar />
+    //             <button className='mr-4' onClick={handleLogout}>Logout</button>
+    //             <Link to={'/profile'}>Back</Link>
+    //             <form className='' onSubmit={submitHandler} encType="multipart/form-data">
+    //                 <div className='mt-5 mb-5'>
+    //                     <label>coverArt</label>
+    //                     <input type='file' name="coverArt" onChange={(e) => setCoverArt(e.target.files[0])}/>
+    //                 </div>
+    //                 <div className='mt-5 mb-5'>
+    //                     <label>audioFile</label>
+    //                     <input type='file' name="audioFile" onChange={(e) => setAudioFile(e.target.files[0])}/>
+    //                 </div>
+    //                 <div className='mt-5 mb-5'>
+    //                     <label>title</label>
+    //                     <input type='text' onChange={(e) => setSongName(e.target.value)}/>
+    //                 </div>
+    //                 <div className='mt-5 mb-5'>
+    //                     <label>Description</label>
+    //                     <input type='text-area' onChange={(e) => setDescription(e.target.value)}/>
+    //                 </div>
+    //                 <div className='mt-5 mb-5'>
+    //                     <label>Genre</label>
+    //                     <input type='text' onChange={(e) => setGenre(e.target.value)}/>
+    //                 </div>
+    //                 <button type='submit'>Upload Music</button>
+    //             </form>
+    //             {
+    //                 isLoading === true ? 
+    //                 <div className="flex justify-center">
+    //                     <span className="circle animate-loader"></span>
+    //                     <span className="circle animate-loader animation-delay-200"></span>
+    //                     <span className="circle animate-loader animation-delay-400"></span>
+    //                 </div>
+    //                 : null
+    //             }
+    //         </div>
+    //     </div>
+    // )
 
 export default UploadMusic;

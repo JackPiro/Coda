@@ -6,6 +6,7 @@ import Profile from './views/profile/Profile';
 import UploadMusic from './views/UploadMusic/UploadMusic';
 import RealProfile from './views/RealProfile/RealProfile';
 import EditSong from './components/EditSong/EditSong';
+// import AlbumDetail from './views/AlbumDetail/AlbumDetail';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route element={<RealProfile />} path="/Profile" />
             <Route element={<UploadMusic />} path="/UploadMusic" />
             <Route element={<EditSong />} path="/edit-music/:id" />
+            {/* <Route element={<AlbumDetail />} path="/album-detail" /> */}
         </Routes>
       </BrowserRouter>
     </div>
