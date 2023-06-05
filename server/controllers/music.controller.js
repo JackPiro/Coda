@@ -109,6 +109,8 @@ module.exports.deleteMusic = async (req, res) => {
             Key: music.audioFile
         };
 
+
+        
         s3.deleteObject(params, (err, data) => {
             if (err) {
                 console.log(err);
