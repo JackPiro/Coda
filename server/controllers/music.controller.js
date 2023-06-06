@@ -93,6 +93,7 @@ module.exports.updateMusic = async (req, res) => {
 // };
 
 
+
 module.exports.deleteMusic = async (req, res) => {
     try {
         const music = await Music.findById(req.params.id);
