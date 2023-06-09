@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const AlbumSchema = new mongoose.Schema({
-    artistID: {type: mongoose.Schema.Types.ObjectId, ref: 'Artist'},
+    artist: {
+        artistID: {type: mongoose.Schema.Types.ObjectId, ref: 'Artist'},
+        name: { type: String }
+    },
     songs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Music' }],
     title: {type: String, required: true},
     description: {type: String},
@@ -13,6 +16,8 @@ const AlbumSchema = new mongoose.Schema({
     createdAt: {type: Date, default: Date.now},
     updatedAt: {type: Date, default: Date.now}
 })
+
+AlbumSchema.index({ title: 'text', 'artist.name': 'text', genre: 'text' });
 
 const Album = mongoose.model('Album', AlbumSchema);
 module.exports = Album

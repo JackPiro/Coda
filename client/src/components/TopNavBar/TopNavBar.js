@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate} from "react-router-dom";
+import axios from 'axios';
 
 
 const TopNavBar = () => {
+    const [query, setQuery] = useState('');
 
     const navigate = useNavigate();
+
+    const searchHandler = () => {
+        axios.get(`/music/search?query=${query}`)
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch(err => console.log(err, 'error finding music from search'))
+    }
     
     return (
     <nav className="flex items-center justify-between px-6 py-4 text-white">
@@ -14,7 +24,7 @@ const TopNavBar = () => {
         </div>
 
         <div className="flex-grow mx-10">
-            <input className="w-full px-4 py-2 text-white bg-transparent border-2 border-white rounded-full opacity-60 hover:opacity-80" type="search" placeholder="Search..." />
+            <input type='text' value={query} onChange={e => setQuery(e.target.value)} onKeyUp={searchHandler} className="w-full px-4 py-2 text-white bg-transparent border-2 border-white rounded-full opacity-60 hover:opacity-80" placeholder="Search..." />
         </div>
 
         <Link to={'/Profile'} className="p-2 border-2 border-white rounded-full opacity-60 hover:opacity-80">

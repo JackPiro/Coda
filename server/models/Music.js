@@ -4,7 +4,10 @@ const mongoose =  require('mongoose');
 
 // mongoose.Schema is a method that takes an object
 const MusicSchema = new mongoose.Schema({
-    artistID: {type: mongoose.Schema.Types.ObjectId, ref: 'Artist'},
+    artist: {
+        artistID: {type: mongoose.Schema.Types.ObjectId, ref: 'Artist'},
+        name: { type: String }
+    },
     title: {type: String, required: true},
     description: {type: String},
     genre: {type: String, required: true},
@@ -16,6 +19,9 @@ const MusicSchema = new mongoose.Schema({
     NFTType: {type: String, enum: ['royaltySharing', 'collectible', 'none'], default: 'none'},
     updatedAt: {type: Date, default: Date.now}
 });
+
+MusicSchema.index({ title: 'text', 'artist.name': 'text', genre: 'text' });
+
 
 const Music = mongoose.model('Music', MusicSchema);
 module.exports = Music;

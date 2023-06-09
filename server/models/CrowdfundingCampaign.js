@@ -20,5 +20,7 @@ const CrowdfundingCampaignSchema = new mongoose.Schema({
     exclusiveContent: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ExclusiveContent' }],
 });
 
+
+
 const CrowdfundingCampaign = mongoose.model('CrowdfundingCampaign', CrowdfundingCampaignSchema);
 module.exports = CrowdfundingCampaign;

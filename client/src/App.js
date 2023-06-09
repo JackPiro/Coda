@@ -10,6 +10,7 @@ import AlbumDetail from './views/AlbumDetail/AlbumDetail';
 
 
 function App() {
+
   return (
     <div className="App">
       <BrowserRouter>

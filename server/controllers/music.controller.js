@@ -42,7 +42,19 @@ const newMusic = new Music({
 });
 */
 
+module.exports.musicSearch = async (req, res) => {
+    const { query } = req.query;
+    try {
+        const results = await Music.find({
+            $text: { $search: query }
+        });
+//{ $search: query } is specifying that MongoDB should look for the query string in the indexed fields.
 
+        res.json(results);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
 
 module.exports.getMusicById = async (req, res) => {
     try {

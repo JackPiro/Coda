@@ -6,6 +6,7 @@ const upload = require('../utils/s3Interface');
 
 router.post('/create', authenticate, upload, musicController.createMusic);
 router.get('/get-all-music', musicController.getAllMusic);
+router.get('/search', musicController.musicSearch);
 router.get('/:id', musicController.getMusicById);
 router.patch('/update/:id', musicController.updateMusic);
 router.delete('/delete/:id', musicController.deleteMusic);
