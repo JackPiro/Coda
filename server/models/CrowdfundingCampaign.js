@@ -22,5 +22,7 @@ const CrowdfundingCampaignSchema = new mongoose.Schema({
 
 
 
+
+
 const CrowdfundingCampaign = mongoose.model('CrowdfundingCampaign', CrowdfundingCampaignSchema);
 module.exports = CrowdfundingCampaign;
