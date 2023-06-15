@@ -3,7 +3,7 @@ import { Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
 
 
-const TopNavBar = () => {
+const TopNavBar = ({ setSearchResults }) => {
     const [query, setQuery] = useState('');
 
     const navigate = useNavigate();
@@ -11,6 +11,7 @@ const TopNavBar = () => {
     const searchHandler = () => {
         axios.get(`/music/search?query=${query}`)
             .then((res) => {
+                setSearchResults(res.data)
                 console.log(res.data);
             })
             .catch(err => console.log(err, 'error finding music from search'))

@@ -1,4 +1,5 @@
 import './App.css';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Register from './views/authentication/Register';
 import Login from './views/authentication/Login'
@@ -7,9 +8,12 @@ import UploadMusic from './views/UploadMusic/UploadMusic';
 import RealProfile from './views/RealProfile/RealProfile';
 import EditSong from './components/EditSong/EditSong';
 import AlbumDetail from './views/AlbumDetail/AlbumDetail';
+import Explore from './views/explore/Explore';
 
 
 function App() {
+  const [searchResults, setSearchResults] = useState([]);
+
 
   return (
     <div className="App">
@@ -19,6 +23,7 @@ function App() {
             <Route element={<Login />} path="/login" />
             <Route element={<Profile />} path="/Home" />
             <Route element={<RealProfile />} path="/Profile" />
+            <Route searchResults={searchResults} element={<Explore />} path="/explore" />
             <Route element={<UploadMusic />} path="/UploadMusic" />
             <Route element={<EditSong />} path="/edit-music/:id" />
             <Route element={<AlbumDetail />} path="/album-detail" />
