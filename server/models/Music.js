@@ -1,4 +1,5 @@
 const mongoose =  require('mongoose');
+const mongooseFuzzySearching = require('mongoose-fuzzy-searching');
 
 // Now we Define the Music Schema music === song should prolly rename this later bc we have songs ad ablums
 
@@ -21,6 +22,8 @@ const MusicSchema = new mongoose.Schema({
 });
 
 MusicSchema.index({ title: 'text', 'artist.name': 'text', genre: 'text' });
+
+MusicSchema.plugin(mongooseFuzzySearching, { fields: ['title', 'artist.name'] });
 
 
 const Music = mongoose.model('Music', MusicSchema);
