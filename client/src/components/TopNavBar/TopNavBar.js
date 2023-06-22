@@ -9,7 +9,7 @@ const TopNavBar = ({ setSearchResults }) => {
     const navigate = useNavigate();
 
     const searchHandler = () => {
-        axios.get(`/music/search?query=${query}`)
+        axios.get(`http://localhost:5001/api/music/search?query=${query}`)
             .then((res) => {
                 setSearchResults(res.data)
                 console.log(res.data);

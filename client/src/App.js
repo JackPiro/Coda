@@ -23,7 +23,7 @@ function App() {
             <Route element={<Login />} path="/login" />
             <Route element={<Profile />} path="/Home" />
             <Route element={<RealProfile />} path="/Profile" />
-            <Route searchResults={searchResults} element={<Explore />} path="/explore" />
+            <Route  element={<Explore searchResults={searchResults} setSearchResults={setSearchResults} />} path="/explore" />
             <Route element={<UploadMusic />} path="/UploadMusic" />
             <Route element={<EditSong />} path="/edit-music/:id" />
             <Route element={<AlbumDetail />} path="/album-detail" />

@@ -60,21 +60,6 @@ module.exports.uploadFile = (file) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
 this is the function to pipe the music to the response directly from stream it gets run when the play button is hit.
 it takes the audio file link and starts pulling the music file from the bucket it gets read as it goes.
@@ -84,7 +69,8 @@ it takes the audio file link and starts pulling the music file from the bucket i
 
 module.exports.getMusicStreaming = (req, res) => {
     const key = req.params.audioFile; // The id or filename of the music file in the sent request
-
+    console.log('key is ', key)
+    console.log(req.body)
     //here we don't need the file body because it is in the s3 bucket we just need the name to access it.
     const params = {
         Bucket: process.env.AWS_BUCKET_NAME,

@@ -42,6 +42,12 @@ const newMusic = new Music({
 });
 */
 
+module.exports.streamMusic = async (req, res) => {
+    
+}
+
+
+
 module.exports.musicSearch = async (req, res) => {
     const { query } = req.query;
     try {

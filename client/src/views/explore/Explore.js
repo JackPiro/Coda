@@ -51,14 +51,6 @@ const Explore = ({ searchResults, setSearchResults }) => {
                     <div className="flex flex-row flex-wrap justify-center m-3">
                         <CardCarousel musicList={!searchResults ? musicList : searchResults} />
                     </div>
-                    <div class="flex text-gray-600">
-                        <div class="p-2 w-8 flex-shrink-0"></div>
-                        <div class="p-2 w-8 flex-shrink-0"></div>
-                        <div class="p-2 w-full">Title</div>
-                        <div class="p-2 w-full">Artist</div>
-                        <div class="p-2 w-full">Album</div>
-                        <div class="p-2 w-12 flex-shrink-0 text-right">⏱</div>
-                    </div>
                 </div>
             </div>
         </div>
