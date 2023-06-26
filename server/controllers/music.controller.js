@@ -43,7 +43,7 @@ const newMusic = new Music({
 */
 
 module.exports.streamMusic = async (req, res) => {
-    
+
 }
 
 
@@ -82,6 +82,16 @@ module.exports.getAllMusic = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+module.exports.getMostRecent = async (req, res) => {
+    try {
+        const music = await Music.find()
+        .sort({ releaseDate: -1 }).limit(20);
+        res.status(200).json(music);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
 
 
 module.exports.updateMusic = async (req, res) => {

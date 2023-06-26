@@ -16,8 +16,9 @@ const MusicSchema = new mongoose.Schema({
     audioFile: {type: String, required: true},
     offer: {type: Boolean, required: true, default: false},
     releaseDate: {type: Date, required: true, default: Date.now},
-    createdAt: {type: Date, default: Date.now},
     NFTType: {type: String, enum: ['royaltySharing', 'collectible', 'none'], default: 'none'},
+    streamCount: {type: Number},
+    createdAt: {type: Date, default: Date.now},
     updatedAt: {type: Date, default: Date.now}
 });
 

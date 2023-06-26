@@ -19,15 +19,16 @@ const Explore = ({ searchResults, setSearchResults }) => {
 
     useEffect(() => {
         setIsLoading(true)
-        axios.get("http://localhost:5001/api/music/get-all-music", {withCredentials: true})
+        axios.get("http://localhost:5001/api/music/get-most-recent", {withCredentials: true})
             .then((res) => {
                 console.log('userID:',decodedToken.id);
                 setMusicList(res.data);
-                setIsLoading(false)
+                setIsLoading(false);
             })
-            .catch((err) => {console.log(err)})
-            setIsLoading(false)
+            .catch((err) => {console.log(err)});
+            setIsLoading(false);
     }, []);
+
 
     const handleLogout = () => {
         authService.logout();
@@ -49,6 +50,7 @@ const Explore = ({ searchResults, setSearchResults }) => {
                 <div>
                     <h1 className='block m-5 ml-8 text-2xl text-left'>Welcome {user && decodedToken.firstName ? decodedToken.firstName : 'some user'}</h1>
                     <div className="flex flex-row flex-wrap justify-center m-3">
+                        <p className='text-left'>Most recent</p>
                         <CardCarousel musicList={!searchResults ? musicList : searchResults} />
                     </div>
                 </div>

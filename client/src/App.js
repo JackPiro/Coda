@@ -9,6 +9,7 @@ import RealProfile from './views/RealProfile/RealProfile';
 import EditSong from './components/EditSong/EditSong';
 import AlbumDetail from './views/AlbumDetail/AlbumDetail';
 import Explore from './views/explore/Explore';
+import AlbumDetailTwo from './views/AlbumDetail/albumDetailTwo';
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
             <Route  element={<Explore searchResults={searchResults} setSearchResults={setSearchResults} />} path="/explore" />
             <Route element={<UploadMusic />} path="/UploadMusic" />
             <Route element={<EditSong />} path="/edit-music/:id" />
-            <Route element={<AlbumDetail />} path="/album-detail" />
+            <Route element={<AlbumDetailTwo />} path="/album-detail" />
         </Routes>
       </BrowserRouter>
     </div>
