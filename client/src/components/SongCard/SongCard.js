@@ -14,6 +14,8 @@ const SongCard = ({ song }) => {
             currentAudio.pause(); // If there's a current audio and it's not the same as this one, pause it
         }
 
+
+        
         if (audio) {
             if (paused) {
                 audio.play();
