@@ -10,6 +10,7 @@ import EditSong from './components/EditSong/EditSong';
 import AlbumDetail from './views/AlbumDetail/AlbumDetail';
 import Explore from './views/explore/Explore';
 import AlbumDetailTwo from './views/AlbumDetail/albumDetailTwo';
+import ArtistProfile from './views/ArtistProfile/ArtistProfile';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route element={<UploadMusic />} path="/UploadMusic" />
             <Route element={<EditSong />} path="/edit-music/:id" />
             <Route element={<AlbumDetailTwo />} path="/album-detail" />
+            <Route element={<ArtistProfile />} path="/artist-profile/:id" />
         </Routes>
       </BrowserRouter>
     </div>
