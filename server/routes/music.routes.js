@@ -12,6 +12,6 @@ router.get('/:id', musicController.getMusicById);
 router.patch('/update/:id', musicController.updateMusic);
 router.delete('/delete/:id', musicController.deleteMusic);
 router.get('/stream/:id', upload.getMusicStreaming);
-router.get('/artist/:userID', musicController.getMusicByArtist);
+router.get('/get-music-by-artist/:artistId', musicController.getMusicByArtist);
 
 module.exports = router;

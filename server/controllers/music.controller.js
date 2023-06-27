@@ -192,7 +192,9 @@ module.exports.deleteMusic = async (req, res) => {
 module.exports.getMusicByArtist = async (req, res) => {
     try {
         const artistId = req.params.artistId;
-        const musicByArtist = await Music.find({ artistId: artistId });
+        console.log(`artistId: ${artistId}`);
+        const musicByArtist = await Music.find({ "artist.artistID": artistId });
+        console.log('Music by artist:', musicByArtist)
         res.status(200).json(musicByArtist);
     } catch (error) {
         res.status(500).json({ message: error.message });
