@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import NoSearchNav from '../TopNavBar/NoSearchNav';
 import { useState } from 'react';
+import SubscriptionPaywall from '../SubscriptionPaywall/SubscriptionPaywall';
 
 
 
 const ProfileHeader = ({ artistId, active, setActive }) => {
+    const [isOpen, setIsOpen] = useState(true);
     const user = JSON.parse(localStorage.getItem('user'));
 
     
@@ -22,11 +24,9 @@ const ProfileHeader = ({ artistId, active, setActive }) => {
                         <h2 className="text-2xl font-bold">Artist Name</h2>
                         <p className="text-sm">(10) Supporters • (10) Circles • (10) Supporting</p>
                     </div>
-                    <button>
-                        <Link to={'/Circle'} className="p-2 border-2 border-white rounded-full opacity-60 hover:opacity-80">
+                        <button onClick={setIsOpen(true)} className="p-2 border-2 border-white rounded-full opacity-60 hover:opacity-80">
                             Join Circle
-                        </Link>
-                    </button>
+                        </button>
                 </div>
             </div>
             <div className=" flex flex-grow ">
@@ -43,6 +43,8 @@ const ProfileHeader = ({ artistId, active, setActive }) => {
                     Discography
                 </button>
             </div>
+            {isOpen === true ? <SubscriptionPaywall isOpen={isOpen} setIsOpen={setIsOpen} /> : null}
+            <p>followed at:</p>
         </div>
     )
 }

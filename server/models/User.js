@@ -8,10 +8,18 @@ const UserSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     role: { type: String, enum: ['artist', 'listener'], required: true },
+    loyaltyPoints: [
+        {
+            artist: { type: mongoose.Schema.Types.ObjectId, ref: 'Artist' },
+            points: { type: Number, default: 0 },
+            timestamp: { type: Date, default: Date.now },
+            reason: { type: String },
+        }
+    ],
+    subscribedGroups: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SubscriptionGroup' }],
     invitesAvailable: { type: Number, default: 0 },
     successfulInvites:{type: Number, default: 0},
     subscriptionPrice: {type: Number, default: 22},
-    subscribedGroups: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SubscriptionGroup' }],
     likedSongs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Music'}], //come back to this need to be the ids of songs
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],

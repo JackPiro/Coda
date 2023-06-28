@@ -49,7 +49,7 @@ code {
 
 :root {
   --primary: transparent;
-  --secondary: rgb(30, 33, 82);
+  --secondary: #ffffff14;
 }
 
 * {

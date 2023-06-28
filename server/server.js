@@ -39,6 +39,8 @@ app.use('/api/user-engagement-metrics', require('./routes/userEngagementMetrics.
 app.use('/api/NFT-collectibles', require('./routes/NFTCollectible.routes'));
 app.use('/api/biggest-supporters', require('./routes/biggestSupporter.routes'));
 app.use('/api/auth', require('./routes/auth.routes'));
+app.use('/api/transaction', require('./routes/transaction.routes'));
+
 
 
 

@@ -2,6 +2,7 @@ import React from 'react'
 import CardCarousel from '../../components/CardCarousel/CardCarousel';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import LineSongDisplay from '../../components/LineSongDisplay/LineSongDisplay';
 
 
 const ArtistDiscography = ({ artistId }) => {
@@ -23,7 +24,9 @@ const ArtistDiscography = ({ artistId }) => {
 
     return (
         <div className=''>
-            
+            <div>
+                <LineSongDisplay />
+            </div>
             <div>
                 <p className='block ml-10 mt-6 text-left text-lg font-bold'>Albums</p>
                 <CardCarousel musicList={musicList}/>
