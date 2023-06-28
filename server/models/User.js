@@ -16,7 +16,19 @@ const UserSchema = new mongoose.Schema({
             reason: { type: String },
         }
     ],
-    subscribedGroups: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SubscriptionGroup' }],
+    following: [
+        {
+            followerID: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+        }
+    ],
+    followers: [
+        {
+            followerID: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+        }
+    ],
+    subscribedGroups: [
+        { type: mongoose.Schema.Types.ObjectId, ref: 'SubscriptionGroup' }
+    ],
     invitesAvailable: { type: Number, default: 0 },
     successfulInvites:{type: Number, default: 0},
     subscriptionPrice: {type: Number, default: 22},

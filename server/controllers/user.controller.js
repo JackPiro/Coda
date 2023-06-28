@@ -2,25 +2,6 @@ const User = require('../models/User');
 const Artist = require('../models/Artist');
 const UserEngagementMetrics = require('../models/UserEngagementMetrics');
 
-// exports.createUser = async (req, res) => {
-//     try {
-//         const newUser = new User(req.body);
-//         await newUser.save();
-
-//         const newUserEngagementMetrics = new UserEngagementMetrics({ user: newUser._id });
-//         await newUserEngagementMetrics.save();
-
-//         if (newUser.role === 'artist') {
-//             const newArtist = new Artist({ user: newUser._id, artistID: newArtist._id });
-//             await newArtist.save();
-//         }
-
-//         res.status(201).json(newUser);
-//     } catch (error) {
-//         res.status(400).json({ message: error.message });
-//     }
-// };
-
 //trying this one
 exports.createUser = async (req, res) => {
     try {
@@ -103,3 +84,11 @@ exports.getSubscriptionPrice = async (req, res) => {
         res.status(500).json({ message: 'Error fetching subscription price', error });
     }
 };
+
+module.exports.followUser = async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const artist = await Artist.findByIdAndUpdate(req.params.artistId);
+
+    }
+}

@@ -16,13 +16,6 @@ const ArtistSchema = new mongoose.Schema({
             pointsRequired: { type: Number },
         }
     ],
-    //this might be wrong
-    followers: [
-        {
-            followerID: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
-        }
-    ],
-    followerCount: {type: Number},
     createdAt: {type: Date, default: Date.now},
     updatedAt: {type: Date, default: Date.now}
 });
