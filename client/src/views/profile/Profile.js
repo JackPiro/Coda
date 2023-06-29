@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import authService from '../../services/authService'
 import SideNavBar from '../../components/SideNavBar/SideNavBar';
-import TopNavBar from '../../components/TopNavBar/TopNavBar';
+import NoSearchNav from '../../components/TopNavBar/NoSearchNav';
 import CardCarousel from '../../components/CardCarousel/CardCarousel';
 
 import jwt_decode from "jwt-decode";
@@ -42,7 +42,7 @@ const Profile = () => {
                 <SideNavBar />
             </div>
             <div className='flex-grow mt-4 ml-48 overflow-x-hidden'>
-                <TopNavBar />
+                <NoSearchNav />
                 {
                     isLoading === true ? <h2>Loading rn...</h2> : null
                 }

@@ -7,7 +7,7 @@ import SubscriptionPaywall from '../SubscriptionPaywall/SubscriptionPaywall';
 
 
 const ProfileHeader = ({ artistId, active, setActive }) => {
-    const [isOpen, setIsOpen] = useState(true);
+    // const [isOpen, setIsOpen] = useState(true);
     const user = JSON.parse(localStorage.getItem('user'));
 
     
@@ -24,7 +24,7 @@ const ProfileHeader = ({ artistId, active, setActive }) => {
                         <h2 className="text-2xl font-bold">Artist Name</h2>
                         <p className="text-sm">(10) Supporters • (10) Circles • (10) Supporting</p>
                     </div>
-                        <button onClick={setIsOpen(true)} className="p-2 border-2 border-white rounded-full opacity-60 hover:opacity-80">
+                        <button className="p-2 border-2 border-white rounded-full opacity-60 hover:opacity-80">
                             Join Circle
                         </button>
                 </div>
@@ -43,7 +43,7 @@ const ProfileHeader = ({ artistId, active, setActive }) => {
                     Discography
                 </button>
             </div>
-            {isOpen === true ? <SubscriptionPaywall isOpen={isOpen} setIsOpen={setIsOpen} /> : null}
+            {/* {isOpen === true ? <SubscriptionPaywall isOpen={isOpen} setIsOpen={setIsOpen} /> : null} */}
             <p>followed at:</p>
         </div>
     )

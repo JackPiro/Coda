@@ -85,10 +85,38 @@ exports.getSubscriptionPrice = async (req, res) => {
     }
 };
 
-module.exports.followUser = async (req, res) => {
+exports.toggleFollowUser = async (req, res) => {
     try {
-        const userId = req.params.userId;
-        const artist = await Artist.findByIdAndUpdate(req.params.artistId);
+        const targetUser = await User.findById(req.params.id);
+        const currentUser = await User.findById(req.user.id); // req.user.id should be the id of the currently logged-in user
 
+        const isFollowing = currentUser.following.some(id => id.equals(targetUser._id));
+
+        if (isFollowing) {
+            // User is currently following, so unfollow
+            targetUser.followers = targetUser.followers.filter(id => !id.equals(currentUser._id));
+            currentUser.following = currentUser.following.filter(id => !id.equals(targetUser._id));
+            await targetUser.save();
+            await currentUser.save();
+
+            res.status(200).json({ message: 'Unfollowed user successfully.' });
+        } else {
+            // User is not currently following, so follow
+            if (!targetUser.followers.includes(currentUser._id)) {
+                targetUser.followers.push(currentUser._id);
+                await targetUser.save();
+            }
+
+            if (!currentUser.following.includes(targetUser._id)) {
+                currentUser.following.push(targetUser._id);
+                await currentUser.save();
+            }
+
+            res.status(200).json({ message: 'Followed user successfully.' });
+        }
+
+    } catch (error) {
+        res.status(500).json({ message: 'An error occurred.', error });
     }
 }
+

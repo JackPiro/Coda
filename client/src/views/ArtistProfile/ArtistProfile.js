@@ -7,11 +7,9 @@ import ArtistDiscography from './ArtistDiscography';
 import ArtistPortfolio from './ArtistPortfolio';
 
 
-
 const ArtistProfile = () => {
     const { id } = useParams();
     const [active, setActive] = useState('portfolio')
-
 
     return (
         <div className='flex'>

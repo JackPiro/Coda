@@ -11,6 +11,8 @@ import AlbumDetail from './views/AlbumDetail/AlbumDetail';
 import Explore from './views/explore/Explore';
 import AlbumDetailTwo from './views/AlbumDetail/albumDetailTwo';
 import ArtistProfile from './views/ArtistProfile/ArtistProfile';
+import NewRegister from './views/authentication/NewRegister';
+import FancyRegister from './views/authentication/FancyRegister';
 
 
 function App() {
@@ -21,7 +23,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <Routes>
-            <Route element={<Register />} path="/register" />
+            <Route element={<NewRegister />} path="/register" />
+            <Route element={<FancyRegister />} path="/fancy-register" />
             <Route element={<Login />} path="/login" />
             <Route element={<Profile />} path="/Home" />
             <Route element={<RealProfile />} path="/Profile" />

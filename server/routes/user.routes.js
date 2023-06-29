@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user.controller');
 
-router.post('/user/:id/follow', UserController.followUser);
-router.post('/user/:id/unfollow', UserController.unfollowUser);
+router.post('/user/:id/follow-unfollow', userController.toggleFollowUser);
 router.post('/create', userController.createUser);
 router.get('/', userController.getAllUsers);
 router.get('/:id', userController.getUserById);
