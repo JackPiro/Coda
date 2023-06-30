@@ -14,6 +14,7 @@ import ArtistProfile from './views/ArtistProfile/ArtistProfile';
 import NewRegister from './views/authentication/NewRegister';
 import FancyRegister from './views/authentication/FancyRegister';
 import CompleteProfile from './views/authentication/CompleteProfile';
+import LoadingPage from './views/authentication/LoadingPage';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <BrowserRouter>
       <Routes>
             <Route element={<NewRegister />} path="/register" />
+            <Route element={<LoadingPage />} path="/Loading" />
             <Route element={<CompleteProfile />} path="/complete-profile" />
             <Route element={<FancyRegister />} path="/fancy-register" />
             <Route element={<Login />} path="/login" />
