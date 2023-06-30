@@ -4,6 +4,7 @@ import PersonIcon from '../../assets/Icons/PersonIcon';
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/authService';
+import '../../assets/sampleStuff/studioScene.heic'
 
 
 const FancyRegister = () => {
@@ -38,6 +39,8 @@ const FancyRegister = () => {
         }
     };
 
+
+    
 
     return (
         <div>
