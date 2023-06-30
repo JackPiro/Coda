@@ -13,6 +13,7 @@ import AlbumDetailTwo from './views/AlbumDetail/albumDetailTwo';
 import ArtistProfile from './views/ArtistProfile/ArtistProfile';
 import NewRegister from './views/authentication/NewRegister';
 import FancyRegister from './views/authentication/FancyRegister';
+import CompleteProfile from './views/authentication/CompleteProfile';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <BrowserRouter>
       <Routes>
             <Route element={<NewRegister />} path="/register" />
+            <Route element={<CompleteProfile />} path="/complete-profile" />
             <Route element={<FancyRegister />} path="/fancy-register" />
             <Route element={<Login />} path="/login" />
             <Route element={<Profile />} path="/Home" />

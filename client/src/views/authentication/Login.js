@@ -87,7 +87,7 @@ const Login = () => {
                 <FormTitle variant="h6">
                     Login
                 </FormTitle> 
-                <Link style={{marginBottom: "20px", marginTop: "-30px"}} to={'/register'}>or register</Link>
+                <Link style={{marginBottom: "20px", marginTop: "-30px"}} to={'/fancy-register'}>or register</Link>
                 {errorMessage && <div className="error-message">{errorMessage}</div>}
                 <form onSubmit={handleSubmit}>
                     <FormInput

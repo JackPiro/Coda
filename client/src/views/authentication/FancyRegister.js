@@ -27,7 +27,7 @@ const FancyRegister = () => {
     
         try {
             await authService.register(firstName, lastName, email, username, password, role);
-            navigate('/home');
+            navigate('/complete-profile');
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message) {
                 setErrorMessage(error.response.data.message);
@@ -40,7 +40,7 @@ const FancyRegister = () => {
     };
 
 
-    
+
 
     return (
         <div>
@@ -53,8 +53,8 @@ const FancyRegister = () => {
                         <div class="w-full md:w-1/2 py-10 px-5 md:px-10">
                             <div class="text-center mb-10">
                                 <h1 class="font-bold text-4xl text-white">Welcome to <span className='text-[#336CFF]'>Coda</span></h1>
-                                {/* <h3 class="font-bold text-lg text-white">REGISTER</h3> */}
                                 <p>We're Glad You Made It  :)</p>
+                                
                             </div>
                             <div>
                                 <div class="flex -mx-3">
@@ -62,14 +62,14 @@ const FancyRegister = () => {
                                         <label for="" class="text-xs font-semibold px-1">First name</label>
                                         <div class="flex">
                                             <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-account-outline text-white text-lg"></i></div>
-                                            <input type="text" class="w-full bg-[#181C25] -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="William" />
+                                            <input onChange={e => setFirstName(e.target.value)} type="text" class="w-full bg-[#181C25] -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="William" />
                                         </div>
                                     </div>
                                     <div class="w-1/2 px-3 mb-5">
                                         <label for="" class="text-xs font-semibold px-1">Last name</label>
                                         <div class="flex">
                                             <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
-                                            <input type="text" class="w-full -ml-10 pl-10 pr-3 bg-[#181C25] py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Defroe" />
+                                            <input onChange={e => setLastName(e.target.value)} type="text" class="w-full -ml-10 pl-10 pr-3 bg-[#181C25] py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Defoe" />
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@ const FancyRegister = () => {
                                         <label for="" class="text-xs font-semibold px-1">Email</label>
                                         <div class="flex">
                                             <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
-                                            <input type="email" class="w-full -ml-10 pl-10 pr-3 py-2 bg-[#181C25] rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="williamdefroe@getf$*kinexcited.com" />
+                                            <input onChange={e => setEmail(e.target.value)} type="email" class="w-full -ml-10 pl-10 pr-3 py-2 bg-[#181C25] rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="williamdefoe@getf$*kinexcited.com" />
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +96,7 @@ const FancyRegister = () => {
                                         <label for="" class="text-xs font-semibold px-1">Create Unique Username</label>
                                         <div class="flex">
                                             <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-lock-outline text-gray-400 text-lg"></i></div>
-                                            <input type="password" class="w-full -ml-10 pl-10 pr-3 py-2 bg-[#181C25] rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="MakeItGood" />
+                                            <input onChange={e => setUsername(e.target.value)} type="password" class="w-full -ml-10 pl-10 pr-3 py-2 bg-[#181C25] rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="MakeItGood" />
                                         </div>
                                     </div>
                                 </div>
