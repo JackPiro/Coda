@@ -44,7 +44,7 @@ const FancyRegister = () => {
 
     return (
         <div>
-            <div class="min-w-screen min-h-screen bg-gray-900 flex items-center justify-center px-5 py-5">
+            <div class="min-w-screen min-h-screen bg-[#0E121A] flex items-center justify-center px-5 py-5">
                 <div class="bg-[#181C25] text-white rounded-3xl shadow-xl w-full overflow-hidden">
                     <div class="md:flex w-full">
                         <div class="hidden md:block w-1/2 bg-[#336CFF] py-10 px-10">
@@ -116,7 +116,6 @@ const FancyRegister = () => {
                                         Enroll as Artist
                                     </button>
                                 </div>
-
 
                                 <div class="flex -mx-3">
                                     <div class="w-full px-3 mb-5">
