@@ -32,7 +32,7 @@ const CompleteProfile = () => {
     const handleSubmit = () => {
         axios.put("")
             .then((res) => {
-                navigate('/')
+                navigate('/loading')
             })
 
     }
@@ -52,6 +52,8 @@ const CompleteProfile = () => {
                                 Please complete the form.
                             </div>
                             )}
+
+                            
 
                             <form className="space-y-5">
                                 {/* if user is artist show choose artist name if not show display name */}
@@ -87,7 +89,7 @@ const CompleteProfile = () => {
                                     <label className="text-sm font-medium text-gray-700">Add Your Social Links</label>
                                     <input onChange={e => setSocialLinks(e.target.value)} type="text" class="w-full bg-[#181C25] mb-6 text-sm pl-2 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="paste here" />
                                 </div>
-                                <button type='submit' onClick={navigate('/loading')} class="block w-full px-2 py-2 max-w-xs mx-auto register-button text-white rounded-lg font-semibold text-sm ">Continue →</button>
+                                <button type='submit' class="block w-full px-2 py-2 max-w-xs mx-auto register-button text-white rounded-lg font-semibold text-sm ">Continue →</button>
                             </form>
                         </div>
                     </div>
