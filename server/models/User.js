@@ -6,6 +6,8 @@ const UserSchema = new mongoose.Schema({
     lastName: {type: String, required: true},
     //removed required for the time being
     username: { type: String, require: true, unique: true },
+    displayName: { type: String },
+    bio: { type: String },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     role: { type: String, enum: ['artist', 'listener'], required: true },

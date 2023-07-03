@@ -35,6 +35,8 @@ const FancyRegister = () => {
                 setErrorMessage('An error occurred while registering. Please try again later.');
             }
         } finally {
+            await authService.login( email, password);
+            console.log(firstName, 'logged in')
             setLoading(false);
         }
     };
@@ -44,7 +46,7 @@ const FancyRegister = () => {
 
     return (
         <div>
-            <div class="min-w-screen min-h-screen bg-[#0E121A] flex items-center justify-center px-5 py-5">
+            <div class="min-w-screen min-h-screen bg-gradient-to-r from-[#0E121A] to-indigo-700 flex items-center justify-center px-5 py-5">
                 <div class="bg-[#181C25] text-white rounded-3xl shadow-xl w-full overflow-hidden">
                     <div class="md:flex w-full">
                         <div class="hidden md:block w-1/2 bg-[#336CFF] py-10 px-10">

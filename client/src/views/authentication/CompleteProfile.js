@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import PersonIcon from '../../assets/Icons/PersonIcon';
 
+import jwt_decode from "jwt-decode";
+
+
 const CompleteProfile = () => {
     const [showError, setShowError] = useState(false);
     const [bio, setBio] = useState('');
@@ -11,6 +14,9 @@ const CompleteProfile = () => {
     const [socialLinks, setSocialLinks] = useState('');
     const [photoName, setPhotoName] = useState(null);
     const [photoPreview, setPhotoPreview] = useState(null);
+
+    const user = JSON.parse(localStorage.getItem('user'));
+    const decodedToken = jwt_decode(user.userToken);
 
     const navigate = useNavigate();
 
@@ -30,15 +36,16 @@ const CompleteProfile = () => {
     }
 
     const handleSubmit = () => {
-        axios.put("")
+        axios.put("http://localhost:5001/api/auth/update/" + decodedToken.id )
             .then((res) => {
-                navigate('/loading')
+                console.log(decodedToken.firstName, decodedToken.id)
+                navigate("/loading")
             })
-
+            .catch(err => console.log(err))
     }
 
     return (
-        <div class="min-w-screen min-h-screen bg-[#0E121A] flex items-center justify-center px-5 py-5">
+        <div class="min-w-screen min-h-screen bg-gradient-to-r from-[#0E121A] to-indigo-700 flex items-center justify-center px-5 py-5">
             <div class="bg-[#181C25] text-white rounded-3xl shadow-xl w-full overflow-hidden">
                 <div class="md:flex w-full">
                     <div class="hidden md:block w-1/2 bg-[#336CFF] py-24 px-10">
@@ -52,8 +59,6 @@ const CompleteProfile = () => {
                                 Please complete the form.
                             </div>
                             )}
-
-                            
 
                             <form className="space-y-5">
                                 {/* if user is artist show choose artist name if not show display name */}
@@ -89,7 +94,7 @@ const CompleteProfile = () => {
                                     <label className="text-sm font-medium text-gray-700">Add Your Social Links</label>
                                     <input onChange={e => setSocialLinks(e.target.value)} type="text" class="w-full bg-[#181C25] mb-6 text-sm pl-2 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="paste here" />
                                 </div>
-                                <button type='submit' class="block w-full px-2 py-2 max-w-xs mx-auto register-button text-white rounded-lg font-semibold text-sm ">Continue →</button>
+                                <button type='submit' onClick={handleSubmit} class="block w-full px-2 py-2 max-w-xs mx-auto register-button text-white rounded-lg font-semibold text-sm ">Continue →</button>
                             </form>
                         </div>
                     </div>

@@ -37,7 +37,7 @@ const Profile = () => {
     /* <button onClick={handleLogout} className='absolute p-2 m-3 bg-blue-600 rounded-lg top-18 right-3' >Logout</button> */
     
     return (
-        <div className='flex'>
+        <div className='flex bg-gradient-to-t from-[#0E121A] from-80% to-[#336dff3b]'>
             <div className='fixed w-48 h-screen'>
                 <SideNavBar />
             </div>
