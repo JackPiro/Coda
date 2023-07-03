@@ -34,6 +34,9 @@ const Profile = () => {
         navigate('/login');
     }
     
+
+
+    
     /* <button onClick={handleLogout} className='absolute p-2 m-3 bg-blue-600 rounded-lg top-18 right-3' >Logout</button> */
     
     return (
