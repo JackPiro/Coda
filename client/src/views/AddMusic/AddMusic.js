@@ -31,6 +31,9 @@ const AddMusic= () => {
         }
     }, [selectedFile]);
 
+
+
+    
     return (
         <div className="flex w-full min-w-screen min-h-screen bg-gradient-to-r from-[#0E121A] to-indigo-700">
             <SideNavBar />
