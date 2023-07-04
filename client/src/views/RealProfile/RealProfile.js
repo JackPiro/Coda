@@ -4,6 +4,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import ProfileHeader from '../../components/ProfileHeader/ProfileHeader';
 import CardCarousel from '../../components/CardCarousel/CardCarousel';
 import axios from 'axios';
+import NavWithSettings from '../../components/TopNavBar/NavWithSettings';
+import YourProfileHeader from '../../components/ProfileHeader/YourProfileHeader';
+
 
 
 import authService from '../../services/authService'
@@ -12,6 +15,8 @@ import jwt_decode from "jwt-decode";
 
 const RealProfile = () => {
     const [musicList, setMusicList] = useState([]);
+    const [active, setActive] = useState('portfolio')
+
 
     const user = JSON.parse(localStorage.getItem('user'));
 
@@ -43,19 +48,8 @@ const RealProfile = () => {
             <div className='fixed w-48 h-screen'>
                 <SideNavBar />
             </div>
-            <div className='flex-grow mt-4 ml-56 '>
-                <div className='bg-gray-800 -ml-8 -mt-4 px-4'>
-                    <nav className="flex items-center justify-between px-6 py-4 text-white ">
-                        <div className="flex space-x-4">
-                            <button onClick={() => navigate(-1)} className="p-2 rounded opacity-80 hover:bg-blue-700 hover:opacity-100">←</button>
-                            <button onClick={() => navigate(1)} className="p-2 rounded opacity-80 hover:bg-blue-700 hover:opacity-100">→</button>
-                        </div>
-                        <Link to={'/settings'} className="p-2 border-2 border-white rounded-full opacity-60 hover:opacity-80">
-                            Settings
-                        </Link>
-                    </nav>
-                    <ProfileHeader />
-                </div>
+            <div className='flex-grow mt-4 ml-48 '>
+                <YourProfileHeader user={user} active={active} setActive={setActive}/>
                 <CardCarousel musicList={musicList} />
             </div>
         </div>

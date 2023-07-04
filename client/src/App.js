@@ -15,7 +15,7 @@ import NewRegister from './views/authentication/NewRegister';
 import FancyRegister from './views/authentication/FancyRegister';
 import CompleteProfile from './views/authentication/CompleteProfile';
 import LoadingPage from './views/authentication/LoadingPage';
-
+import AddMusic from './views/AddMusic/AddMusic';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -26,6 +26,7 @@ function App() {
       <BrowserRouter>
       <Routes>
             <Route element={<NewRegister />} path="/register" />
+            <Route element={<AddMusic />} path="/add-music" />
             <Route element={<LoadingPage />} path="/Loading" />
             <Route element={<CompleteProfile />} path="/complete-profile" />
             <Route element={<FancyRegister />} path="/fancy-register" />

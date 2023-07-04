@@ -35,8 +35,6 @@ const Profile = () => {
     }
     
 
-
-    
     /* <button onClick={handleLogout} className='absolute p-2 m-3 bg-blue-600 rounded-lg top-18 right-3' >Logout</button> */
     
     return (
@@ -44,13 +42,13 @@ const Profile = () => {
             <div className='fixed w-48 h-screen'>
                 <SideNavBar />
             </div>
-            <div className='flex-grow mt-4 ml-48 overflow-x-hidden'>
+            <div className='flex-grow ml-48 overflow-x-hidden'>
                 <NoSearchNav />
                 {
                     isLoading === true ? <h2>Loading rn...</h2> : null
                 }
                 <div>
-                    <h1 className='block m-5 ml-8 text-2xl text-left'>Welcome {user && decodedToken.firstName ? decodedToken.firstName : 'some user'}</h1>
+                    <h1 className='block m-5 ml-8 text-2xl text-left'>Welcome {user && decodedToken.firstName ? decodedToken.firstName.toUpperCase() : 'some user'}</h1>
                     <div className="flex flex-row flex-wrap justify-center m-3">
                         <CardCarousel musicList={musicList} />
                         <CardCarousel musicList={musicList} />
