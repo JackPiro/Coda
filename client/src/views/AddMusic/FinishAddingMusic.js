@@ -56,23 +56,23 @@ const FinishAddingMusic= () => {
                     </div>
 
                     <div className="bg-[#202530] rounded-lg flex flex-col items-center space-y-4 w-3/4 h-76 p-5">
-                        <input type="text" className="bg-[#181C25] rounded-lg px-2 py-3 w-full" placeholder="Album Name*"/>
-                        <div className="flex space-x-2 w-full">
-                            <input type="text" className="bg-[#181C25] rounded-lg px-2 py-3 w-1/2" placeholder="Album Name*"/>
-                            <input type="text" className="bg-[#181C25] rounded-lg px-2 py-3 w-1/2" placeholder="Album Name*"/>
+                        <input type="text" className="bg-[#181C25] rounded-lg px-2 py-3 w-full h-1/4 pl-2" placeholder="Album Name*"/>
+                        <div className="flex space-x-2 w-full h-1/4">
+                            <input type="text" className="bg-[#181C25] rounded-lg px-2 py-3 w-1/2 pl-2" placeholder="Genre*"/>
+                            <input type="text" className="bg-[#181C25] rounded-lg px-2 py-3 w-1/2 pl-2" placeholder="Mood*"/>
                         </div>
-                        <input type="text" className="bg-[#181C25] rounded-lg px-2 py-3 w-full" placeholder="Album Name*"/>
+                        <input type="text" className="bg-[#181C25] rounded-lg px-2 py-3 w-full h-1/4 pl-2" placeholder="Tags*"/>
+                        <input type="text" className="bg-[#181C25] rounded-lg px-2 py-3 w-full h-2/4 pl-2" placeholder="Story/Context*"/>
                     </div>
                 </div> {/* Close Flex container here */}
 
                 {fileList.length > 0 && fileList.map((file, index) => (
-                    <div key={index} className="relative bg-[#181C25] my-3 shadow-2xl rounded-lg flex justify-between items-center p-4">
+                    <div key={index} className="relative bg-[#202530] my-3 shadow-2xl rounded-lg flex justify-between items-center p-4">
                         <div>
-                            <p className="text-xs"><strong>File Name: </strong>{file.name}</p>
-                            <p className="text-xs"><strong>File Size: </strong>{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                            <label className="font-bold">File Name:</label>
+                            <input className="bg-[#181C25] ml-2 p-2 rounded-lg text-slate-400" value={file.name}/>
                             {/* Handle duration display for multiple files */}
                         </div>
-                        <audio controls src={URL.createObjectURL(file)} />
                         <button
                             onClick={() => handleRemoveUpload(index)}
                             className="absolute rounded-full top-0 right-0 p-1 bg-red-500 text-white"
