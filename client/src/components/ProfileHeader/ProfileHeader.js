@@ -10,11 +10,6 @@ const ProfileHeader = ({ artistId, active, setActive }) => {
     // const [isOpen, setIsOpen] = useState(true);
     const user = JSON.parse(localStorage.getItem('user'));
 
-
-
-
-
-    
     
     return (
         <div>
