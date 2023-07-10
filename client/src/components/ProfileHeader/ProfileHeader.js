@@ -13,6 +13,7 @@ const ProfileHeader = ({ artistId, active, setActive }) => {
 
 
 
+
     
     
     return (
