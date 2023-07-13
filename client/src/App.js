@@ -20,15 +20,15 @@ import FinishAddingMusic from './views/AddMusic/FinishAddingMusic';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
-
+  const [fileList, setFileList] = useState([]);
 
   return (
     <div className="App">
       <BrowserRouter>
       <Routes>
             <Route element={<NewRegister />} path="/register" />
-            <Route element={<AddMusic />} path="/add-music" />
-            <Route element={<FinishAddingMusic />} path="/finish-adding-music" />
+            <Route element={<AddMusic fileList={fileList} setFileList={setFileList} />} path="/add-music" />
+            <Route element={<FinishAddingMusic fileList={fileList} setFileList={setFileList} />} path="/finish-adding-music" />
             <Route element={<LoadingPage />} path="/Loading" />
             <Route element={<CompleteProfile />} path="/complete-profile" />
             <Route element={<FancyRegister />} path="/fancy-register" />

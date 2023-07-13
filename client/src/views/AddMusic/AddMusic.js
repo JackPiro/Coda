@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import SideNavBar from "../../components/SideNavBar/SideNavBar";
 import NoSearchNav from "../../components/TopNavBar/NoSearchNav";
 import '../../components/shared/button/newButton.css'
+import { useNavigate } from "react-router-dom";
 
 const AddMusic= () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [releaseType, setReleaseType] = useState("track");
     const [duration, setDuration] = useState(null);
     const [fileList, setFileList] = useState([]);
+
+    const navigate = useNavigate();
 
     const handleFileChange = (event) => {
         const files = Array.from(event.target.files); // Convert FileList to Array
@@ -35,6 +38,8 @@ const AddMusic= () => {
             });
         }
     }, [fileList]);
+
+
 
     return (
         <div className="flex w-full min-w-screen min-h-screen bg-gradient-to-r from-[#0E121A] to-indigo-700">
@@ -89,7 +94,7 @@ const AddMusic= () => {
                             </div>
                         ))}
                     </div>
-                    <button className="p-2 mt-4 register-button">Continue</button>
+                    <button onClick={() => navigate('/finish-adding-music')} className="p-2 mt-4 register-button">Continue</button>
                 </div>
             </div>
         </div>

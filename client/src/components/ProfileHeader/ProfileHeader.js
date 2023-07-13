@@ -11,7 +11,6 @@ const ProfileHeader = ({ artistId, active, setActive }) => {
     const user = JSON.parse(localStorage.getItem('user'));
 
 
-    
     return (
         <div>
             <div className="top-0 h-64 w-full mb-16 text-white flex-grow">
