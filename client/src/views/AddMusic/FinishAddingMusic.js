@@ -16,6 +16,8 @@ const FinishAddingMusic= ({fileList, setFileList}) => {
     };
     
 
+
+    
     const handleReleaseTypeChange = (type) => {
         setReleaseType(type);
     };
@@ -39,10 +41,11 @@ const FinishAddingMusic= ({fileList, setFileList}) => {
 
     return (
         <div className="bg-gradient-to-r from-[#0E121A] to-indigo-700 relative">
+            <SideNavBar />
+            <div className="ml-48"><NoSearchNav /></div>
             <div className="flex w-full min-w-screen min-h-screen bg-gradient-to-r from-[#0E121A] to-indigo-700">
-                <SideNavBar />
                 <div className="bg-[#181C25] mt-6 mr-6 mb-6 text-white rounded-3xl shadow-xl w-full overflow-hidden ml-56 justify-center p-10 space-x-6">
-                    <div className="flex flex-row space-x-6"> {/* Flex container added here */}
+                    <div className="flex flex-row space-x-6">
                         <div className="flex flex-col items-center justify-center bg-[#202530] rounded-lg shadow-2xl w-1/4 h-full p-5 border">
                             <input
                                 type="file"
@@ -66,18 +69,18 @@ const FinishAddingMusic= ({fileList, setFileList}) => {
                             <input type="text" className="bg-[#181C25] rounded-lg px-2 py-3 w-full h-1/4 pl-2" placeholder="Tags*"/>
                             <input type="text" className="bg-[#181C25] rounded-lg px-2 py-3 w-full h-2/4 pl-2" placeholder="Story/Context*"/>
                         </div>
-                    </div> {/* Close Flex container here */}
+                    </div>
 
                     {fileList.length > 0 && fileList.map((file, index) => (
-                        <div key={index} className="relative bg-[#202530] my-3 shadow-2xl rounded-lg flex flex-col justify-between items-start p-4">
+                        <div key={index} className="relative bg-[#202530] my-3  shadow-2xl rounded-lg flex flex-col justify-between items-start p-4">
                             <div className="w-full flex justify-between">
                                 <div>
-                                    <label className="font-bold">File Name:</label>
-                                    <input className="bg-[#181C25] ml-2 p-2 rounded-lg text-slate-400" value={file.name} readOnly/>
+                                    <label className="font-bold">Song Name:</label>
+                                    <input className="bg-[#181C25] ml-2 p-2 rounded-lg text-slate-400" value={file.name} />
                                 </div>
                                 <button
                                     onClick={() => handleRemoveUpload(index)}
-                                    className="absolute rounded-full top-0 right-0 p-1 bg-red-500 text-white"
+                                    className="absolute rounded-full top-2 right-2 p-1 py-0 text-white"
                                 >
                                     X
                                 </button>
@@ -89,11 +92,15 @@ const FinishAddingMusic= ({fileList, setFileList}) => {
                                 {dropdownOpen[index] ? 'Hide Advanced Options' : 'Show Advanced Options'}
                             </button>
                             {dropdownOpen[index] && 
-                            <div className="w-full mt-2">
-                                <label className="font-bold">Track ISRC:</label>
-                                <input className="bg-[#181C25] ml-2 p-2 rounded-lg text-slate-400" placeholder="Enter Track ISRC"/>
-                                <label className="font-bold mt-2">Track ISWC:</label>
-                                <input className="bg-[#181C25] ml-2 p-2 rounded-lg text-slate-400" placeholder="Enter Track ISWC"/>
+                            <div className="flex justify-center w-full mt-4 space-x-10">
+                                <div>
+                                    <label className="font-bold">Track ISRC:</label>
+                                    <input className="bg-[#181C25] ml-2 p-2 rounded-lg text-slate-400" placeholder="Enter Track ISRC"/>
+                                </div>
+                                <div>
+                                    <label className="font-bold mt-2">Track ISWC:</label>
+                                    <input className="bg-[#181C25] ml-2 p-2 rounded-lg text-slate-400" placeholder="Enter Track ISWC"/>
+                                </div>
                             </div>
                             }
                         </div>

@@ -25,22 +25,22 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Routes>
-            <Route element={<NewRegister />} path="/register" />
-            <Route element={<AddMusic fileList={fileList} setFileList={setFileList} />} path="/add-music" />
-            <Route element={<FinishAddingMusic fileList={fileList} setFileList={setFileList} />} path="/finish-adding-music" />
-            <Route element={<LoadingPage />} path="/Loading" />
-            <Route element={<CompleteProfile />} path="/complete-profile" />
-            <Route element={<FancyRegister />} path="/fancy-register" />
-            <Route element={<Login />} path="/login" />
-            <Route element={<Profile />} path="/Home" />
-            <Route element={<RealProfile />} path="/Profile" />
-            <Route  element={<Explore searchResults={searchResults} setSearchResults={setSearchResults} />} path="/explore" />
-            <Route element={<UploadMusic />} path="/UploadMusic" />
-            <Route element={<EditSong />} path="/edit-music/:id" />
-            <Route element={<AlbumDetailTwo />} path="/album-detail" />
-            <Route element={<ArtistProfile />} path="/artist-profile/:id" />
-        </Routes>
+        <Routes>
+              <Route element={<NewRegister />} path="/register" />
+              <Route element={<AddMusic fileList={fileList} setFileList={setFileList} />} path="/add-music" />
+              <Route element={<FinishAddingMusic fileList={fileList} setFileList={setFileList} />} path="/finish-adding-music" />
+              <Route element={<LoadingPage />} path="/Loading" />
+              <Route element={<CompleteProfile />} path="/complete-profile" />
+              <Route element={<FancyRegister />} path="/fancy-register" />
+              <Route element={<Login />} path="/login" />
+              <Route element={<Profile />} path="/Home" />
+              <Route element={<RealProfile />} path="/Profile" />
+              <Route  element={<Explore searchResults={searchResults} setSearchResults={setSearchResults} />} path="/explore" />
+              <Route element={<UploadMusic />} path="/UploadMusic" />
+              <Route element={<EditSong />} path="/edit-music/:id" />
+              <Route element={<AlbumDetailTwo />} path="/album-detail" />
+              <Route element={<ArtistProfile />} path="/artist-profile/:id" />
+          </Routes>
       </BrowserRouter>
     </div>
   );
