@@ -17,6 +17,8 @@ const FinishAddingMusic= ({fileList, setFileList}) => {
     
 
 
+
+    
     
     const handleReleaseTypeChange = (type) => {
         setReleaseType(type);
