@@ -6,13 +6,18 @@ import LineSongDisplay from '../../components/LineSongDisplay/LineSongDisplay';
 
 
 const ArtistDiscography = ({ artistId }) => {
-    const [musicList, setMusicList] = useState([]);
+    const [albumList, setAlbumList] = useState([]);
+    const [EPList, setEPList] = useState([]);
+    const [singlesList, setSinglesList] = useState([]);
+    const [topTenList, setTopTenList] = useState([]);
+    const [allMusicList, setAllMusicList] = useState([]);
     const [loading, setLoading] = useState(true);
+
     
     useEffect(() => {
         axios.get("http://localhost:5001/api/music/get-music-by-artist/" + artistId)
             .then((res) => {
-                setMusicList(res.data);
+                setAllMusicList(res.data);
                 setLoading(false);
                 console.log('Artist Music:', res.data);
                 console.log(artistId);
@@ -24,24 +29,31 @@ const ArtistDiscography = ({ artistId }) => {
 
     return (
         <div className=''>
-            <div>
-                <LineSongDisplay />
+            <h2 className='text-left m-2'>Top Songs</h2>
+            <div className='flex flex-grow justify-center w-full space-x-5 m-3'>
+                <div className='flex flex-col w-full space-y-3'>
+                    <LineSongDisplay />
+                    <LineSongDisplay />
+                    <LineSongDisplay />
+                    <LineSongDisplay />
+                    <LineSongDisplay />
+                </div>
             </div>
             <div>
                 <p className='block ml-10 mt-6 text-left text-lg font-bold'>Albums</p>
-                <CardCarousel musicList={musicList}/>
+                <CardCarousel musicList={albumList}/>
             </div>
             <div>
                 <p className='block ml-10 mt-6 text-left text-lg font-bold'>EP's</p>
-                <CardCarousel musicList={musicList}/>
+                <CardCarousel musicList={EPList}/>
             </div>
             <div>
                 <p className='block ml-10 mt-6 text-left text-lg font-bold'>Singles</p>
-                <CardCarousel musicList={musicList}/>
+                <CardCarousel musicList={singlesList}/>
             </div>
             <div>
                 <p className='block ml-10 mt-6 text-left text-lg font-bold'>Seen on</p>
-                <CardCarousel musicList={musicList}/>
+                <CardCarousel musicList={topTenList}/>
             </div>
         </div>
     )

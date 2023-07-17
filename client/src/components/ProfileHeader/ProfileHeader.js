@@ -44,7 +44,11 @@ const ProfileHeader = ({ artistId, active, setActive }) => {
                 </button>
             </div>
             {/* {isOpen === true ? <SubscriptionPaywall isOpen={isOpen} setIsOpen={setIsOpen} /> : null} */}
-            <p>followed at:</p>
+            <div>
+                <div>
+                    
+                </div>
+            </div>
         </div>
     )
 }
