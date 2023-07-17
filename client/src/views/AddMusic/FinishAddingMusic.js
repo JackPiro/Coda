@@ -70,7 +70,6 @@ const FinishAddingMusic= ({fileList, setFileList}) => {
                         </div>
                     </div>
 
-                    
 
                     {fileList.length > 0 && fileList.map((file, index) => (
                         <div key={index} className="relative bg-[#202530] my-3  shadow-2xl rounded-lg flex flex-col justify-between items-start p-4">
