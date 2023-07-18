@@ -1,5 +1,5 @@
 import React from 'react'
-import CardCarousel from '../../components/CardCarousel/CardCarousel';
+import ShowAllCarousel from '../../components/CardCarousel/ShowAllCarousel';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import LineSongDisplay from '../../components/LineSongDisplay/LineSongDisplay';
@@ -7,7 +7,6 @@ import LineSongDisplay from '../../components/LineSongDisplay/LineSongDisplay';
 
 const ArtistDiscography = ({ artistId }) => {
     const [albumList, setAlbumList] = useState([]);
-    const [EPList, setEPList] = useState([]);
     const [singlesList, setSinglesList] = useState([]);
     const [topTenList, setTopTenList] = useState([]);
     const [allMusicList, setAllMusicList] = useState([]);
@@ -15,15 +14,21 @@ const ArtistDiscography = ({ artistId }) => {
 
     
     useEffect(() => {
-        axios.get("http://localhost:5001/api/music/get-music-by-artist/" + artistId)
+        setLoading(true);
+        // Fetch albums by artist
+        axios.get(`http://localhost:5001/api/music/get-albums-by-artist/${artistId}`)
             .then((res) => {
-                setAllMusicList(res.data);
-                setLoading(false);
-                console.log('Artist Music:', res.data);
-                console.log(artistId);
+                setAlbumList(res.data);
             })
-            .catch(err => console.log(err, 'sincerely - get music by artist'));
-    }, [])
+            .catch(err => console.log(err));
+            // Fetch singles by artist
+            axios.get(`http://localhost:5001/api/music/get-singles-by-artist/${artistId}`)
+            .then((res) => {
+                setSinglesList(res.data);
+                setLoading(false)
+            })
+            .catch(err => console.log(err));
+        }, [artistId]);
 
     if (loading) return <div>Loading...</div>
 
@@ -41,19 +46,15 @@ const ArtistDiscography = ({ artistId }) => {
             </div>
             <div>
                 <p className='block ml-10 mt-6 text-left text-lg font-bold'>Albums</p>
-                <CardCarousel musicList={albumList}/>
-            </div>
-            <div>
-                <p className='block ml-10 mt-6 text-left text-lg font-bold'>EP's</p>
-                <CardCarousel musicList={EPList}/>
+                <ShowAllCarousel musicList={albumList}/>
             </div>
             <div>
                 <p className='block ml-10 mt-6 text-left text-lg font-bold'>Singles</p>
-                <CardCarousel musicList={singlesList}/>
+                <ShowAllCarousel musicList={singlesList}/>
             </div>
             <div>
                 <p className='block ml-10 mt-6 text-left text-lg font-bold'>Seen on</p>
-                <CardCarousel musicList={topTenList}/>
+                <ShowAllCarousel musicList={topTenList}/>
             </div>
         </div>
     )

@@ -109,49 +109,6 @@ const UploadMusic = () => {
         </div>
     )
 }    
-    // return (
-    //     <div className='flex flex-row'>
-    //         <div className='fixed w-48 h-screen'>
-    //             <SideNavBar />
-    //         </div>
-    //         <div className='flex-grow mt-4 ml-56'>
-    //             <TopNavBar />
-    //             <button className='mr-4' onClick={handleLogout}>Logout</button>
-    //             <Link to={'/profile'}>Back</Link>
-    //             <form className='' onSubmit={submitHandler} encType="multipart/form-data">
-    //                 <div className='mt-5 mb-5'>
-    //                     <label>coverArt</label>
-    //                     <input type='file' name="coverArt" onChange={(e) => setCoverArt(e.target.files[0])}/>
-    //                 </div>
-    //                 <div className='mt-5 mb-5'>
-    //                     <label>audioFile</label>
-    //                     <input type='file' name="audioFile" onChange={(e) => setAudioFile(e.target.files[0])}/>
-    //                 </div>
-    //                 <div className='mt-5 mb-5'>
-    //                     <label>title</label>
-    //                     <input type='text' onChange={(e) => setSongName(e.target.value)}/>
-    //                 </div>
-    //                 <div className='mt-5 mb-5'>
-    //                     <label>Description</label>
-    //                     <input type='text-area' onChange={(e) => setDescription(e.target.value)}/>
-    //                 </div>
-    //                 <div className='mt-5 mb-5'>
-    //                     <label>Genre</label>
-    //                     <input type='text' onChange={(e) => setGenre(e.target.value)}/>
-    //                 </div>
-    //                 <button type='submit'>Upload Music</button>
-    //             </form>
-    //             {
-    //                 isLoading === true ? 
-    //                 <div className="flex justify-center">
-    //                     <span className="circle animate-loader"></span>
-    //                     <span className="circle animate-loader animation-delay-200"></span>
-    //                     <span className="circle animate-loader animation-delay-400"></span>
-    //                 </div>
-    //                 : null
-    //             }
-    //         </div>
-    //     </div>
-    // )
+    
 
 export default UploadMusic;

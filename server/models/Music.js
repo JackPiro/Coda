@@ -1,5 +1,4 @@
 const mongoose =  require('mongoose');
-const mongooseFuzzySearching = require('mongoose-fuzzy-searching');
 
 // Now we Define the Music Schema music === song should prolly rename this later bc we have songs ad ablums
 
@@ -15,6 +14,8 @@ const MusicSchema = new mongoose.Schema({
     coverArt: {type: String, required: true},
     audioFile: {type: String, required: true},
     offer: {type: Boolean, required: true, default: false},
+    trackISRC: {type: Number},
+    trackISWC: {type: Number},
     streamCount: {type: Number},
     releaseDate: {type: Date, required: true, default: Date.now},
     NFTType: {type: String, enum: ['royaltySharing', 'collectible', 'none'], default: 'none'},
@@ -24,8 +25,6 @@ const MusicSchema = new mongoose.Schema({
 });
 
 MusicSchema.index({ title: 'text', 'artist.name': 'text', genre: 'text' });
-
-MusicSchema.plugin(mongooseFuzzySearching, { fields: ['title', 'artist.name'] });
 
 
 const Music = mongoose.model('Music', MusicSchema);

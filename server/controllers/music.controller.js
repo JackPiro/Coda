@@ -1,6 +1,7 @@
 const { tryCatch } = require('fp-ts/lib/Option');
 const Music = require('../models/Music');
-const { uploadFile, s3 } = require('../utils/s3Interface')
+const { uploadFile, s3 } = require('../utils/s3Interface');
+const Album = require('../models/Album');
 
 
 
@@ -182,8 +183,49 @@ module.exports.deleteMusic = async (req, res) => {
 
 
 
+module.exports.getAlbumsByArtist = async (req, res, next) => {
+    try {
+        const albums = await Album.find({
+        'artist.artistID': req.params.artistId
+      }).populate('songs'); // This will populate the song details in each album
+        if (!albums) {
+            return res.status(404).json({ message: 'No albums found for this artist.' });
+        }
+        return res.status(200).json(albums);
+    } catch (error) {
+        return next(error);
+    }
+};
 
+module.exports.getSinglesByArtist = async (req, res, next) => {
+    try {
+        const singles = await Music.find({
+            'artist.artistID': req.params.artistId
+        });
+        if (!singles) {
+            return res.status(404).json({ message: 'No singles found for this artist.' });
+        }
+        return res.status(200).json(singles);
+    } catch (error) {
+        return next(error);
+    }
+};
 
+module.exports.getTopTenSongsByArtist = async (req, res, next) => {
+    try {
+        const topSongs = await Music.find({
+            'artist.artistID': req.params.artistId
+        })
+        .sort({ streamCount: -1 }) // This will sort the songs in descending order of streamCount
+        .limit(10); // This will limit the result to 10 documents
+        if (!topSongs) {
+            return res.status(404).json({ message: 'No songs found for this artist.' });
+        }
+        return res.status(200).json(topSongs);
+    } catch (error) {
+        return next(error);
+    }
+};
 
 
 

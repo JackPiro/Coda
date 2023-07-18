@@ -55,7 +55,6 @@ const RealProfile = () => {
                 <ShowAllCarousel musicList={musicList} />
                 <ShowAllCarousel musicList={musicList} />
                 <ShowAllCarousel musicList={musicList} />
-
             </div>
         </div>
     );

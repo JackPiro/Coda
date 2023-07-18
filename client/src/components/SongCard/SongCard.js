@@ -39,6 +39,10 @@ const SongCard = ({ song }) => {
         }
     };
 
+    const updateStreamCount = () => {
+        axios.patch("http://locaalhost:5001/api/music/update-stream-count/" + song._id)
+    }
+
 
     return (
         <div className="bg-gray-900 shadow-lg rounded-lg p-3 w-52 hover:bg-gray-800 transition ">

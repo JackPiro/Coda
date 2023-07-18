@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 5001;
 //changed up top to accommodate cookie usage
 // app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
 
 
 //this needs to be changed to HTTPS secureOnly when using it in a production setting, this involves an SSL certificate from a domain

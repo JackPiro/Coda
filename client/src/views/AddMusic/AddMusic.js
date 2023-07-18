@@ -4,9 +4,8 @@ import NoSearchNav from "../../components/TopNavBar/NoSearchNav";
 import '../../components/shared/button/newButton.css'
 import { useNavigate } from "react-router-dom";
 
-const AddMusic= ({fileList, setFileList}) => {
+const AddMusic= ({fileList, setFileList, releaseType, setReleaseType}) => {
     const [selectedFile, setSelectedFile] = useState(null);
-    const [releaseType, setReleaseType] = useState("track");
     const [duration, setDuration] = useState(null);
 
     const navigate = useNavigate();

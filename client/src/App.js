@@ -17,18 +17,36 @@ import CompleteProfile from './views/authentication/CompleteProfile';
 import LoadingPage from './views/authentication/LoadingPage';
 import AddMusic from './views/AddMusic/AddMusic';
 import FinishAddingMusic from './views/AddMusic/FinishAddingMusic';
+import UserSettings from './views/UserSettings/UserSettings';
+import PaymentGateway from './views/authentication/PaymentGateway';
+import CheckoutForm from './views/authentication/CheckoutForm';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [fileList, setFileList] = useState([]);
+  const [releaseType, setReleaseType] = useState('track')
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
               <Route element={<NewRegister />} path="/register" />
-              <Route element={<AddMusic fileList={fileList} setFileList={setFileList} />} path="/add-music" />
-              <Route element={<FinishAddingMusic fileList={fileList} setFileList={setFileList} />} path="/finish-adding-music" />
+              <Route element={<PaymentGateway />} path="/subscribe" />
+              <Route element={<UserSettings />} path="/settings" />
+
+              <Route element={<AddMusic 
+              fileList={fileList} 
+              setFileList={setFileList} 
+              releaseType={releaseType} 
+              setReleaseType={setReleaseType} 
+              />} path="/add-music" />
+
+              <Route element={<FinishAddingMusic 
+              fileList={fileList} 
+              setFileList={setFileList} 
+              releaseType={releaseType}
+              />} path="/finish-adding-music" />
+
               <Route element={<LoadingPage />} path="/Loading" />
               <Route element={<CompleteProfile />} path="/complete-profile" />
               <Route element={<FancyRegister />} path="/fancy-register" />

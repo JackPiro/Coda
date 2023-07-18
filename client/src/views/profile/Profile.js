@@ -5,6 +5,7 @@ import authService from '../../services/authService'
 import SideNavBar from '../../components/SideNavBar/SideNavBar';
 import NoSearchNav from '../../components/TopNavBar/NoSearchNav';
 import CardCarousel from '../../components/CardCarousel/CardCarousel';
+import PlayBar from '../../components/PlayBar/PlayBar';
 
 import jwt_decode from "jwt-decode";
 
@@ -34,9 +35,6 @@ const Profile = () => {
         navigate('/login');
     }
     
-
-    /* <button onClick={handleLogout} className='absolute p-2 m-3 bg-blue-600 rounded-lg top-18 right-3' >Logout</button> */
-    
     return (
         <div className='flex bg-gradient-to-t from-[#0E121A] from-80% to-[#336dff3b]'>
             <div className='fixed w-48 h-screen'>
@@ -56,39 +54,10 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+            <PlayBar />
         </div>
-        // <div className='flex flex-row '>
-        //     <SideNavBar />
-        //     <div className='w-48 h-screen m-5'></div>
-        //     <div className='flex-grow '>
-        //         <TopNavBar />
-        //         {
-        //             isLoading === true ? <h2>Loading rn...</h2> : null
-        //         }
-        //         <div>
-        //             <h1 className='block m-8 text-2xl text-left'>Welcome {user && decodedToken.firstName ? decodedToken.firstName : 'some user'}</h1>
-        //             <div className="flex flex-row flex-wrap justify-center m-3">
-        //                 {/* use () unless you are returning a value jsx */}
-        //                 <CardCarousel musicList={musicList} />
-        //                 <CardCarousel musicList={musicList} />
-        //                 <CardCarousel musicList={musicList} />
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
     );
 };
 
 export default Profile;
-/* {musicList.map((music) => (
-    <div key={music._id} className='p-3 m-3 rounded-md bg-slate-800 '>
-        <h3>{music.title}</h3>
-            <div>
-                <img src={music.coverArt} alt='sorry this cant be displayed' className='object-cover rounded-md w-36 h-36'/>
-            </div>
-            {
-                decodedToken.id === music.artistID ? <Link to={'/edit-music/' + music._id} className='p-1 m-2 bg-blue-600 rounded-full'>edit</Link> : null
-            }
-        <button className='p-1 m-2 bg-blue-600 rounded-full' onClick={handleMusicStream(music._id)}>Play</button>
-    </div>
-))} */
+
