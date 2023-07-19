@@ -6,10 +6,8 @@ import jwt_decode from "jwt-decode";
 const SideNavBar = () => {
     const [selected, setSelected] = useState('home');
 
-
     const user = JSON.parse(localStorage.getItem('user'));
     const decodedToken = jwt_decode(user.userToken);
-
 
     return (
         // <div className="fixed flex flex-col w-48 h-screen px-6 py-4 text-blue-100 bg-[#181C25]">

@@ -20,6 +20,7 @@ import FinishAddingMusic from './views/AddMusic/FinishAddingMusic';
 import UserSettings from './views/UserSettings/UserSettings';
 import PaymentGateway from './views/authentication/PaymentGateway';
 import CheckoutForm from './views/authentication/CheckoutForm';
+import Market from './views/market/Market';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -48,6 +49,7 @@ function App() {
               />} path="/finish-adding-music" />
 
               <Route element={<LoadingPage />} path="/Loading" />
+              <Route element={<Market />} path="/market" />
               <Route element={<CompleteProfile />} path="/complete-profile" />
               <Route element={<FancyRegister />} path="/fancy-register" />
               <Route element={<Login />} path="/login" />
