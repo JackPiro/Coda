@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./PlayBar.css";
 
 
-const PlayBar = () => {
+const Playbar = () => {
     const [volume, setVolume] = useState(0);
     const [time, setTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -95,4 +95,4 @@ const PlayBar = () => {
     );
 };
 
-export default PlayBar;
+export default Playbar;
