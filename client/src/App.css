@@ -5,3 +5,18 @@
 .hover\:bg-opacity-10:hover {
   --tw-bg-opacity: 0.1;
 }
+
+.scrollable-section::-webkit-scrollbar {
+  width: 3px;
+}
+
+.scrollable-section::-webkit-scrollbar-track {
+  background: #202530;
+}
+
+.scrollable-section::-webkit-scrollbar-thumb {
+  background-color: #336CFF;
+  border-radius: 20px;
+}
+
+

@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
 
 const ArtistSubscriptionGroupSchema = new mongoose.Schema({
-    subscriptionGroupID: { type: mongoose.Schema.Types.ObjectId, auto: true },
     artistID: { type: mongoose.Schema.Types.ObjectId, ref: 'Artist', required: true },
     groupName: { type: String, required: true },
     description: { type: String, required: true },
     subscriptionPrice: { type: Number, required: true },
     subscribers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     exclusiveContent: [{
-        contentID: { type: mongoose.Schema.Types.ObjectId, required: true },
+        contentID: { type: mongoose.Schema.Types.ObjectId, required: true, ref:'ExclusiveContent' },
         contentType: { type: String, required: true, enum: ['NFT', 'music', 'update_post', 'goal_based_release', 'crowdfunding_campaign'] },
     }],
 });

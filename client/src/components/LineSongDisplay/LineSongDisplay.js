@@ -2,7 +2,7 @@ import React from 'react'
 
 const LineSongDisplay = () => {
     return (
-        <div class="flex flex-grow items-center space-x-3 bg-[#181C25] hover:bg-[#202530] rounded-sm">
+        <div class="flex flex-grow py-2 items-center space-x-3  hover:bg-[#202530] hover:rounded-md border-b border-[#202530]">
             <button class="p-2 m-1 hover:bg-[#336CFF] group focus:outline-none rounded-full">
                 <svg class="w-4 h-4 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
             </button>

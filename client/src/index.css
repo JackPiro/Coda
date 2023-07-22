@@ -52,25 +52,46 @@ code {
   --secondary: #ffffff14;
 }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--secondary) var(--primary);
+body::-webkit-scrollbar {
+  width: 3px;
 }
 
-/* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-  width: 15px;
+body::-webkit-scrollbar-track {
+  background: #202530;
 }
 
-*::-webkit-scrollbar-track {
-  background: var(--primary);
-  border-radius: 5px;
+body::-webkit-scrollbar-thumb {
+  background-color: #363e4d;
+  border-radius: 20px;
 }
 
-*::-webkit-scrollbar-thumb {
-  background-color: var(--secondary);
-  border-radius: 14px;
-  border: 3px solid var(--primary);
+.scrollable-section::-webkit-scrollbar {
+  width: 3px;
+}
+
+.scrollable-section::-webkit-scrollbar-track {
+  background: #202530;
+}
+
+.scrollable-section::-webkit-scrollbar-thumb {
+  background-color: #336CFF;
+  border-radius: 20px;
+}
+
+
+
+
+.scrollable-x::-webkit-scrollbar {
+  height: 3px;
+}
+
+.scrollable-x::-webkit-scrollbar-track {
+  background: #202530;
+}
+
+.scrollable-x::-webkit-scrollbar-thumb {
+  background-color: #363e4d;
+  border-radius: 20px;
 }
 
 @tailwind components;

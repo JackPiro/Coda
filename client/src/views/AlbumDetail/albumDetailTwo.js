@@ -1,12 +1,23 @@
 import React from 'react';
+import NoSearchNav from '../../components/TopNavBar/NoSearchNav';
+import SideNavBar from '../../components/SideNavBar/SideNavBar';
+import Playbar from '../../components/Playbar/Playbar';
+import LineSongDisplay from '../../components/LineSongDisplay/LineSongDisplay';
 
 const AlbumDetailTwo = () => {
     return (
         <div>
-            <div class="min-h-screen flex flex-col items-center justify-center">
+            <div className='flex bg-gradient-to-t from-[#0E121A] from-80% to-[#336dff3b]'>
+            <div className='fixed w-48 h-screen'>
+                <SideNavBar />
+            </div>
+            <div className='flex-grow ml-48 overflow-x-hidden'>
+                <NoSearchNav />
+                <div>
+                <div class="min-h-screen flex flex-col items-center justify-center">
                 <div class="relative max-w-xl w-full h-36 bg-white rounded-lg shadow-lg mb-32">
-                    <div class="absolute inset-0 rounded-lg overflow-hidden bg-red-200">
-                        <img src="https://images.unsplash.com/photo-1543794327-59a91fb815d1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=200&q=80" alt="" />
+                    <div class="absolute inset-0 w-full rounded-lg overflow-hidden bg-red-200">
+                        <img src="https://images.unsplash.com/photo-1500099817043-86d46000d58f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&h=250&q=80" alt="" />
                         <div class="absolute inset-0 backdrop backdrop-blur-10 bg-gradient-to-b from-transparent to-black">
                         </div>
                     </div>
@@ -26,7 +37,7 @@ const AlbumDetailTwo = () => {
                         </div>
                     </div>
                 </div>
-                <div class="max-w-xl bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="max-w-xl bg-[#181C25] rounded-lg shadow-lg overflow-hidden">
                     <div class="relative">
                         <img
                             src="https://images.unsplash.com/photo-1500099817043-86d46000d58f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&h=250&q=80"
@@ -62,38 +73,18 @@ const AlbumDetailTwo = () => {
                             3:00
                         </div>
                     </div>
-                    <ul class="text-xs sm:text-base divide-y border-t cursor-default">
-                        <li class="flex items-center space-x-3 hover:bg-gray-100">
-                            <button class="p-3 hover:bg-green-500 group focus:outline-none">
-                                <svg class="w-4 h-4 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                            </button>
-                            <div class="flex-1">
-                                Artist - Title
-                            </div>
-                            <div class="text-xs text-gray-400">
-                                2:58
-                            </div>
-                            <button class="focus:outline-none pr-4 group">
-                                <svg class="w-4 h-4 group-hover:text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"/></svg>
-                            </button>
-                        </li>
-                        <li class="flex items-center space-x-3 hover:bg-gray-100">
-                            <button class="p-3 hover:bg-green-500 group focus:outline-none">
-                                <svg class="w-4 h-4 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                            </button>
-                            <div class="flex-1">
-                                Artist - Title
-                            </div>
-                            <div class="text-xs text-gray-400">
-                                2:58
-                            </div>
-                            <button class="focus:outline-none pr-4 group">
-                                <svg class="w-4 h-4 group-hover:text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"/></svg>
-                            </button>
-                        </li>
-                    </ul>
+                    <div class="text-xs sm:text-base divide-y border-t cursor-default">
+                        <LineSongDisplay />
+                        <LineSongDisplay />
+
+                    </div>
                 </div>
             </div>
+                </div>
+            </div>
+            <Playbar />
+        </div>
+            
         </div>
     )
 }

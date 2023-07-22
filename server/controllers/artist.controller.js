@@ -1,6 +1,8 @@
 // Create an artist
 const Artist = require('../models/Artist');
 
+
+//already have this in create user
 module.exports.createArtist = async (req, res) => {
     try {
         // Create a new artist

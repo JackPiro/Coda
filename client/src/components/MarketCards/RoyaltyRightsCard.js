@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function MarketCard() {
+export default function RoyaltyRightsCard() {
     return (
         <div class="flex flex-col justify-center items-center h-[100vh]">
             <div class="!z-5 flex relative rounded-[20px] max-w-[300px] bg-[#181C25] bg-clip-border shadow-3xl shadow-shadow-500 flex-col w-full !p-4 3xl:p-![18px]  undefined">
@@ -32,9 +32,9 @@ export default function MarketCard() {
                     </div>
                     <div class="flex items-center justify-between md:items-center lg:justify-between ">
                         <div class="flex">
-                            <p class="!mb-0 text-sm font-bold text-brand-500">Current Bid: 0.91 <span>ETH</span></p>
+                            <p class="!mb-0 text-sm font-bold text-brand-500"> List Price: $305 <span>DAI</span></p>
                         </div>
-                        <button href="" class="linear rounded-[20px] bg-brand-900 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-brand-800 active:bg-brand-700">Place Bid</button>
+                        <button href="" class="linear rounded-[20px] bg-brand-900 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-brand-800 active:bg-brand-700">Buy</button>
                     </div>
                 </div>
             </div>

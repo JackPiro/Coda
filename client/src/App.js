@@ -21,6 +21,8 @@ import UserSettings from './views/UserSettings/UserSettings';
 import PaymentGateway from './views/authentication/PaymentGateway';
 import CheckoutForm from './views/authentication/CheckoutForm';
 import Market from './views/market/Market';
+import AlbumDetailInvest from './views/AlbumDetail/AlbumDetailInvest';
+import AlbumDetailThree from './views/AlbumDetail/AlbumDetailThree';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -58,7 +60,8 @@ function App() {
               <Route  element={<Explore searchResults={searchResults} setSearchResults={setSearchResults} />} path="/explore" />
               <Route element={<UploadMusic />} path="/UploadMusic" />
               <Route element={<EditSong />} path="/edit-music/:id" />
-              <Route element={<AlbumDetailTwo />} path="/album-detail" />
+              <Route element={<AlbumDetailInvest />} path="/album-detail-invest" />
+              <Route element={<AlbumDetailThree />} path="/album-detail" />
               <Route element={<ArtistProfile />} path="/artist-profile/:id" />
           </Routes>
       </BrowserRouter>

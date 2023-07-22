@@ -5,6 +5,12 @@ const UserSchema = new mongoose.Schema({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     //removed required for the time being
+    platformSubscription: {
+        status: { type: String, enum: ['active', 'inactive', 'cancelled'], default: 'inactive' },
+        stripeSubscriptionId: { type: String }, // Add this if you're using Stripe for platform subscriptions too.
+        subscriptionType: { type: String }, // The type of platform subscription
+        updatedAt: { type: Date, default: Date.now }
+    },
     username: { type: String, require: true, unique: true },
     displayName: { type: String },
     bio: { type: String },
@@ -13,29 +19,31 @@ const UserSchema = new mongoose.Schema({
     role: { type: String, enum: ['artist', 'listener'], required: true },
     loyaltyPoints: [
         {
-            artist: { type: mongoose.Schema.Types.ObjectId, ref: 'Artist' },
-            points: { type: Number, default: 0 },
-            timestamp: { type: Date, default: Date.now },
-            reason: { type: String },
-        }
-    ],
-    following: [
-        {
-            followerID: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
-        }
-    ],
-    followers: [
-        {
-            followerID: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+            artist: {type: mongoose.Schema.Types.ObjectId, ref: 'Artist'},
+            points: {type: Number, default: 0},
+            timestamp: {type: Date, default: Date.now},
+            reason: {type: String}
         }
     ],
     subscribedGroups: [
         { type: mongoose.Schema.Types.ObjectId, ref: 'SubscriptionGroup' }
     ],
+    likedSongs: [
+        {
+            songID: {type: mongoose.Schema.Types.ObjectId, ref: 'Music'},
+            likedAt: {type: Date, default: Date.now}
+        }
+    ],
+    sharedSongs: [
+        {
+            songId: {type: mongoose.Schema.Types.ObjectId, ref: 'Music'},
+            timestamp: {type: Date, default: Date.now},
+            recipients: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+        }
+    ],
     invitesAvailable: { type: Number, default: 0 },
     successfulInvites:{type: Number, default: 0},
     subscriptionPrice: {type: Number, default: 22},
-    likedSongs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Music'}], //come back to this need to be the ids of songs
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     notifyOn: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Artist' }],

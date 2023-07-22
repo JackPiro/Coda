@@ -5,7 +5,9 @@ const ArtistSchema = new mongoose.Schema({
     name: {type: String, required: true},
     genre: [{type: String, required: true}],
     bio: {type: String, required: true},
-    albums: [{type:mongoose.Schema.Types.ObjectId, ref: 'Music'}], //unfinished music needs to be songs and albums
+    stripeAccountID: {type: String, required: true},
+    albums: [{type:mongoose.Schema.Types.ObjectId, ref: 'Albums'}], //unfinished music needs to be songs and albums
+    songs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Music'}],
     socialLinks: [{
         platform: {type: String},
         url: {type: String}

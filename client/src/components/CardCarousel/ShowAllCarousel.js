@@ -24,7 +24,7 @@ const ShowAllCarousel = ({ musicList }) => {
             </div>
             <div className="flex items-center justify-between space-x-9 mt-4 carousel-cards">
                 {!showAll && <button onClick={handlePrevious} className='p-2 rounded hover:bg-gray-700'>←</button>}
-                <div className="ml-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-9 gap-y-6">
+                <div className="ml-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 gap-y-6">
                     {musicList.slice(currentIndex, currentIndex + (showAll ? musicList.length : 4)).map((song) => (
                         <SongCard key={song._id} song={song} />
                     ))}

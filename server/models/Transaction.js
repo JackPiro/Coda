@@ -7,6 +7,10 @@ const TransactionSchema = new mongoose.Schema({
     type: { type: String, enum: ['earn', 'spend', 'sell'], required: true },
     action: { type: String, required: true },
     timestamp: { type: Date, default: Date.now },
+    actionDetails: {
+        type: Map,
+        of: String
+    }
 });
 
 const Transaction = mongoose.model('Transaction', TransactionSchema);

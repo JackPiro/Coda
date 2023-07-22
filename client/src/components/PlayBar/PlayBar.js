@@ -29,7 +29,7 @@ const Playbar = () => {
 
 
     return (
-        <div className="fixed h-16 bottom-0 bg-gray-800 w-full flex items-center justify-between p-4">
+        <div className="fixed h-16 bottom-0 bg-[#202530] w-full flex items-center justify-between p-4">
             <div className="flex items-center">
                 <img src="https://images.unsplash.com/photo-1531316282956-d38457be0993?ixid=MXwxMjA3fDB8MHxwaG90by1wYWgelFhx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" alt="cover art" className="w-10 h-10 rounded-md mr-2"/>
                 <div>
