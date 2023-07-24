@@ -12,6 +12,8 @@ const AlbumDetailInvest = () => {
     const price = 5.00;
 
 
+
+
     
     return (
         <div>
