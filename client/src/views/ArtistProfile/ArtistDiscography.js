@@ -45,16 +45,34 @@ const ArtistDiscography = ({ artistId }) => {
                 </div>
             </div>
             <div>
-                <p className='block ml-10 mt-6 text-left text-lg font-bold'>Albums</p>
-                <ShowAllCarousel musicList={albumList}/>
+                {
+                    albumList.length !== 0 ? 
+                        <div>
+                            <p className='block ml-10 mt-6 text-left text-lg font-bold'>Albums</p>
+                            <ShowAllCarousel musicList={albumList}/>
+                        </div>
+                    : null
+                }
             </div>
             <div>
-                <p className='block ml-10 mt-6 text-left text-lg font-bold'>Singles</p>
-                <ShowAllCarousel musicList={singlesList}/>
+                {
+                        singlesList.length !== 0 ? 
+                            <div>
+                                <p className='block ml-10 mt-6 text-left text-lg font-bold'>Singles</p>
+                                <ShowAllCarousel musicList={singlesList}/>
+                            </div>
+                        : null
+                    }
             </div>
             <div>
-                <p className='block ml-10 mt-6 text-left text-lg font-bold'>Seen on</p>
-                <ShowAllCarousel musicList={topTenList}/>
+                {
+                        topTenList.length !== 0 ? 
+                            <div>
+                                <p className='block ml-10 mt-6 text-left text-lg font-bold'>Seen on</p>
+                                <ShowAllCarousel musicList={topTenList}/>
+                            </div>
+                        : null
+                    }
             </div>
         </div>
     )
