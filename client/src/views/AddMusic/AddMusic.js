@@ -78,13 +78,13 @@ const AddMusic= ({fileList, setFileList, releaseType, setReleaseType}) => {
                                 { releaseType === 'album' ? <p>Albums cannot be edited after they are uploaded</p> : '' }
                             </div>
                             {fileList.length > 0 && fileList.map((file, index) => (
-                                <div key={index} className="relative bg-[#181C25] my-3 shadow-2xl rounded-lg flex justify-between items-center p-4">
-                                    <div>
-                                        <p className="text-xs"><strong>File Name: </strong>{file.name}</p>
+                                <div key={index} className="relative bg-[#181C25] my-3 pr-6 shadow-2xl rounded-lg flex justify-between items-center p-4">
+                                    <div className="mr-2 w-48">
+                                        <p className="text-xs truncate "><strong>File Name: </strong>{file.name}</p>
                                         <p className="text-xs"><strong>File Size: </strong>{(file.size / 1024 / 1024).toFixed(2)} MB</p>
                                         {/* Handle duration display for multiple files */}
                                     </div>
-                                    <audio controls src={URL.createObjectURL(file)} />
+                                    <audio controls src={URL.createObjectURL(file)} className="w-56"/>
                                     <button
                                         onClick={() => handleRemoveUpload(index)}
                                         className="absolute rounded-full top-2 right-2 p-1 py-0  text-white"

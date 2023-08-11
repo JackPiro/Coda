@@ -171,7 +171,8 @@ const FinishAddingMusic= ({fileList, setFileList, releaseType}) => {
                             <div className="w-full flex justify-between">
                                 <div>
                                     <label className="font-bold">Song Name:</label>
-                                    <input className="bg-[#181C25] ml-2 p-2 rounded-lg text-slate-400" populate={file.name} />
+                                    setSongName(file.name)
+                                    <input className="bg-[#181C25] ml-2 p-2 rounded-lg text-slate-400" value={songName} onChange={e => setSongName(e.target.value)} />
                                 </div>
                                 <button
                                     onClick={() => handleRemoveUpload(index)}
@@ -187,16 +188,28 @@ const FinishAddingMusic= ({fileList, setFileList, releaseType}) => {
                                 {dropdownOpen[index] ? 'Hide Advanced Options' : 'Show Advanced Options'}
                             </button>
                             {dropdownOpen[index] && 
-                            <div className="flex justify-center w-full mt-4 space-x-10">
-                                <div>
-                                    <label className="font-bold">Track ISRC:</label>
-                                    <input className="bg-[#181C25] ml-2 p-2 rounded-lg text-slate-400" placeholder="Enter Track ISRC"/>
+                            <div>
+                                <div className="flex justify-center w-full mt-4 space-x-10">
+                                    <div>
+                                        <label className="font-bold">Track ISRC:</label>
+                                        <input className="bg-[#181C25] ml-2 p-2 rounded-lg text-slate-400" placeholder="Enter Track ISRC"/>
+                                    </div>
+                                    <div>
+                                        <label className="font-bold mt-2">Track ISWC:</label>
+                                        <input className="bg-[#181C25] ml-2 p-2 rounded-lg text-slate-400" placeholder="Enter Track ISWC"/>
+                                    </div>
                                 </div>
-                                <div>
-                                    <label className="font-bold mt-2">Track ISWC:</label>
-                                    <input className="bg-[#181C25] ml-2 p-2 rounded-lg text-slate-400" placeholder="Enter Track ISWC"/>
+                                <div className="flex justify-center w-full mt-4 space-x-10">
+                                    <div>
+                                        <p>Credit People</p>
+                                        <div>
+                                            <label className="font-bold">Username of profile:</label>
+                                            <input className="bg-[#181C25] ml-2 p-2 rounded-lg text-slate-400" placeholder="@Username"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            
                             }
                         </div>
                     ))}

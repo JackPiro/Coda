@@ -74,6 +74,19 @@ const ArtistDiscography = ({ artistId }) => {
                         : null
                     }
             </div>
+
+
+            //make this for seen on list add a reference to artist credits on the details page
+            <div>
+                {
+                        topTenList.length !== 0 ? 
+                            <div>
+                                <p className='block ml-10 mt-6 text-left text-lg font-bold'>Seen on</p>
+                                <ShowAllCarousel musicList={topTenList}/>
+                            </div>
+                        : null
+                    }
+            </div>
         </div>
     )
 }
