@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import "./PlayBar.css";
 
 
+
+
 const Playbar = () => {
     const [volume, setVolume] = useState(0);
     const [time, setTime] = useState(0);
@@ -28,7 +30,12 @@ const Playbar = () => {
     }
 
 
-    
+
+
+
+
+
+
 
     return (
         <div className="fixed h-16 bottom-0 bg-[#202530] w-full flex items-center justify-between p-4">
