@@ -13,3 +13,6 @@ export default function CreditsCard() {
         </div>
     )
 }
+
+
+

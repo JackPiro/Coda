@@ -31,12 +31,6 @@ const Playbar = () => {
 
 
 
-
-
-
-
-
-
     return (
         <div className="fixed h-16 bottom-0 bg-[#202530] w-full flex items-center justify-between p-4">
             <div className="flex items-center ml-6">
