@@ -17,7 +17,7 @@ const AlbumDetailInvest = () => {
                 <div className='fixed w-48 h-screen'>
                     <SideNavBar />
 
-                    
+
                 </div>
                 <div className='flex-grow ml-48 overflow-x-hidden'>
                     <NoSearchNav />
@@ -62,6 +62,7 @@ const AlbumDetailInvest = () => {
                                     <LineSongDisplay />
                                     <LineSongDisplay />
                                     <LineSongDisplay />
+                                    
 
                                 </div>
                             </div>
