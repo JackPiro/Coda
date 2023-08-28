@@ -63,6 +63,8 @@ const AlbumDetailInvest = () => {
                                     <LineSongDisplay />
                                     <LineSongDisplay />
 
+                                    
+
 
 
                                 </div>
