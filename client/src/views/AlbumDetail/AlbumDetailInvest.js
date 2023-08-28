@@ -65,7 +65,9 @@ const AlbumDetailInvest = () => {
 
 
 
-                                    
+
+
+
 
                                 </div>
                             </div>
