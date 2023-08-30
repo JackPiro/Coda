@@ -62,13 +62,6 @@ const AlbumDetailInvest = () => {
                                     <LineSongDisplay />
                                     <LineSongDisplay />
                                     <LineSongDisplay />
-
-
-
-                                    
-
-
-
                                 </div>
                             </div>
                             <div className=' w-2/5 flex flex-col space-y-3'>
