@@ -24,12 +24,12 @@ const AlbumDetailInvest = () => {
                             <div className=' w-3/5 min-h-screen flex flex-col space-y-3'>
                                 <h1 className='font-bold text-3xl text-left'>Artist Name</h1>
                                 <p className='text-left text-slate-700 text-xs'>Credited</p>
-                                <div className='flex space-x-3 overflow-x-scroll overflow-y-hidden scrollable-x pb-3'>
-                                    <CreditsCard />
-                                    <CreditsCard />
-                                    <CreditsCard />
-                                    <CreditsCard />
-                                </div>
+                                    <div className='flex space-x-3 overflow-x-scroll overflow-y-hidden scrollable-x pb-3'>
+                                        <CreditsCard />
+                                        <CreditsCard />
+                                        <CreditsCard />
+                                        <CreditsCard />
+                                    </div>
                                 <p className='text-left'>
                                 "Till It Hurts" is a song by Dutch electronic trio Yellow Claw, featuring vocals performed by Dutch singer Ayden (stage name of Sanne Veerbeek). It was released digitally as a single in November 2014 through Spinnin' Records
                                 </p>
@@ -60,7 +60,6 @@ const AlbumDetailInvest = () => {
                                     <LineSongDisplay />
                                     <LineSongDisplay />
                                     <LineSongDisplay />
-
                                 </div>
                             </div>
                             <div className=' w-2/5 flex flex-col space-y-3'>
