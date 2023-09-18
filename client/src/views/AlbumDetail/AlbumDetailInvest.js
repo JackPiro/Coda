@@ -29,6 +29,8 @@ const AlbumDetailInvest = () => {
                                         <CreditsCard />
                                         <CreditsCard />
                                         <CreditsCard />
+
+                                        
                                     </div>
                                 <p className='text-left'>
                                 "Till It Hurts" is a song by Dutch electronic trio Yellow Claw, featuring vocals performed by Dutch singer Ayden (stage name of Sanne Veerbeek). It was released digitally as a single in November 2014 through Spinnin' Records
