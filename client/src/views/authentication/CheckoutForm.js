@@ -5,6 +5,7 @@ import {
     useStripe,
     useElements
 } from "@stripe/react-stripe-js";
+import io from 'socket.io-client';
 
 export default function CheckoutForm() {
     const stripe = useStripe();
