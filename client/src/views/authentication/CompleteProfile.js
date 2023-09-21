@@ -96,6 +96,9 @@ const CompleteProfile = () => {
                                 </div>
                                 <button type='submit' onClick={handleSubmit} class="block w-full px-2 py-2 max-w-xs mx-auto register-button text-white rounded-lg font-semibold text-sm ">Continue →</button>
                             </form>
+                            <div className='mt-10'>
+                                <Link to={'/subscribe-view'} className='text-gray-400 underline'>Skip for now</Link>
+                            </div>
                         </div>
                     </div>
                 </div>

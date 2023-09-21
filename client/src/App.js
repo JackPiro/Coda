@@ -23,6 +23,8 @@ import CheckoutForm from './views/authentication/CheckoutForm';
 import Market from './views/market/Market';
 import AlbumDetailInvest from './views/AlbumDetail/AlbumDetailInvest';
 import AlbumDetailThree from './views/AlbumDetail/AlbumDetailThree';
+import SubscribeView from './views/authentication/SubscribeView';
+
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -63,6 +65,9 @@ function App() {
               <Route element={<AlbumDetailInvest />} path="/album-detail-invest" />
               <Route element={<AlbumDetailThree />} path="/album-detail" />
               <Route element={<ArtistProfile />} path="/artist-profile/:id" />
+              <Route element={<SubscribeView />} path="/subscribe-view" />
+
+              
           </Routes>
       </BrowserRouter>
     </div>

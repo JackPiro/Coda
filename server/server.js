@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 require('./config/mongoose.config'); 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST_KEY);
 
 const app = express();
 const PORT = process.env.PORT || 5001;

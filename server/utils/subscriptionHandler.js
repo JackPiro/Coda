@@ -1,20 +1,26 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST_KEY);
 const User = require('../models/User');
+
+//http://localhost:3000/subscription-success?session_id={CHECKOUT_SESSION_ID}',
 
 module.exports.subscribe = async (req, res) => {
     try {
+        console.log("Received userId in body:", req.body.userId);
+        const userId = req.body.userId;
 
-        const userId = session.metadata.userId;
+        if (!userId) {
+            throw new Error("User ID is required, no userId found");
+        }
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             line_items: [{
-                price: process.env.STRIPE_STANDARD_SUBSCRIPTION_PRICE_ID, // Ensure this environmental variable is set correctly
+                price: process.env.STRIPE_STANDARD_SUBSCRIPTION_PRICE_ID_TEST,
                 quantity: 1,
             }],
             mode: 'subscription',
-            success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}', // Replace with your actual website URL
-            cancel_url: 'https://example.com/cancel', // Replace with your actual website URL
+            success_url: 'http://localhost:3000/loading?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url: 'https://yourdomain.com/cancel',  // Replace with your actual website URL
             metadata: {
                 userId: userId.toString()
             }
@@ -26,6 +32,7 @@ module.exports.subscribe = async (req, res) => {
         res.status(500).json({ error: 'Failed to create checkout session' });
     }
 };
+
 
 module.exports.successfullySubscribed = async (req, res) => {
     try {
@@ -94,16 +101,22 @@ module.exports.stripeWebhook = async (req, res) => {
     switch (event.type) {
         case 'customer.subscription.created':
             const customerSubscriptionCreated = event.data.object;
-            // Then define and call a function to handle the event customer.subscription.created
+            // Update user status in DB
+            // Notify user of successful subscription
+            console.log(`Subscription created for customer ${customerSubscriptionCreated.customer}`);
             break;
         case 'customer.subscription.deleted':
             const customerSubscriptionDeleted = event.data.object;
-            // Then define and call a function to handle the event customer.subscription.deleted
+            // Update user status in DB
+            // Restrict user access to subscription-only resources
+            // Notify user of subscription cancellation
+            console.log(`Subscription deleted for customer ${customerSubscriptionDeleted.customer}`);
             break;
         // ... handle other event types
         default:
             console.log(`Unhandled event type ${event.type}`);
     }
+    
 
     // Return a 200 response to acknowledge receipt of the event
     res.json({ received: true });
