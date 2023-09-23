@@ -18,6 +18,11 @@ const ArtistSchema = new mongoose.Schema({
             pointsRequired: { type: Number },
         }
     ],
+    subscriptionGroupPrice: { type: Number, required: true },
+    exclusiveContent: [{
+        contentID: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'ExclusiveContent' },
+        contentType: { type: String, required: true, enum: ['NFT', 'music', 'update_post', 'goal_based_release', 'crowdfunding_campaign'] },
+    }],
     createdAt: {type: Date, default: Date.now},
     updatedAt: {type: Date, default: Date.now}
 });

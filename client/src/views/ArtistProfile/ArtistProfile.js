@@ -15,8 +15,8 @@ const ArtistProfile = () => {
         <div className='flex'>
             <SideNavBar />
             <div className='flex-grow ml-48 overflow-x-hidden'>
-            <ProfileHeader artistId={id} active={active} setActive={setActive} />
-            {active === 'portfolio' ? <ArtistPortfolio artistId={id} /> : <ArtistDiscography artistId={id} />}
+                <ProfileHeader artistId={id} active={active} setActive={setActive} />
+                {active === 'portfolio' ? <ArtistPortfolio artistId={id} /> : <ArtistDiscography artistId={id} />}
             </div>
         </div>
     )

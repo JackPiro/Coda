@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
         }
     ],
     subscribedGroups: [
-        { type: mongoose.Schema.Types.ObjectId, ref: 'SubscriptionGroup' }
+        { type: mongoose.Schema.Types.ObjectId, ref: 'ArtistSubscription' }
     ],
     likedSongs: [
         {

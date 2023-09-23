@@ -24,6 +24,7 @@ import Market from './views/market/Market';
 import AlbumDetailInvest from './views/AlbumDetail/AlbumDetailInvest';
 import AlbumDetailThree from './views/AlbumDetail/AlbumDetailThree';
 import SubscribeView from './views/authentication/SubscribeView';
+import ArtistDashboard from './views/ArtistDashboard/ArtistDashboard';
 
 
 function App() {
@@ -66,6 +67,8 @@ function App() {
               <Route element={<AlbumDetailThree />} path="/album-detail" />
               <Route element={<ArtistProfile />} path="/artist-profile/:id" />
               <Route element={<SubscribeView />} path="/subscribe-view" />
+              <Route element={<ArtistDashboard />} path="/dashboard" />
+              
 
               
           </Routes>

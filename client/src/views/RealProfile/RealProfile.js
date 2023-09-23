@@ -7,7 +7,8 @@ import axios from 'axios';
 import NavWithSettings from '../../components/TopNavBar/NavWithSettings';
 import YourProfileHeader from '../../components/ProfileHeader/YourProfileHeader';
 import ShowAllCarousel from '../../components/CardCarousel/ShowAllCarousel';
-
+import UserMusic from './UserMusic';
+import UserCollection from './UserCollection';
 
 
 import authService from '../../services/authService'
@@ -51,10 +52,7 @@ const RealProfile = () => {
             </div>
             <div className='flex-grow mt-4 ml-48 '>
                 <YourProfileHeader user={user} active={active} setActive={setActive}/>
-                <ShowAllCarousel musicList={musicList} />
-                <ShowAllCarousel musicList={musicList} />
-                <ShowAllCarousel musicList={musicList} />
-                <ShowAllCarousel musicList={musicList} />
+                {active === 'portfolio' ? <UserCollection userId={user.id} /> : <UserMusic musicList={musicList} userId={user.id} />}
             </div>
         </div>
     );

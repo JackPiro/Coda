@@ -6,6 +6,7 @@ import jwt_decode from "jwt-decode";
 const STRIPE_PUBLIC_TEST_KEY = 'pk_test_51NTWkiI9bg9V8KasCINtLK3d456OnlVpHxdJoa5wYOTChCFLCj1tMN0jHfBkkNjuUtHkPjLkGSAds6v4nHVNxH4M00QhZGT9eA';
 const stripePromise = loadStripe(STRIPE_PUBLIC_TEST_KEY);
 
+
 const DirectToStripeCheckout = () => {
 
     const initiateSubscription = async () => {
