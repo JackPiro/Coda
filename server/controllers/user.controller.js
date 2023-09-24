@@ -1,19 +1,61 @@
 const User = require('../models/User');
 const Artist = require('../models/Artist');
 const UserEngagementMetrics = require('../models/UserEngagementMetrics');
+const ArtistSubscription = require('../models/ArtistSubscription')
 
 //trying this one
+// exports.createUser = async (req, res) => {
+//     try {
+//         const newUser = new User(req.body);
+//         await newUser.save();
+
+//         if (newUser.role === 'artist') {
+//             const newArtist = new Artist({ user: newUser._id });
+//             await newArtist.save();
+
+//             const newUserEngagementMetrics = new UserEngagementMetrics({ userID: newUser._id, artistID: newArtist._id });
+//             await newUserEngagementMetrics.save();
+//         }
+
+//         res.status(201).json(newUser);
+//     } catch (error) {
+//         res.status(400).json({ message: error.message });
+//     }
+// };
+
 exports.createUser = async (req, res) => {
     try {
         const newUser = new User(req.body);
         await newUser.save();
 
         if (newUser.role === 'artist') {
-            const newArtist = new Artist({ user: newUser._id });
+            // Create Artist Document
+            console.log('trying to create new artist document:', newUser)
+            const newArtist = new Artist({
+                userID: newUser._id,
+                artistName: `${newUser.firstName} ${newUser.lastName}`, // Concatenating the first and last name as an example
+            });
             await newArtist.save();
+            console.log("created artist doc", newArtist)
 
-            const newUserEngagementMetrics = new UserEngagementMetrics({ userID: newUser._id, artistID: newArtist._id });
-            await newUserEngagementMetrics.save();
+            // Create ArtistSubscriptionGroup Document
+            const newArtistGroup = new ArtistSubscription({
+                artistID: newArtist._id,
+                groupName: `${newUser.firstName}'s Group`, // Example name based on user's first name
+                description: `Exclusive group for ${newUser.firstName}`,
+                subscriptionPrice: 15, // Default price, you can change it
+                subscribers: [],
+                exclusiveContent: []
+            });
+            await newArtistGroup.save();
+            console.log("created artist subscription doc", newArtistGroup)
+
+            // Create UserEngagementMetrics Document (based on your original code)
+            // const newUserEngagementMetrics = new UserEngagementMetrics({ 
+            //     userID: newUser._id, 
+            //     artistID: newArtist._id 
+            // });
+            // await newUserEngagementMetrics.save();
         }
 
         res.status(201).json(newUser);
@@ -21,9 +63,6 @@ exports.createUser = async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 };
-
-
-
 
 exports.getAllUsers = async (req, res) => {
     try {
