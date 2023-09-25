@@ -41,9 +41,6 @@ const FancyRegister = () => {
         }
     };
 
-
-
-
     return (
         <div>
             <div class="min-w-screen min-h-screen bg-gradient-to-r from-[#0E121A] to-indigo-700 flex items-center justify-center px-5 py-5">

@@ -3,6 +3,10 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 
+const Artist = require('../models/Artist')
+const ArtistSubscriptionGroup = require('../models/ArtistSubscriptionGroup')
+
+
 module.exports.registerUser = async (req, res) => {
     const { firstName, lastName, email, username, password, role } = req.body;
 
@@ -35,42 +39,105 @@ module.exports.registerUser = async (req, res) => {
 
         await newUser.save();
 
-        // Send a confirmation email
-        // const token = jwt.sign({ userId: newUser._id }, process.env.EMAIL_SECRET, { expiresIn: '1h' });
-        // const emailData = {
-        //     from: 'noreply@CodaStreaming.com',
-        //     to: email,
-        //     subject: 'Account Confirmation',
-        //     text: `Click on this link to confirm your email address: ${process.env.CLIENT_URL}/confirm-email/${token}`
-        // };
+        if (newUser.role === 'artist') {
+            // Create Artist Document
+            const newArtist = new Artist({
+                userID: newUser._id,
+                name: `${newUser.firstName} ${newUser.lastName}`, // Using this as an example
+                // Add other necessary default values or fields here
+            });
+            await newArtist.save();
+            console.log("created artist document")
 
-        // const transporter = nodemailer.createTransport({
-        //     service: 'gmail',
-        //     auth: {
-        //         user: process.env.EMAIL_USERNAME,
-        //         pass: process.env.EMAIL_PASSWORD
-        //     }
-        // });
 
-        // await transporter.sendMail(emailData);
+            // Create ArtistSubscriptionGroup Document
+            const newArtistGroup = new ArtistSubscriptionGroup({
+                artistID: newArtist._id,
+                groupName: `${newUser.firstName}'s Group`, 
+                description: `Exclusive group for ${newUser.firstName}`,
+                subscriptionPrice: 15, // Default price
+                subscribers: [],
+                exclusiveContent: []
+            });
+            await newArtistGroup.save();
+            console.log("created artist group")
+        }
 
-        const token = jwt.sign({ id: newUser._id, role: newUser.role }, process.env.JWT_SECRET, {
-            expiresIn: process.env.JWT_EXPIRES_IN,
-        });
-        //remove this later, prints user id to server console
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            console.log('User ID in token:', decoded.id);
-        
-        // res.status(200).json({ token });
-        res.cookie("userToken", token, { httpOnly: true })
-            .json({ msg: "success!", userToken: token });
-
-        // Return a success response
-        // res.status(201).json({ message: 'User registered successfully. Please check your email to confirm your account.' });
+        // ...rest of your code for sending confirmation emails and other functionalities
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
+
+// module.exports.registerUser = async (req, res) => {
+//     const { firstName, lastName, email, username, password, role } = req.body;
+
+//     try {
+//         // Check if email and username are unique
+//         const existingEmail = await User.findOne({ email });
+//         const existingUsername = await User.findOne({ username });
+
+//         if (existingEmail) {
+//             return res.status(400).json({ message: 'There is already an account with this email.' });
+//         }
+        
+//         if (existingUsername) {
+//             return res.status(400).json({ message: 'Someone got here first, this username is already in use.' });
+//         }        
+
+//         // Hash the password
+//         const salt = await bcrypt.genSalt(10);
+//         const hashedPassword = await bcrypt.hash(password, salt);
+
+//         // Create user account in the database
+//         const newUser = new User({
+//             firstName,
+//             lastName,
+//             email,
+//             username,
+//             password: hashedPassword,
+//             role
+//         });
+
+//         await newUser.save();
+
+
+//         // Send a confirmation email
+//         // const token = jwt.sign({ userId: newUser._id }, process.env.EMAIL_SECRET, { expiresIn: '1h' });
+//         // const emailData = {
+//         //     from: 'noreply@CodaStreaming.com',
+//         //     to: email,
+//         //     subject: 'Account Confirmation',
+//         //     text: `Click on this link to confirm your email address: ${process.env.CLIENT_URL}/confirm-email/${token}`
+//         // };
+
+//         // const transporter = nodemailer.createTransport({
+//         //     service: 'gmail',
+//         //     auth: {
+//         //         user: process.env.EMAIL_USERNAME,
+//         //         pass: process.env.EMAIL_PASSWORD
+//         //     }
+//         // });
+
+//         // await transporter.sendMail(emailData);
+
+//         const token = jwt.sign({ id: newUser._id, role: newUser.role }, process.env.JWT_SECRET, {
+//             expiresIn: process.env.JWT_EXPIRES_IN,
+//         });
+//         //remove this later, prints user id to server console
+//         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+//             console.log('User ID in token:', decoded.id);
+        
+//         // res.status(200).json({ token });
+//         res.cookie("userToken", token, { httpOnly: true })
+//             .json({ msg: "success!", userToken: token });
+
+//         // Return a success response
+//         // res.status(201).json({ message: 'User registered successfully. Please check your email to confirm your account.' });
+//     } catch (error) {
+//         res.status(500).json({ message: error.message });
+//     }
+// };
 
 
 module.exports.loginUser = async (req, res) => {

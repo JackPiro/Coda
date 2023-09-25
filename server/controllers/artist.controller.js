@@ -1,4 +1,3 @@
-// Create an artist
 const Artist = require('../models/Artist');
 
 
@@ -16,6 +15,8 @@ module.exports.createArtist = async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 };
+
+
 
 // Get all artists
 module.exports.getArtists = async (req, res) => {

@@ -5,13 +5,26 @@ import PlayBar from '../../components/Playbar/Playbar';
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 function ArtistDashboard() {
 
-    useEffect(() => {
-        axios.put("http://localhost:5001/")
-    });
+    // useEffect(() => {
+    //     axios.put("http://localhost:5001/")
+    // });
 
+    // const navigate = useNavigate();
+
+    // const navigateToStripe = () => {
+    //     navigate(`https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${process.env.STRIPE_CLIENT_ID_TEST}&scope=read_write`);
+    // }
+
+    const navigateToStripe = () => {
+        const stripeURL = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_OfxkuzhopDpIUU6ycVww9fHxneDF3AHZ&scope=read_write`;
+        window.open(stripeURL, '_self');
+        console.log(process.env.REACT_APP_STRIPE_CLIENT_ID_TEST);
+    }
 
     return (
         <div className="min-h-screen">
@@ -28,7 +41,7 @@ function ArtistDashboard() {
                             <h1 className="text-4xl font-bold">Artist Dashboard</h1>
                             </header>
 
-                            <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                                 <div className="bg-[#202530] p-6 rounded-md shadow-md">
                                     <h2 className="text-xl font-semibold mb-4">Streams this Month</h2>
                                     <p className="text-3xl font-bold">250,000</p>
@@ -48,16 +61,22 @@ function ArtistDashboard() {
                                     <h2 className="text-xl font-semibold mb-4">Monthly Earnings</h2>
                                     <p className="text-3xl font-bold">$7,500</p>
                                 </div>
-                            </section>
+                            </div>
 
-                            <section className="bg-[#202530] p-6 rounded-md shadow-md">
+                            <button 
+                                className='mb-6 p-1 border-2 border-white rounded-full opacity-60 hover:opacity-80' 
+                                onClick={navigateToStripe}>
+                                    Setup Your Subscription Group
+                            </button>
+
+                            <div className="bg-[#202530] p-6 rounded-md shadow-md">
                                 <header className="mb-6">
                                     <h2 className="text-2xl font-semibold">Manage Subscription Group</h2>
 
                                 </header>
 
-                            <label>Update Subscription Price:</label>
-                            <input type='number' placeholder='$20.00'  className='p-1 mx-3 rounded-md bg-[#181C25]'/>
+                                <label>Update Subscription Price:</label>
+                                <input type='number' placeholder='$20.00'  className='p-1 mx-3 rounded-md bg-[#181C25]'/>
                                 <div className="space-y-4">
                                     <div className="flex justify-between items-center">
                                         <div className="flex items-center space-x-3">
@@ -71,7 +90,7 @@ function ArtistDashboard() {
                                     </div>
                                     {/* ... Add more subscribers as needed ... */}
                                 </div>
-                            </section>
+                            </div>
                         </div>
 
                     </div>
