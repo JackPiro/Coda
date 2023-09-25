@@ -1,5 +1,7 @@
 const ArtistSubscriptionGroup = require('../models/ArtistSubscriptionGroup');
 const Artist = require('../models/Artist')
+const axios = require('axios');
+
 
 // module.exports.createGroup = async (req, res) => {
 //     try {
@@ -16,27 +18,48 @@ module.exports.handleStripeRedirect = async (req, res) => {
 
     try {
         const response = await axios.post('https://connect.stripe.com/oauth/token', {
-            client_secret: process.env.REACT_APP_STRIPE_CLIENT_ID_TEST,
+            client_secret: process.env.STRIPE_SECRET_TEST_KEY,
             code,
             grant_type: 'authorization_code'
         });
 
+        console.log(req.user.id)
+        console.log(req.body)
+
+        console.log(response.data)
         const stripeUserId = response.data.stripe_user_id;
 
-        // You would also update your database to store the stripeUserId for the user.
-        // This will involve using your model (e.g., Artist or User) to make the update.
+        // if (!req.params || !req.params.id) {
+        //     return res.status(400).json({ message: 'User information is missing params.' });
+        // }
         
-        // For example (assuming Artist model is related):
-        const artist = await Artist.findOne({ user: req.user.id }); // Assuming you have user info on req object
+        if (!req.user || !req.user.id) {
+            return res.status(400).json({ message: 'User information is missing.' });
+        }
+        
+
+        const artist = await Artist.findOne({ userID: req.body.userID });
         artist.stripeUserId = stripeUserId;
         await artist.save();
 
+        console.log('test')
+
         res.json({ message: "Stripe account linked successfully!" });
 
+        console.log("artist found", artist.userID)
+
     } catch (error) {
-        res.status(400).json({ message: "Error linking Stripe account." });
+        console.error("Stripe error:", error.response ? error.response.data : error.message);
+        res.status(400).json({ message: "Error linking Stripe account.", error: error.response ? error.response.data : error.message });
     }
 };
+
+
+
+/*
+After the artist completes the OAuth process on Stripe's website, Stripe will redirect back to the URI you've specified with a code parameter.
+This is where we have set up the route and controller to handle the redirect. Our endpoint captures the code from the query parameters and exchanges it with Stripe for an access_token and stripe_user_id (among other details).
+*/
 
 
 module.exports.getAllGroups = async (req, res) => {

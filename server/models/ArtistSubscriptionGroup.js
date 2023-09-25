@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+//using this one
+
 const ArtistSubscriptionGroupSchema = new mongoose.Schema({
     artistID: { type: mongoose.Schema.Types.ObjectId, ref: 'Artist', required: true },
     groupName: { type: String, required: true },

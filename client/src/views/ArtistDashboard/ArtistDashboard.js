@@ -6,13 +6,29 @@ import PlayBar from '../../components/Playbar/Playbar';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
 
 function ArtistDashboard() {
 
-    // useEffect(() => {
-    //     axios.put("http://localhost:5001/")
-    // });
+    function useQuery() {
+        return new URLSearchParams(useLocation().search);
+    }
+
+    const query = useQuery();
+    const code = query.get('code');
+
+    useEffect(() => {
+        if (code) {
+            // If there's a code in the URL, send it to the backend
+            axios.post('http://localhost:5001/api/artist-subscription-groups/handle-redirect', { code })
+                .then(res => {
+                    console.log(res)
+                })
+                .catch(err => {
+                    console.log(err, 'shit')
+                });
+        }
+    }, [code]);
 
     // const navigate = useNavigate();
 

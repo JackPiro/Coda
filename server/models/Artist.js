@@ -8,6 +8,7 @@ const ArtistSchema = new mongoose.Schema({
     stripeAccountID: {type: String},
     albums: [{type:mongoose.Schema.Types.ObjectId, ref: 'Albums'}], //unfinished music needs to be songs and albums
     songs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Music'}],
+    stripeUserId: {type: String},
     socialLinks: [{
         platform: {type: String},
         url: {type: String}

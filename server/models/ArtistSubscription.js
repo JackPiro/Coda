@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+
+//not using this schema
 const ArtistSubscriptionSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     artistId: { type: mongoose.Schema.Types.ObjectId, ref: 'Artist', required: true },

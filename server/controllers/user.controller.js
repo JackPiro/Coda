@@ -33,7 +33,7 @@ exports.createUser = async (req, res) => {
             console.log('trying to create new artist document:', newUser)
             const newArtist = new Artist({
                 userID: newUser._id,
-                artistName: `${newUser.firstName} ${newUser.lastName}`, // Concatenating the first and last name as an example
+                artistName: `${newUser.firstName} ${newUser.lastName}`, 
             });
             await newArtist.save();
             console.log("created artist doc", newArtist)
