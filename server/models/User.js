@@ -20,9 +20,13 @@ const UserSchema = new mongoose.Schema({
     loyaltyPoints: [
         {
             artist: {type: mongoose.Schema.Types.ObjectId, ref: 'Artist'},
-            points: {type: Number, default: 0},
+            totalPoints: {type: Number, default: 0},
             timestamp: {type: Date, default: Date.now},
-            reason: {type: String}
+            actionsTaken: [ 
+                {
+                    transaction: {type: mongoose.Schema.Types.ObjectId, ref: 'Transaction'}
+                }
+            ]
         }
     ],
     subscribedGroups: [
