@@ -8,8 +8,8 @@ router.get('/', userController.getAllUsers);
 router.get('/:id', userController.getUserById);
 router.put('/update/:id', userController.updateUserById);
 router.delete('/:id', userController.deleteUserById);
-router.put('/:userId/update-subscription-price', userController.updateSubscriptionPrice);
-router.get('/:userId/subscription-price', userController.getSubscriptionPrice);
+// router.put('/:userId/update-subscription-price', userController.updateSubscriptionPrice);
+// router.get('/:userId/subscription-price', userController.getSubscriptionPrice);
 
 
 module.exports = router;

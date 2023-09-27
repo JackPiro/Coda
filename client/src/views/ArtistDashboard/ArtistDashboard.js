@@ -8,7 +8,13 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
+import jwt_decode from "jwt-decode";
+
+
 function ArtistDashboard() {
+
+    const user = JSON.parse(localStorage.getItem('user'));
+    const decodedToken = jwt_decode(user.userToken);
 
     function useQuery() {
         return new URLSearchParams(useLocation().search);
@@ -20,7 +26,9 @@ function ArtistDashboard() {
     useEffect(() => {
         if (code) {
             // If there's a code in the URL, send it to the backend
-            axios.post('http://localhost:5001/api/artist-subscription-groups/handle-redirect', { code })
+            console.log(decodedToken)
+            console.log("Sending code:", code);
+            axios.post('http://localhost:5001/api/artist-subscription-groups/handle-redirect/' + decodedToken.id, { code })
                 .then(res => {
                     console.log(res)
                 })

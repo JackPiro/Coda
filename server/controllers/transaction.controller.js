@@ -29,8 +29,8 @@ module.exports.earnPoints = async (req, res) => {
             case 'shared music':
                 basePoints = 5;
                 break;
-            //maybe implement follower link for the future where they follow through a link connected to that user and make it more points.
-            case 'shared profile':
+            //Maybe implement follower link for the future where they follow through a link connected to that user and make it more points.
+            case 'shared profile': //with click through?
                 basePoints = 5;
                 break;
             case 'bought merch':

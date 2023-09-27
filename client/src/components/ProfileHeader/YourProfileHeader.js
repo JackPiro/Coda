@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SubscriptionPaywall from '../SubscriptionPaywall/SubscriptionPaywall';
 import NavWithSettings from '../TopNavBar/NavWithSettings';
 
 import jwt_decode from "jwt-decode";
-
-
+import axios from 'axios';
 
 
 const YourProfileHeader = ({ active, setActive }) => {
@@ -14,8 +13,10 @@ const YourProfileHeader = ({ active, setActive }) => {
     const user = JSON.parse(localStorage.getItem('user'));
     const decodedToken = jwt_decode(user.userToken);
 
+    useEffect(() => {
+        axios.get('http://localhost:5001/api/users/')
+    }, [])
 
-    
     return (
         <div className='bg-gradient-to-t from-[#0E121A] from-80% to-[#336dff3b]'>
             <div className=" top-0 h-64 w-full mb-16 text-white flex-grow">

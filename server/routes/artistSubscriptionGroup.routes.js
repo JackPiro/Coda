@@ -8,6 +8,6 @@ const artistSubscriptionGroup = require('../controllers/artistSubscriptionGroup.
 // router.put('/api/:id', artistSubscriptionGroup.updateGroupById);
 // router.delete('/api/:id', artistSubscriptionGroup.deleteGroupById);
 
-router.get('/handle-redirect', artistSubscriptionGroup.handleStripeRedirect);
+router.post('/handle-redirect/:id', artistSubscriptionGroup.handleStripeRedirect);
 
 module.exports = router;

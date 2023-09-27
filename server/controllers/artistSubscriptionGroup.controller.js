@@ -14,7 +14,14 @@ const axios = require('axios');
 // };
 
 module.exports.handleStripeRedirect = async (req, res) => {
-    const { code } = req.query;
+    console.log('artistID:', req.params.id)
+
+    // const { code } = req.query;
+
+    const { code } = req.body;
+    console.log("Received code:", code);
+
+    const artistId = req.params.id;  // Extracting artistId from the URL
 
     try {
         const response = await axios.post('https://connect.stripe.com/oauth/token', {
@@ -23,36 +30,72 @@ module.exports.handleStripeRedirect = async (req, res) => {
             grant_type: 'authorization_code'
         });
 
-        console.log(req.user.id)
-        console.log(req.body)
-
-        console.log(response.data)
+        console.log(response.data);
+        console.log(artistId)
         const stripeUserId = response.data.stripe_user_id;
 
-        // if (!req.params || !req.params.id) {
-        //     return res.status(400).json({ message: 'User information is missing params.' });
-        // }
-        
-        if (!req.user || !req.user.id) {
-            return res.status(400).json({ message: 'User information is missing.' });
-        }
-        
+        // Using the artistId we extracted from the URL to find the artist in the database
+        const artist = await Artist.findById(artistId);
 
-        const artist = await Artist.findOne({ userID: req.body.userID });
+        // If the artist isn't found, return an error response
+        if (!artist) {
+            return res.status(404).json({ message: "Artist not found." });
+        }
+
         artist.stripeUserId = stripeUserId;
         await artist.save();
 
-        console.log('test')
-
         res.json({ message: "Stripe account linked successfully!" });
-
-        console.log("artist found", artist.userID)
 
     } catch (error) {
         console.error("Stripe error:", error.response ? error.response.data : error.message);
         res.status(400).json({ message: "Error linking Stripe account.", error: error.response ? error.response.data : error.message });
     }
 };
+
+
+// module.exports.handleStripeRedirect = async (req, res) => {
+//     const { code } = req.query;
+
+//     const artistId = req.params.id;
+
+//     try {
+//         const response = await axios.post('https://connect.stripe.com/oauth/token', {
+//             client_secret: process.env.STRIPE_SECRET_TEST_KEY,
+//             code,
+//             grant_type: 'authorization_code'
+//         });
+
+//         console.log(req.user.id)
+//         console.log(req.body)
+
+//         console.log(response.data)
+//         const stripeUserId = response.data.stripe_user_id;
+
+//         // if (!req.params || !req.params.id) {
+//         //     return res.status(400).json({ message: 'User information is missing params.' });
+//         // }
+        
+//         if (!req.user || !req.user.id) {
+//             return res.status(400).json({ message: 'User information is missing.' });
+//         }
+        
+
+//         const artist = await Artist.findOne({ userID: req.body.userID });
+//         artist.stripeUserId = stripeUserId;
+//         await artist.save();
+
+//         console.log('test')
+
+//         res.json({ message: "Stripe account linked successfully!" });
+
+//         console.log("artist found", artist.userID)
+
+//     } catch (error) {
+//         console.error("Stripe error:", error.response ? error.response.data : error.message);
+//         res.status(400).json({ message: "Error linking Stripe account.", error: error.response ? error.response.data : error.message });
+//     }
+// };
 
 
 
