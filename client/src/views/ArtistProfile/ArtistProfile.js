@@ -22,4 +22,6 @@ const ArtistProfile = () => {
     )
 }
 
+
+
 export default ArtistProfile;
