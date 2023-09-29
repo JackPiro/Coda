@@ -25,6 +25,8 @@ import AlbumDetailInvest from './views/AlbumDetail/AlbumDetailInvest';
 import AlbumDetailThree from './views/AlbumDetail/AlbumDetailThree';
 import SubscribeView from './views/authentication/SubscribeView';
 import ArtistDashboard from './views/ArtistDashboard/ArtistDashboard';
+import ArtistCircle from './views/ArtistProfile/ArtistCircle';
+import UnfinishedSongDetail from './views/SongDetail/UnfinishedSongDetail';
 
 
 function App() {
@@ -37,7 +39,6 @@ function App() {
       <BrowserRouter>
         <Routes>
               <Route element={<NewRegister />} path="/register" />
-              <Route element={<PaymentGateway />} path="/subscribe" />
               <Route element={<UserSettings />} path="/settings" />
 
               <Route element={<AddMusic 
@@ -68,9 +69,10 @@ function App() {
               <Route element={<ArtistProfile />} path="/artist-profile/:id" />
               <Route element={<SubscribeView />} path="/subscribe-view" />
               <Route element={<ArtistDashboard />} path="/dashboard" />
-              
+              <Route element={<ArtistCircle />} path="/artist-circle/:id" />
+              <Route element={<UnfinishedSongDetail />} path="/suggestion" />
 
-              
+
           </Routes>
       </BrowserRouter>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import SideNavBar from '../../components/SideNavBar/SideNavBar';
 import ProfileHeader from '../../components/ProfileHeader/ProfileHeader';
-import { useParams } from "react-router-dom";
+import { useParams, } from "react-router-dom";
 import { useState } from 'react';
 import ArtistDiscography from './ArtistDiscography';
 import ArtistPortfolio from './ArtistPortfolio';
@@ -9,7 +9,7 @@ import ArtistPortfolio from './ArtistPortfolio';
 
 const ArtistProfile = () => {
     const { id } = useParams();
-    const [active, setActive] = useState('portfolio')
+    const [active, setActive] = useState('portfolio');
 
     return (
         <div className='flex'>
