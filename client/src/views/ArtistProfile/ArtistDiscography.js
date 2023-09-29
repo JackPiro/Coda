@@ -40,8 +40,12 @@ const ArtistDiscography = ({ artistId }) => {
                     <LineSongDisplay />
                     <LineSongDisplay />
                     <LineSongDisplay />
+                </div>
+                <div className='flex flex-col w-full space-y-3'>
                     <LineSongDisplay />
                     <LineSongDisplay />
+                    <LineSongDisplay />
+                    
                 </div>
             </div>
             <div>

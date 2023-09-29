@@ -8,11 +8,18 @@ const UnfinishedSongLineDisplay = () => {
     return (
         <div className='hover:bg-[#202530] hover:rounded-md border-b border-[#202530]'>
             <div class="flex flex-grow py-2 mx-3 items-center space-x-3  ">
+                <div className="flex items-center ml-6">
+                    <img src="https://images.unsplash.com/photo-1531316282956-d38457be0993?ixid=MXwxMjA3fDB8MHxwaG90by1wYWgelFhx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" alt="cover art" className="w-10 h-10 rounded-md mr-2"/>
+                    <div>
+                        <span className="text-white block">Song Name</span>
+                        <span className="text-gray-400">Artist Name</span>
+                    </div>
+                </div>
                 <button class="p-2 m-1 hover:bg-[#336CFF] group focus:outline-none rounded-full">
                     <svg class="w-4 h-4 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                 </button>
                 <div class="flex-1">
-                    Working Title
+                    
                 </div>
                 <div class="text-xs text-gray-400">
                     2:58
