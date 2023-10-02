@@ -6,6 +6,7 @@ import SideNavBar from '../../components/SideNavBar/SideNavBar';
 import NoSearchNav from '../../components/TopNavBar/NoSearchNav';
 import CardCarousel from '../../components/CardCarousel/CardCarousel';
 import PlayBar from '../../components/Playbar/Playbar';
+import SmallMusicCard from '../../components/LineSongDisplay/SmallMusicCard';
 
 import jwt_decode from "jwt-decode";
 
@@ -34,6 +35,12 @@ const Profile = () => {
         authService.logout();
         navigate('/login');
     }
+
+    const song = () => {
+        musicList.slice(currentIndex).map((song) => (
+            <SongCard key={song._id} song={song} />
+        ))
+    }
     
     return (
         <div className='flex bg-gradient-to-t from-[#0E121A] from-80% to-[#336dff3b]'>
@@ -47,6 +54,18 @@ const Profile = () => {
                 }
                 <div>
                     <h1 className='block m-5 ml-8 text-2xl text-left'>Welcome {user && decodedToken.firstName ? decodedToken.firstName.toUpperCase() : 'some user'}</h1>
+                    <div className='p-6'>
+                        <div className='flex'>
+                            <SmallMusicCard musicList={musicList} />
+                            <SmallMusicCard musicList={musicList} />
+                            <SmallMusicCard musicList={musicList} />
+                        </div>
+                        <div className='flex'>
+                            <SmallMusicCard musicList={musicList} />
+                            <SmallMusicCard musicList={musicList} />
+                            <SmallMusicCard musicList={musicList} />
+                        </div>
+                    </div>
                     <div className="flex flex-row flex-wrap justify-center m-3">
                         <CardCarousel musicList={musicList} />
                         <CardCarousel musicList={musicList} />

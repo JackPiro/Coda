@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import SongCard from '../SongCard/SongCard';
 import ArtistCard from '../ArtistCards/ArtistCard';
 
 const CardCarousel = ({ artistList }) => {
