@@ -23,6 +23,8 @@ export default function SmallMusicCard({ musicList }) {
                 audio.pause();
                 setPaused(true);
             }
+
+            
         } else {
             // const audioFileName = song.audioFile.split('/').pop();
             // axios.get("http://localhost:5001/api/music/stream/" + audioFileName, {responseType: 'blob'})
