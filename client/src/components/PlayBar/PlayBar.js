@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import "./PlayBar.css";
 
 
-
-
 const Playbar = () => {
     const [volume, setVolume] = useState(0);
     const [time, setTime] = useState(0);
