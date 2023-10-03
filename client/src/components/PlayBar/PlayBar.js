@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./Playbar.css";
+import "./PlayBar.css";
 
 
 const Playbar = () => {

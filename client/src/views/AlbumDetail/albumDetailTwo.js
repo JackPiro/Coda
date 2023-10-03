@@ -1,7 +1,7 @@
 import React from 'react';
 import NoSearchNav from '../../components/TopNavBar/NoSearchNav';
 import SideNavBar from '../../components/SideNavBar/SideNavBar';
-import Playbar from '../../components/Playbar/Playbar';
+import Playbar from '../../components/PlayBar/PlayBar';
 import LineSongDisplay from '../../components/LineSongDisplay/LineSongDisplay';
 
 const AlbumDetailTwo = () => {

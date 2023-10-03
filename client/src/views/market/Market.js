@@ -1,6 +1,6 @@
 import React from 'react'
 import MarketCard from '../../components/MarketCards/LoyaltyPointsCard'
-import Playbar from '../../components/Playbar/Playbar'
+import Playbar from '../../components/PlayBar/PlayBar'
 import SideNavBar from '../../components/SideNavBar/SideNavBar'
 import NoSearchNav from '../../components/TopNavBar/NoSearchNav'
 

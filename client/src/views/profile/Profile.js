@@ -5,7 +5,7 @@ import authService from '../../services/authService'
 import SideNavBar from '../../components/SideNavBar/SideNavBar';
 import NoSearchNav from '../../components/TopNavBar/NoSearchNav';
 import CardCarousel from '../../components/CardCarousel/CardCarousel';
-import Playbar from '../../components/Playbar/Playbar';
+import Playbar from '../../components/PlayBar/PlayBar';
 import SmallMusicCard from '../../components/LineSongDisplay/SmallMusicCard';
 
 import jwt_decode from "jwt-decode";
