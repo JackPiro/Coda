@@ -1,7 +1,7 @@
 import React from 'react';
 import NoSearchNav from '../../components/TopNavBar/NoSearchNav';
 import SideNavBar from '../../components/SideNavBar/SideNavBar';
-import Playbar from '../../components/PlayBar/PlayBar';
+import BarPlay from '../../components/BarPlay/BarPlay';
 import LineSongDisplay from '../../components/LineSongDisplay/LineSongDisplay';
 
 const AlbumDetailTwo = () => {
@@ -82,7 +82,7 @@ const AlbumDetailTwo = () => {
             </div>
                 </div>
             </div>
-            <Playbar />
+            <BarPlay />
         </div>
             
         </div>

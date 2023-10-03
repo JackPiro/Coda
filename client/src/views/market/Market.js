@@ -1,6 +1,6 @@
 import React from 'react'
 import MarketCard from '../../components/MarketCards/LoyaltyPointsCard'
-import Playbar from '../../components/PlayBar/PlayBar'
+import BarPlay from '../../components/BarPlay/BarPlay'
 import SideNavBar from '../../components/SideNavBar/SideNavBar'
 import NoSearchNav from '../../components/TopNavBar/NoSearchNav'
 
@@ -19,7 +19,7 @@ export default function Market() {
                     </div>
                 </div>
             </div>
-            <Playbar />
+            <BarPlay />
         </div>
     )
 }

@@ -5,7 +5,7 @@ import authService from '../../services/authService'
 import SideNavBar from '../../components/SideNavBar/SideNavBar';
 import NoSearchNav from '../../components/TopNavBar/NoSearchNav';
 import CardCarousel from '../../components/CardCarousel/CardCarousel';
-import Playbar from '../../components/PlayBar/PlayBar';
+import BarPlay from '../../components/BarPlay/BarPlay';
 import SmallMusicCard from '../../components/LineSongDisplay/SmallMusicCard';
 
 import jwt_decode from "jwt-decode";
@@ -73,7 +73,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            <Playbar />
+            <BarPlay />
         </div>
     );
 };

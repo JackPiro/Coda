@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import "./PlayBar.css";
+import "./BarPlay.css";
 
 
-const Playbar = () => {
+const BarPlay = () => {
     const [volume, setVolume] = useState(0);
     const [time, setTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -99,4 +99,4 @@ const Playbar = () => {
     );
 };
 
-export default Playbar;
+export default BarPlay;

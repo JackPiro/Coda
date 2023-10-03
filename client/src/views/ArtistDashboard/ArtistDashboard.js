@@ -1,7 +1,7 @@
 import React from 'react';
 import NoSearchNav from '../../components/TopNavBar/NoSearchNav';
 import SideNavBar from '../../components/SideNavBar/SideNavBar';
-import Playbar from '../../components/PlayBar/PlayBar';
+import BarPlay from '../../components/BarPlay/BarPlay';
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -119,7 +119,7 @@ function ArtistDashboard() {
 
                     </div>
                 </div>
-                <Playbar />
+                <BarPlay />
             </div>
         </div>
     );
