@@ -28,5 +28,7 @@ const ArtistSchema = new mongoose.Schema({
     updatedAt: {type: Date, default: Date.now}
 });
 
+
+
 const Artist = mongoose.model('Artist', ArtistSchema);
 module.exports = Artist;
