@@ -2,7 +2,6 @@ const ArtistSubscriptionGroup = require('../models/ArtistSubscriptionGroup');
 const Artist = require('../models/Artist')
 const axios = require('axios');
 
-
 // module.exports.createGroup = async (req, res) => {
 //     try {
 //         const newGroup = new ArtistSubscriptionGroup(req.body);

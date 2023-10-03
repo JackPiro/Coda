@@ -21,7 +21,7 @@ module.exports.registerUser = async (req, res) => {
         
         if (existingUsername) {
             return res.status(400).json({ message: 'Someone got here first, this username is already in use.' });
-        }        
+        }
 
         // Hash the password
         const salt = await bcrypt.genSalt(10);
@@ -48,7 +48,6 @@ module.exports.registerUser = async (req, res) => {
             });
             await newArtist.save();
             console.log("created artist document")
-
 
             // Create ArtistSubscriptionGroup Document
             const newArtistGroup = new ArtistSubscriptionGroup({

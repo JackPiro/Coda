@@ -5,17 +5,21 @@ const API_URL = 'http://localhost:5001/api/auth/';
 // handle registering a new user
 const register = async (firstName, lastName, email, username, password, role) => {
     // send a POST request to the API with the user's information
-    const response = await axios.post(API_URL + 'register', {
-        firstName,
-        lastName,
-        email,
-        username,
-        password,
-        role,
-    });
-
-    // return the response from the API
-    return response.data;
+    try {
+        const response = await axios.post(API_URL + 'register', {
+            firstName,
+            lastName,
+            email,
+            username,
+            password,
+            role,
+        });
+    
+        // return the response from the API
+        return response.data;
+    } catch (error) {
+        console.log(error, "error registering");
+    }
 };
 
 
