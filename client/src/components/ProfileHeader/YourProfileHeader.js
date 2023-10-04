@@ -10,8 +10,19 @@ import axios from 'axios';
 
 const YourProfileHeader = ({ active, setActive }) => {
 
-    const user = JSON.parse(localStorage.getItem('user'));
-    const decodedToken = jwt_decode(user.userToken);
+    let decodedToken = null;
+
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+    if (user && user.userToken) {
+        try {
+            decodedToken = jwt_decode(user.userToken);
+        } catch (error) {
+            console.error("Error decoding the token:", error);
+        }
+    } else {
+        console.warn("No user or user token found in local storage.");
+    }
 
     useEffect(() => {
         axios.get('http://localhost:5001/api/users/')
