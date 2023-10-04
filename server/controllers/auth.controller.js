@@ -9,11 +9,28 @@ const ArtistSubscriptionGroup = require('../models/ArtistSubscriptionGroup')
 
 module.exports.registerUser = async (req, res) => {
     const { firstName, lastName, email, username, password, role } = req.body;
+    console.log(req.body)
 
     try {
         // Check if email and username are unique
         const existingEmail = await User.findOne({ email });
         const existingUsername = await User.findOne({ username });
+        console.log(existingEmail, existingUsername)
+
+        const nullEmailUser = await User.findOne({ email: null });
+        if (nullEmailUser) {
+            console.log("Found a user with a null email:", nullEmailUser);
+            await User.deleteOne({ _id: nullEmailUser._id });
+            console.log("Deleted user with a null email.");
+        }
+
+        const emptyStringEmailUser = await User.findOne({ email: "" });
+        if (emptyStringEmailUser) {
+            console.log("Found a user with an empty string email:", emptyStringEmailUser);
+            await User.deleteOne({ _id: emptyStringEmailUser._id });
+            console.log("Deleted user with an empty string email.");
+        }
+
 
         if (existingEmail) {
             return res.status(400).json({ message: 'There is already an account with this email.' });
@@ -22,6 +39,7 @@ module.exports.registerUser = async (req, res) => {
         if (existingUsername) {
             return res.status(400).json({ message: 'Someone got here first, this username is already in use.' });
         }
+
 
         // Hash the password
         const salt = await bcrypt.genSalt(10);
@@ -38,10 +56,12 @@ module.exports.registerUser = async (req, res) => {
             role
         });
 
-        try {
-            await newUser.save();
-        } catch (error) {
-            console.log(error, "error creating user doc", newUser)
+        const savedUser = await newUser.save();
+        if (!savedUser) {
+            console.error("Error: User was not saved to the database.");
+            return res.status(500).json({ message: 'Error saving user to the database.' });
+        } else {
+            console.log("User saved to the database:", savedUser);
         }
 
         if (newUser.role === 'artist') {
