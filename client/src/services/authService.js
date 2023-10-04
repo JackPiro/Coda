@@ -22,7 +22,6 @@ const register = async (firstName, lastName, email, username, password, role) =>
     }
 };
 
-
 // handle logging in an existing user
 const login = async (email, password) => {
     // send a POST request to the API with the user's information

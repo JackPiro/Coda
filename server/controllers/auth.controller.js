@@ -26,6 +26,7 @@ module.exports.registerUser = async (req, res) => {
         // Hash the password
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
+        console.log('password hashed')
 
         // Create user account in the database
         const newUser = new User({
@@ -37,7 +38,11 @@ module.exports.registerUser = async (req, res) => {
             role
         });
 
-        await newUser.save();
+        try {
+            await newUser.save();
+        } catch (error) {
+            console.log(error, "error creating user doc", newUser)
+        }
 
         if (newUser.role === 'artist') {
             // Create Artist Document
