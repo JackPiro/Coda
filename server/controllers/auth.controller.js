@@ -64,6 +64,27 @@ module.exports.registerUser = async (req, res) => {
             console.log("User saved to the database:", savedUser);
         }
 
+
+
+
+        const token = jwt.sign({ id: newUser._id, role: newUser.role }, process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_EXPIRES_IN,
+        });
+        //remove this later, prints user id to server console
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            console.log('User ID in token:', decoded.id);
+        
+        // res.status(200).json({ token });
+        res.status(201)
+            .cookie("userToken", token, { httpOnly: true })
+            .json({ 
+                msg: "success!", 
+                userToken: token, 
+                message: 'User registered successfully. Please check your email to confirm your account.' 
+            });
+
+
+
         if (newUser.role === 'artist') {
             // Create Artist Document
             const newArtist = new Artist({
@@ -92,6 +113,9 @@ module.exports.registerUser = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+
+
 
 // module.exports.registerUser = async (req, res) => {
 //     const { firstName, lastName, email, username, password, role } = req.body;
