@@ -36,6 +36,8 @@ const login = async (email, password) => {
         localStorage.setItem('user', JSON.stringify(response.data));
     }
 
+    console.log(response.data)
+
     // return the response from the API
     return response.data;
 };

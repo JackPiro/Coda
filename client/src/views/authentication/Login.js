@@ -66,14 +66,15 @@ const Login = () => {
             await authService.login( email, password);
             navigate('/Home');
         } catch (error) {
+            console.log(error);
             if (error.response && error.response.data && error.response.data.message) {
                 setErrorMessage(error.response.data.message);
             } else {
-                setErrorMessage('An error occurred while registering. Please try again.');
+                setErrorMessage('An error occurred while logging in. Please try again.');
             }
         } finally { //
             const user = JSON.parse(localStorage.getItem('user'));
-            console.log(user.role, user.id)
+            console.log(user, user.role)
             setLoading(false);
         }
     };

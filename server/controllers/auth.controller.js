@@ -31,7 +31,6 @@ module.exports.registerUser = async (req, res) => {
             console.log("Deleted user with an empty string email.");
         }
 
-
         if (existingEmail) {
             return res.status(400).json({ message: 'There is already an account with this email.' });
         }
@@ -39,7 +38,6 @@ module.exports.registerUser = async (req, res) => {
         if (existingUsername) {
             return res.status(400).json({ message: 'Someone got here first, this username is already in use.' });
         }
-
 
         // Hash the password
         const salt = await bcrypt.genSalt(10);
@@ -64,9 +62,6 @@ module.exports.registerUser = async (req, res) => {
             console.log("User saved to the database:", savedUser);
         }
 
-
-
-
         const token = jwt.sign({ id: newUser._id, role: newUser.role }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRES_IN,
         });
@@ -82,8 +77,6 @@ module.exports.registerUser = async (req, res) => {
                 userToken: token, 
                 message: 'User registered successfully. Please check your email to confirm your account.' 
             });
-
-
 
         if (newUser.role === 'artist') {
             // Create Artist Document
@@ -113,6 +106,64 @@ module.exports.registerUser = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+
+
+
+
+module.exports.loginUser = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // Check if user exists
+        console.log(`Trying to find user with email: ${email}`);
+        const user = await User.findOne({ email: new RegExp(`^${email.trim()}$`, 'i') });
+        if (!user) {
+            console.log("User not found with email:", email);
+            return res.status(400).json({ message: 'Invalid email or password 1' });
+        }
+
+        // Compare passwords
+        console.log("Comparing input password with stored hash...");
+        console.log("password:", password, "user.password:", user.password)
+
+        // First, hash the input password
+        //the password is being hashed twice somehow
+        const salt = await bcrypt.genSalt(10);
+        const firstHash = await bcrypt.hash(password, salt);
+        console.log('password hashed:', firstHash)
+
+        // Second, hash the first hash
+        const secondHash = await bcrypt.hash(firstHash, salt);
+        console.log('password hashed a second time:', secondHash, "hashed user password that was stored", user.password)
+
+        // Now, compare the double-hashed input password with the stored hash
+        const isMatch = await bcrypt.compare(firstHash, user.password);
+        console.log('Password match:', isMatch);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Invalid email or password' });
+        }
+
+        // Generate JWT token
+        const token = jwt.sign({ id: user._id, role: user.role, firstName: user.firstName }, process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_EXPIRES_IN
+        });
+
+        res.cookie("userToken", token, { httpOnly: true }).json({ msg: "success!", userToken: token, role: user.role });
+    } catch (error) {
+        console.error("Error logging in user:", error.message);
+        res.status(500).json({ message: 'Error logging in user' });
+    }
+};
+
+
+
+
+module.exports.logoutUser = (req, res) => {
+    res.clearCookie('userToken', { httpOnly: true });
+    res.sendStatus(200);
+}
+
 
 
 
@@ -188,66 +239,80 @@ module.exports.registerUser = async (req, res) => {
 // };
 
 
-module.exports.loginUser = async (req, res) => {
-    try {
-        const { email, password } = req.body;
+// module.exports.loginUser = async (req, res) => {
+//     try {
+//         const { email, password } = req.body;
 
-        // Check if user exists
-        const user = await User.findOne({ email });
-        if (!user) {
-            return res.status(400).json({ message: 'Invalid email or password' });
-        }
+//         // Check if user exists
+//         console.log(`Trying to find user with email: ${email}`);
+//         console.log(req.body)
+//         const user = await User.findOne({ email: new RegExp(`^${email.trim()}$`, 'i') });
+//         if (!user) {
+//             console.log("invalid email or password 1")
+//             return res.status(400).json({ message: 'Invalid email or password' });
+//         }
 
-        // Compare passwords
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(400).json({ message: 'Invalid email or password' });
-        }
+//         console.log(user)
 
-        // Check if email is confirmed
+//         // const salt = user.password.split("$")[2].substr(0, 22); 
+//         // // Use this salt to hash the input password
+//         // const hashedWithStoredSalt = await bcrypt.hash(password, `$2a$10$${salt}`);
+//         // console.log("Hashed with stored salt:", hashedWithStoredSalt);
+//         // console.log("Stored hash:", user.password);
+
+//         const isMatch = await bcrypt.compare(password, user.password);
+//         if (!isMatch) {
+//             console.log(password, user.password)
+//             console.log('Password match:', isMatch);
+//             console.log("invalid email or password")
+//             return res.status(400).json({ message: 'Invalid email or password' });
+//         }
+
+//         console.log(`Email: ${email}`);
+//         console.log(`User found: ${!!user}`);
+//         console.log(`Password match: ${isMatch}`);
+
+//         const token = jwt.sign({ id: user._id, role: user.role, firstName: user.firstName }, process.env.JWT_SECRET, {
+//             expiresIn: process.env.JWT_EXPIRES_IN
+//         });
+//         //remove this later, prints user id to server console
+//         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+//             console.log('User ID in token:', decoded.id);
+        
+//         // res.status(200).json({ token });
+//         res.cookie("userToken", token, { httpOnly: true })
+//             .json({ msg: "success!", userToken: token, role: user.role });
+
+//     } catch (error) {
+//         console.error("Error occurred:", error);  // This will help us see the actual error
+//         res.status(500).json({ message: 'Error logging in user' });
+//     }
+// };
+
+
+
+
+
+
+// const hashedInputPassword = await bcrypt.hash(password, 10);  // using a static salt round for simplicity
+        //     console.log("Hashed input password:", hashedInputPassword);
+        //     console.log("Stored hashed password:", user.password);
+
+
+
+
+
+
+
+
+
+
+// Check if email is confirmed
         // if (!user.isEmailConfirmed) {
         //     return res.status(400).json({ message: 'Please check your email and confirm your email address before logging in' });
         // }
 
         // Sign and return JWT token, takes three arguments the user info to store, the signature and options like how long to set it before expiring
-        const token = jwt.sign({ id: user._id, role: user.role, firstName: user.firstName }, process.env.JWT_SECRET, {
-            expiresIn: process.env.JWT_EXPIRES_IN
-        });
-        //remove this later, prints user id to server console
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            console.log('User ID in token:', decoded.id);
-        
-        // res.status(200).json({ token });
-        res.cookie("userToken", token, { httpOnly: true })
-            .json({ msg: "success!", userToken: token, role: user.role });
-    } catch (error) {
-        res.status(500).json({ message: 'Error logging in user' });
-    }
-};
-
-
-
-module.exports.logoutUser = (req, res) => {
-    res.clearCookie('userToken', { httpOnly: true });
-    res.sendStatus(200);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
