@@ -16,6 +16,8 @@ module.exports.createArtist = async (req, res) => {
     }
 };
 
+
+
 // Get all artists
 module.exports.getArtists = async (req, res) => {
     try {
