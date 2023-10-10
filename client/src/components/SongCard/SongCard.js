@@ -71,7 +71,7 @@ const SongCard = ({ song }) => {
                     <Link to={'/song-detail/' + song._id} className="hover:underline hover:text-white">{song.title}</Link>
                 </h3>
                 <p className="text-gray-400 text-base truncate">
-                    <Link to={'/artist-profile/' + song.artistID} className="hover:underline hover:text-white">{song.artistID}</Link>
+                    <Link to={'/artist-profile/' + song.artistID} className="hover:underline hover:text-white">{song.artistName}</Link>
                 </p>
             </div>
         </div>

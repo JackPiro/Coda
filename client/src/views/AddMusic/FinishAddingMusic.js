@@ -21,8 +21,10 @@ const FinishAddingMusic= ({fileList, setFileList, releaseType}) => {
     const [genre, setGenre] = useState('');
     const [audioFile, setAudioFile] = useState();
     const [coverArt, setCoverArt] = useState();
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
 
+
+    
     let decodedToken = null;
 
     const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -182,7 +184,7 @@ const FinishAddingMusic= ({fileList, setFileList, releaseType}) => {
                             <div className="w-full flex justify-between">
                                 <div>
                                     <label className="font-bold">Song Name:</label>
-                                    setSongName(file.name)
+                                        setSongName(file.name)
                                     <input className="bg-[#181C25] ml-2 p-2 rounded-lg text-slate-400" value={songName} onChange={e => setSongName(e.target.value)} />
                                 </div>
                                 <button
