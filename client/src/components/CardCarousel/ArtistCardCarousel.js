@@ -12,6 +12,8 @@ const CardCarousel = ({ artistList }) => {
         setCurrentIndex(Math.max(currentIndex - 4, 0));
     };
 
+
+
     return (
         <div className="flex items-center justify-between m-10 space-x-9 carousel">
             <button onClick={handlePrevious} className='p-2 rounded hover:bg-gray-700'>←</button>
