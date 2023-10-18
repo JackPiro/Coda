@@ -7,6 +7,7 @@ import NoSearchNav from '../../components/TopNavBar/NoSearchNav';
 import CardCarousel from '../../components/CardCarousel/CardCarousel';
 import BarPlay from '../../components/BarPlay/BarPlay';
 import SmallMusicCard from '../../components/LineSongDisplay/SmallMusicCard';
+import SongCardTwo from '../../components/SongCard/SongCardTwo';
 
 import jwt_decode from "jwt-decode";
 
