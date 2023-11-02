@@ -38,6 +38,8 @@ function ArtistDashboard() {
     const query = useQuery();
     const code = query.get('code');
 
+
+
     
 
     useEffect(() => {
