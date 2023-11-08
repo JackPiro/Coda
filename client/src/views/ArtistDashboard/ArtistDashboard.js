@@ -42,6 +42,8 @@ function ArtistDashboard() {
 
     
 
+    
+
     useEffect(() => {
         if (code) {
             // If there's a code in the URL, send it to the backend
