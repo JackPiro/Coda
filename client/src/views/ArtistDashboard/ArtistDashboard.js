@@ -75,6 +75,8 @@ function ArtistDashboard() {
         console.log(process.env.REACT_APP_STRIPE_CLIENT_ID_TEST);
     }
 
+
+    
     return (
         <div className="min-h-screen">
             <div className='flex bg-gradient-to-t from-[#0E121A] from-80% to-[#336dff3b]'>
