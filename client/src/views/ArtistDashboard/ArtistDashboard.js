@@ -76,6 +76,8 @@ function ArtistDashboard() {
     }
 
 
+
+
     
     return (
         <div className="min-h-screen">
