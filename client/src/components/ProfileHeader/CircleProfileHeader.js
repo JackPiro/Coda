@@ -17,6 +17,8 @@ const CircleProfileHeader = ({ artistId, active, setActive }) => {
 
 
 
+
+
     
 
 
