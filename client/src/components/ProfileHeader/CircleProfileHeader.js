@@ -17,6 +17,8 @@ const CircleProfileHeader = ({ artistId, active, setActive }) => {
 
     
 
+
+
     return (
         <div> 
             <div className="top-0 h-64 w-full mb-16 text-white flex-grow">
