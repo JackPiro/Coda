@@ -13,6 +13,8 @@ const CircleProfileHeader = ({ artistId, active, setActive }) => {
     const user = JSON.parse(localStorage.getItem('user'));
 
 
+
+
     
     return (
         <div> 
