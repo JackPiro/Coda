@@ -74,6 +74,8 @@ const CircleProfileHeader = ({ artistId, active, setActive }) => {
 }
 
 
+
+
 {
         // user && user.role === 'artist' ? <Link className='w-16 h-16 p-3 m-3 bg-blue-600 rounded-full top-3 right-3' to={'/UploadMusic'}>+ Music</Link> : null
 }
