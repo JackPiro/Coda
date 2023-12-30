@@ -15,6 +15,9 @@ const Profile = () => {
     const [musicList, setMusicList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
+
+
+    
     // const user = JSON.parse(localStorage.getItem('user'));
     // const decodedToken = jwt_decode(user.userToken);
 
@@ -63,7 +66,7 @@ const Profile = () => {
 
 
 
-    
+
     
     return (
         <div className='flex bg-gradient-to-t from-[#0E121A] from-80% to-[#336dff3b]'>
