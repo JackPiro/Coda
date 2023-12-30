@@ -61,6 +61,9 @@ const Profile = () => {
     // }
     
 
+
+
+    
     
     return (
         <div className='flex bg-gradient-to-t from-[#0E121A] from-80% to-[#336dff3b]'>
