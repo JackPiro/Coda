@@ -38,12 +38,3 @@ Coda aims to create an engaging platform for music enthusiasts while providing a
 
 ### Music Streaming:
 - When a user plays a track, it's streamed directly from the S3 bucket
-- Adaptive bitrate streaming ensures smooth playback across devices
-
-## Future Features
-
-- Implementation of blockchain technology for royalty tracking
-- Integration of a native cryptocurrency for a pay-per-listen model
-- NFT creation and marketplace for artists
-- Decentralized music storage and streaming
-- Smart contracts for automated royalty distribution
